@@ -1,6 +1,6 @@
 
 import { useEffect, useState } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import {
   Mail,
   Download,
@@ -63,54 +63,37 @@ function FloatChip({ label, dot, className, delay = 0, duration = 4 }) {
 export default function Hero() {
   const typed = useTypewriter(roles);
 
-  // Parallax layers — each moves at a different speed while scrolling
-  const { scrollY } = useScroll();
-  const yBlob1 = useTransform(scrollY, [0, 900], [0, 140]);
-  const yBlob2 = useTransform(scrollY, [0, 900], [0, -90]);
-  const yBlob3 = useTransform(scrollY, [0, 900], [0, 110]);
-  const yGrid = useTransform(scrollY, [0, 900], [0, 70]);
-  const yPhoto = useTransform(scrollY, [0, 900], [0, -60]);
-
   return (
     <section
       id="home"
       className="relative min-h-screen flex items-center pt-28 pb-16 px-6 overflow-hidden"
     >
 
-      {/* Aurora background — parallax layers */}
-      <motion.div style={{ y: yBlob1 }} className="absolute -top-32 -left-32">
-        <motion.div
-          animate={{ x: [0, 40, 0], y: [0, 30, 0] }}
-          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-          className="w-[28rem] h-[28rem] bg-blue-600/25 rounded-full blur-3xl"
-        />
-      </motion.div>
-
-      <motion.div style={{ y: yBlob2 }} className="absolute top-1/4 -right-40">
-        <motion.div
-          animate={{ x: [0, -35, 0], y: [0, 40, 0] }}
-          transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
-          className="w-[30rem] h-[30rem] bg-violet-600/20 rounded-full blur-3xl"
-        />
-      </motion.div>
-
-      <motion.div style={{ y: yBlob3 }} className="absolute -bottom-40 left-1/3">
-        <motion.div
-          animate={{ x: [0, 30, 0], y: [0, -25, 0] }}
-          transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
-          className="w-[26rem] h-[26rem] bg-cyan-500/15 rounded-full blur-3xl"
-        />
-      </motion.div>
-
-      {/* Grid overlay — drifts slower than content */}
+      {/* Aurora background */}
       <motion.div
+        animate={{ x: [0, 40, 0], y: [0, 30, 0] }}
+        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute -top-32 -left-32 w-[28rem] h-[28rem] bg-blue-600/25 rounded-full blur-3xl"
+      />
+      <motion.div
+        animate={{ x: [0, -35, 0], y: [0, 40, 0] }}
+        transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute top-1/4 -right-40 w-[30rem] h-[30rem] bg-violet-600/20 rounded-full blur-3xl"
+      />
+      <motion.div
+        animate={{ x: [0, 30, 0], y: [0, -25, 0] }}
+        transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute -bottom-40 left-1/3 w-[26rem] h-[26rem] bg-cyan-500/15 rounded-full blur-3xl"
+      />
+
+      {/* Grid overlay */}
+      <div
+        className="absolute inset-0 opacity-[0.35]"
         style={{
-          y: yGrid,
           backgroundImage:
             "linear-gradient(rgba(148,163,184,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(148,163,184,0.07) 1px, transparent 1px)",
           backgroundSize: "56px 56px",
         }}
-        className="absolute inset-0 opacity-[0.35]"
       />
 
       <div className="relative max-w-7xl mx-auto w-full grid md:grid-cols-2 gap-14 items-center">
@@ -208,7 +191,6 @@ export default function Hero() {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: false, amount: 0.3 }}
           transition={{ duration: 0.8 }}
-          style={{ y: yPhoto }}
           className="flex justify-center"
         >
           <div className="relative">

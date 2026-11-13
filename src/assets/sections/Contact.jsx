@@ -3,7 +3,6 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, MapPin, Send } from "lucide-react";
 import SectionTitle from "../components/SectionTitle";
-import Parallax from "../components/Parallax";
 
 export default function Contact() {
   const [form, setForm] = useState({
@@ -35,12 +34,8 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="relative overflow-hidden py-28 px-6">
-      <Parallax className="absolute -bottom-24 -right-16 pointer-events-none" from={60} to={-60}>
-        <div className="w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl" />
-      </Parallax>
-
-      <div className="relative max-w-7xl mx-auto">
+    <section id="contact" className="py-28 px-6">
+      <div className="max-w-7xl mx-auto">
 
         <SectionTitle
           title="Get In Touch"
