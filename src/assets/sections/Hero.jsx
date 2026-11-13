@@ -1,6 +1,6 @@
 
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import {
   Mail,
   Download,
@@ -52,7 +52,7 @@ function FloatChip({ label, dot, className, delay = 0, duration = 4 }) {
     <motion.div
       animate={{ y: [0, -10, 0] }}
       transition={{ duration, repeat: Infinity, ease: "easeInOut", delay }}
-      className={`absolute z-10 flex items-center gap-2 bg-[#111827]/80 backdrop-blur border border-white/10 px-3.5 py-2 rounded-full text-sm text-gray-200 shadow-lg shadow-black/30 ${className}`}
+      className={`absolute z-10 flex items-center gap-1.5 sm:gap-2 bg-[#111827]/80 backdrop-blur border border-white/10 px-2.5 py-1.5 sm:px-3.5 sm:py-2 rounded-full text-xs sm:text-sm text-gray-200 shadow-lg shadow-black/30 ${className}`}
     >
       <span className={`w-2 h-2 rounded-full ${dot}`} />
       {label}
@@ -63,37 +63,54 @@ function FloatChip({ label, dot, className, delay = 0, duration = 4 }) {
 export default function Hero() {
   const typed = useTypewriter(roles);
 
+  // Parallax layers — each moves at a different speed while scrolling
+  const { scrollY } = useScroll();
+  const yBlob1 = useTransform(scrollY, [0, 900], [0, 140]);
+  const yBlob2 = useTransform(scrollY, [0, 900], [0, -90]);
+  const yBlob3 = useTransform(scrollY, [0, 900], [0, 110]);
+  const yGrid = useTransform(scrollY, [0, 900], [0, 70]);
+  const yPhoto = useTransform(scrollY, [0, 900], [0, -60]);
+
   return (
     <section
       id="home"
       className="relative min-h-screen flex items-center pt-28 pb-16 px-6 overflow-hidden"
     >
 
-      {/* Aurora background */}
-      <motion.div
-        animate={{ x: [0, 40, 0], y: [0, 30, 0] }}
-        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute -top-32 -left-32 w-[28rem] h-[28rem] bg-blue-600/25 rounded-full blur-3xl"
-      />
-      <motion.div
-        animate={{ x: [0, -35, 0], y: [0, 40, 0] }}
-        transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-1/4 -right-40 w-[30rem] h-[30rem] bg-violet-600/20 rounded-full blur-3xl"
-      />
-      <motion.div
-        animate={{ x: [0, 30, 0], y: [0, -25, 0] }}
-        transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute -bottom-40 left-1/3 w-[26rem] h-[26rem] bg-cyan-500/15 rounded-full blur-3xl"
-      />
+      {/* Aurora background — parallax layers */}
+      <motion.div style={{ y: yBlob1 }} className="absolute -top-32 -left-32">
+        <motion.div
+          animate={{ x: [0, 40, 0], y: [0, 30, 0] }}
+          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+          className="w-[28rem] h-[28rem] bg-blue-600/25 rounded-full blur-3xl"
+        />
+      </motion.div>
 
-      {/* Grid overlay */}
-      <div
-        className="absolute inset-0 opacity-[0.35]"
+      <motion.div style={{ y: yBlob2 }} className="absolute top-1/4 -right-40">
+        <motion.div
+          animate={{ x: [0, -35, 0], y: [0, 40, 0] }}
+          transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
+          className="w-[30rem] h-[30rem] bg-violet-600/20 rounded-full blur-3xl"
+        />
+      </motion.div>
+
+      <motion.div style={{ y: yBlob3 }} className="absolute -bottom-40 left-1/3">
+        <motion.div
+          animate={{ x: [0, 30, 0], y: [0, -25, 0] }}
+          transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
+          className="w-[26rem] h-[26rem] bg-cyan-500/15 rounded-full blur-3xl"
+        />
+      </motion.div>
+
+      {/* Grid overlay — drifts slower than content */}
+      <motion.div
         style={{
+          y: yGrid,
           backgroundImage:
             "linear-gradient(rgba(148,163,184,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(148,163,184,0.07) 1px, transparent 1px)",
           backgroundSize: "56px 56px",
         }}
+        className="absolute inset-0 opacity-[0.35]"
       />
 
       <div className="relative max-w-7xl mx-auto w-full grid md:grid-cols-2 gap-14 items-center">
@@ -123,7 +140,7 @@ export default function Hero() {
             Hi, I'm Bora 👋
           </p>
 
-          <h1 className="text-5xl md:text-7xl font-bold leading-tight">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
             Building the
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-500 to-violet-500">
               {" "}Web
@@ -191,6 +208,7 @@ export default function Hero() {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: false, amount: 0.3 }}
           transition={{ duration: 0.8 }}
+          style={{ y: yPhoto }}
           className="flex justify-center"
         >
           <div className="relative">
@@ -201,27 +219,27 @@ export default function Hero() {
               <img
                 src="/images/bora.png"
                 alt="Bora's profile"
-                className="w-72 h-72 md:w-96 md:h-96 object-cover rounded-[2.5rem] block"
+                className="w-64 h-64 sm:w-72 sm:h-72 md:w-96 md:h-96 object-cover rounded-[2.5rem] block"
               />
             </div>
 
             <FloatChip
               label="React"
               dot="bg-cyan-400"
-              className="-left-6 top-10"
+              className="-left-3 top-8 sm:-left-6 sm:top-10"
               delay={0}
             />
             <FloatChip
               label="Laravel"
               dot="bg-red-400"
-              className="-right-8 top-1/3"
+              className="-right-4 top-1/3 sm:-right-8"
               delay={0.6}
               duration={4.5}
             />
             <FloatChip
               label="Spring Boot"
               dot="bg-emerald-400"
-              className="right-2 -bottom-5"
+              className="right-1 -bottom-4 sm:right-2 sm:-bottom-5"
               delay={1.2}
               duration={5}
             />

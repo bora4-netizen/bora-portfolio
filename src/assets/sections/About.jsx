@@ -2,6 +2,7 @@
 import { motion } from "framer-motion";
 import { Code2, GraduationCap, Lightbulb } from "lucide-react";
 import SectionTitle from "../components/SectionTitle";
+import Parallax from "../components/Parallax";
 
 const information = [
   {
@@ -23,8 +24,12 @@ const information = [
 
 export default function About() {
   return (
-    <section id="about" className="py-28 px-6">
-      <div className="max-w-7xl mx-auto">
+    <section id="about" className="relative overflow-hidden py-28 px-6">
+      <Parallax className="absolute -top-24 right-0 pointer-events-none" from={80} to={-80}>
+        <div className="w-96 h-96 bg-blue-600/10 rounded-full blur-3xl" />
+      </Parallax>
+
+      <div className="relative max-w-7xl mx-auto">
         <SectionTitle
           title="About Me"
           subtitle="Get to know me"

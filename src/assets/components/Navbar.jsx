@@ -57,7 +57,12 @@ export default function Navbar() {
       </nav>
 
       {isOpen && (
-        <div className="md:hidden bg-[#111827] px-6 py-5 flex flex-col gap-5">
+        <motion.div
+          initial={{ opacity: 0, y: -12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.25 }}
+          className="md:hidden bg-[#111827] px-6 py-5 flex flex-col gap-5"
+        >
           {links.map((link) => (
             <a
               key={link.name}
@@ -68,7 +73,15 @@ export default function Navbar() {
               {link.name}
             </a>
           ))}
-        </div>
+
+          <a
+            href="#contact"
+            onClick={() => setIsOpen(false)}
+            className="bg-blue-600 hover:bg-blue-700 px-5 py-2.5 rounded-lg text-center transition"
+          >
+            Hire Me
+          </a>
+        </motion.div>
       )}
     </motion.header>
   );
