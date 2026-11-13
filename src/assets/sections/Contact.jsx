@@ -10,6 +10,8 @@ import {
   sendContactMessage,
 } from "../lib/sendMessage";
 
+const spring = { type: "spring", stiffness: 300, damping: 24 };
+
 const inputClass =
   "w-full bg-[#0B1120] border border-white/10 rounded-lg px-4 py-3 outline-none focus:border-blue-500";
 
@@ -114,23 +116,31 @@ export default function Contact() {
     >
       <Parallax
         className="absolute -bottom-24 -right-16 pointer-events-none"
-        from={60}
-        to={-60}
+        from={30}
+        to={-30}
       >
         <div className="w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl" />
       </Parallax>
 
-      <div className="relative max-w-7xl mx-auto">
+      <div className="relative max-w-7xl mx-auto z-10">
 
-        <SectionTitle
-          title="Get In Touch"
-          subtitle="Contact me"
-        />
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.4 }}
+          transition={{ duration: 0.7 }}
+          className="text-center mb-14"
+        >
+          <SectionTitle
+            title="Get In Touch"
+            subtitle="Contact me"
+          />
+        </motion.div>
 
         <div className="grid md:grid-cols-2 gap-8 sm:gap-12">
 
           <motion.div
-            initial={{ opacity: 0, x: -40 }}
+            initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: false, amount: 0.3 }}
             transition={{ duration: 0.7 }}
@@ -148,7 +158,14 @@ export default function Contact() {
 
             <div className="space-y-6">
 
-              <div className="flex items-center gap-3 sm:gap-4">
+              <motion.div
+                initial={{ opacity: 0, x: -12 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: false, amount: 0.3 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                whileHover={{ x: 2 }}
+                className="flex items-center gap-3 sm:gap-4"
+              >
                 <Mail className="text-blue-400" />
                 <div>
                   <p className="text-sm text-gray-500">Email</p>
@@ -159,22 +176,30 @@ export default function Contact() {
                     {CONTACT_EMAIL}
                   </a>
                 </div>
-              </div>
+              </motion.div>
 
-              <div className="flex items-center gap-3 sm:gap-4">
+              <motion.div
+                initial={{ opacity: 0, x: -12 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: false, amount: 0.3 }}
+                transition={{ duration: 0.5, delay: 0.18 }}
+                whileHover={{ x: 2 }}
+                className="flex items-center gap-3 sm:gap-4"
+              >
                 <MapPin className="text-blue-400" />
                 <div>
                   <p className="text-sm text-gray-500">Location</p>
                   <p>Cambodia</p>
                 </div>
-              </div>
+              </motion.div>
 
             </div>
           </motion.div>
 
           <motion.form
             onSubmit={handleSubmit}
-            initial={{ opacity: 0, x: 40 }}
+            noValidate={false}
+            initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: false, amount: 0.3 }}
             transition={{ duration: 0.7, delay: 0.15 }}
@@ -195,68 +220,93 @@ export default function Contact() {
               />
             </div>
 
-            <div>
-              <label htmlFor="contact-name" className="block mb-2 text-sm">
-                Your Name
-              </label>
-              <input
-                id="contact-name"
-                type="text"
-                name="name"
-                value={form.name}
-                onChange={handleChange}
-                required
-                maxLength={80}
-                autoComplete="name"
-                placeholder="e.g. Your Name"
-                className={inputClass}
-              />
-            </div>
+            <motion.div
+              whileHover={{ borderColor: "blue-500/40" }}
+              transition={{ duration: 0.2 }}
+            >
+              <div>
+                <label htmlFor="contact-name" className="block mb-2 text-sm">
+                  Your Name
+                </label>
+                <input
+                  id="contact-name"
+                  type="text"
+                  name="name"
+                  value={form.name}
+                  onChange={handleChange}
+                  required
+                  maxLength={80}
+                  autoComplete="name"
+                  placeholder="e.g. Your Name"
+                  className={inputClass}
+                />
+              </div>
+            </motion.div>
 
-            <div>
-              <label htmlFor="contact-email" className="block mb-2 text-sm">
-                Your Email
-              </label>
-              <input
-                id="contact-email"
-                type="email"
-                name="email"
-                value={form.email}
-                onChange={handleChange}
-                required
-                maxLength={120}
-                autoComplete="email"
-                placeholder="you@example.com"
-                className={inputClass}
-              />
-            </div>
+            <motion.div
+              whileHover={{ borderColor: "blue-500/40" }}
+              transition={{ duration: 0.2 }}
+            >
+              <div>
+                <label htmlFor="contact-email" className="block mb-2 text-sm">
+                  Your Email
+                </label>
+                <input
+                  id="contact-email"
+                  type="email"
+                  name="email"
+                  value={form.email}
+                  onChange={handleChange}
+                  required
+                  maxLength={120}
+                  autoComplete="email"
+                  placeholder="you@example.com"
+                  className={inputClass}
+                />
+              </div>
+            </motion.div>
 
-            <div>
-              <label htmlFor="contact-message" className="block mb-2 text-sm">
-                Your Message
-              </label>
-              <textarea
-                id="contact-message"
-                name="message"
-                value={form.message}
-                onChange={handleChange}
-                required
-                rows={5}
-                maxLength={1200}
-                placeholder="Write your message..."
-                className={`${inputClass} resize-none`}
-              />
-            </div>
+            <motion.div
+              whileHover={{ borderColor: "blue-500/40" }}
+              transition={{ duration: 0.2 }}
+            >
+              <div>
+                <label htmlFor="contact-message" className="block mb-2 text-sm">
+                  Your Message
+                </label>
+                <textarea
+                  id="contact-message"
+                  name="message"
+                  value={form.message}
+                  onChange={handleChange}
+                  required
+                  rows={5}
+                  maxLength={1200}
+                  placeholder="Write your message..."
+                  className={`${inputClass} resize-none`}
+                />
+              </div>
+            </motion.div>
 
             <div aria-live="polite">
               {status === "success" && (
-                <p className="text-emerald-400 text-sm bg-emerald-500/10 border border-emerald-500/30 rounded-lg px-4 py-3">
+                <motion.p
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="text-emerald-400 text-sm bg-emerald-500/10 border border-emerald-500/30 rounded-lg px-4 py-3"
+                >
                   ✓ Message sent! I'll get back to you soon.
-                </p>
+                </motion.p>
               )}
 
               {status === "pending" && (
-                <p className="text-amber-300 text-sm bg-amber-500/10 border border-amber-500/30 rounded-lg px-4 py-3">
+                <motion.p
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="text-amber-300 text-sm bg-amber-500/10 border border-amber-500/30 rounded-lg px-4 py-3"
+                >
                   Your message was saved, but email delivery is still being
                   set up, so it may be delayed. For anything urgent, email me
                   directly at{" "}
@@ -267,11 +317,16 @@ export default function Contact() {
                     {CONTACT_EMAIL}
                   </a>
                   .
-                </p>
+                </motion.p>
               )}
 
               {status === "error" && (
-                <div className="text-red-400 text-sm bg-red-500/10 border border-red-500/30 rounded-lg px-4 py-3">
+                <motion.div
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="text-red-400 text-sm bg-red-500/10 border border-red-500/30 rounded-lg px-4 py-3"
+                >
                   <p>
                     Sorry, your message could not be sent right now. You can
                     email me directly at{" "}
@@ -288,20 +343,22 @@ export default function Contact() {
                       {errorMessage}
                     </p>
                   )}
-                </div>
+                </motion.div>
               )}
             </div>
 
-            <button
+            <motion.button
               type="submit"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              transition={spring}
               disabled={status === "sending"}
               className="w-full bg-blue-600 hover:bg-blue-700 disabled:opacity-60 disabled:cursor-not-allowed py-3 rounded-lg flex justify-center items-center gap-2 transition"
             >
               {status === "sending"
                 ? <>Sending <Spinner /></>
-                : <>Send Message <Send size={18} /></>
-              }
-            </button>
+                : <>Send Message <Send size={18} /></>}
+            </motion.button>
 
           </motion.form>
 

@@ -1,19 +1,16 @@
 
 import { useRef } from "react";
-import {
-  motion,
-  useReducedMotion,
-  useScroll,
-  useTransform,
-} from "framer-motion";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 
-// Wraps decorative content and shifts it vertically as the user scrolls,
-// creating a parallax depth effect. `from`/`to` are pixel offsets mapped
-// to the element entering and leaving the viewport.
+/**
+ * Modern parallax wrapper.
+ * Shifts children vertically with a subtle transform as the element scrolls
+ * through the viewport. Movement is restrained so it never feels distracting.
+ */
 export default function Parallax({
   children,
-  from = 60,
-  to = -60,
+  from = 30,
+  to = -30,
   className = "",
 }) {
   const ref = useRef(null);

@@ -16,7 +16,29 @@ const roles = [
   "Lifelong Learner",
 ];
 
-function useTypewriter(words, typeSpeed = 85, deleteSpeed = 40, pause = 1600) {
+// Modern spring config for natural-feeling motion
+const spring = { type: "spring", stiffness: 260, damping: 22 };
+
+// Staggered reveal variants for content groups
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.12, delayChildren: 0.1 },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 24, scale: 0.95 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: spring,
+  },
+};
+
+function useTypewriter(words, typeSpeed = 70, deleteSpeed = 35, pause = 1700) {
   const [wordIndex, setWordIndex] = useState(0);
   const [text, setText] = useState("");
   const [deleting, setDeleting] = useState(false);
@@ -48,11 +70,21 @@ function useTypewriter(words, typeSpeed = 85, deleteSpeed = 40, pause = 1600) {
   return text;
 }
 
-function FloatChip({ label, dot, className, delay = 0, duration = 4 }) {
+function FloatChip({ label, dot, className, delay = 0, duration = 5 }) {
   return (
     <motion.div
-      animate={{ y: [0, -10, 0] }}
-      transition={{ duration, repeat: Infinity, ease: "easeInOut", delay }}
+      initial={{ opacity: 0, y: 10, scale: 0.9 }}
+      animate={{
+        opacity: 1,
+        y: [0, -12, 0],
+        scale: 1,
+      }}
+      transition={{
+        delay,
+        duration,
+        repeat: Infinity,
+        ease: "easeInOut",
+      }}
       className={`absolute z-10 flex items-center gap-1.5 sm:gap-2 bg-[#111827]/80 backdrop-blur border border-white/10 px-2.5 py-1.5 sm:px-3.5 sm:py-2 rounded-full text-xs sm:text-sm text-gray-200 shadow-lg shadow-black/30 ${className}`}
     >
       <span className={`w-2 h-2 rounded-full ${dot}`} />
@@ -65,13 +97,13 @@ export default function Hero() {
   const typed = useTypewriter(roles);
   const reduceMotion = useReducedMotion();
 
-  // Parallax layers — each moves at a different speed while scrolling
+  // Subtle parallax layers — restrained movement for a modern feel
   const { scrollY } = useScroll();
-  const yBlob1 = useTransform(scrollY, [0, 900], [0, 140]);
-  const yBlob2 = useTransform(scrollY, [0, 900], [0, -90]);
-  const yBlob3 = useTransform(scrollY, [0, 900], [0, 110]);
-  const yGrid = useTransform(scrollY, [0, 900], [0, 70]);
-  const yPhoto = useTransform(scrollY, [0, 900], [0, -60]);
+  const yBlob1 = useTransform(scrollY, [0, 1200], [0, 80]);
+  const yBlob2 = useTransform(scrollY, [0, 1200], [0, -60]);
+  const yBlob3 = useTransform(scrollY, [0, 1200], [0, 70]);
+  const yGrid = useTransform(scrollY, [0, 1200], [0, 40]);
+  const yPhoto = useTransform(scrollY, [0, 1200], [0, -40]);
   const parallax = (value) => (reduceMotion ? undefined : { y: value });
 
   return (
@@ -86,8 +118,8 @@ export default function Hero() {
         className="absolute -top-32 -left-32"
       >
         <motion.div
-          animate={reduceMotion ? undefined : { x: [0, 40, 0], y: [0, 30, 0] }}
-          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+          animate={reduceMotion ? undefined : { x: [0, 30, 0], y: [0, 22, 0] }}
+          transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
           className="w-[28rem] h-[28rem] sm:w-[35rem] sm:h-[35rem] md:w-[40rem] md:h-[40rem] bg-blue-600/25 rounded-full blur-3xl"
         />
       </motion.div>
@@ -97,8 +129,8 @@ export default function Hero() {
         className="absolute top-1/4 -right-[12rem] sm:top-[20%] sm:-right-[18rem] md:-right-40"
       >
         <motion.div
-          animate={reduceMotion ? undefined : { x: [0, -35, 0], y: [0, 40, 0] }}
-          transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
+          animate={reduceMotion ? undefined : { x: [0, -28, 0], y: [0, 32, 0] }}
+          transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
           className="w-[30rem] h-[30rem] bg-violet-600/20 rounded-full blur-3xl"
         />
       </motion.div>
@@ -108,8 +140,8 @@ export default function Hero() {
         className="absolute -bottom-40 sm:-bottom-32 left-1/3 sm:left-1/4"
       >
         <motion.div
-          animate={reduceMotion ? undefined : { x: [0, 30, 0], y: [0, -25, 0] }}
-          transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
+          animate={reduceMotion ? undefined : { x: [0, 24, 0], y: [0, -20, 0] }}
+          transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
           className="w-[26rem] h-[26rem] bg-cyan-500/15 rounded-full blur-3xl"
         />
       </motion.div>
@@ -117,7 +149,7 @@ export default function Hero() {
       {/* Grid overlay — drifts slower than the content */}
       <motion.div
         style={parallax(yGrid)}
-        className="absolute inset-0 opacity-[0.35]"
+        className="absolute inset-0 opacity-[0.35] aria-hidden-true"
         aria-hidden="true"
       >
         <div
@@ -133,17 +165,15 @@ export default function Hero() {
       <div className="relative max-w-7xl mx-auto w-full grid gap-10 md:grid-cols-2 md:gap-14 items-center">
 
         <motion.div
-          initial={{ opacity: 0, x: -40 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: false, amount: 0.3 }}
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, amount: 0.25 }}
           transition={{ duration: 0.8 }}
         >
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.5 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            variants={itemVariants}
             className="inline-flex items-center gap-2.5 bg-white/5 backdrop-blur border border-white/10 px-4 py-2 rounded-full text-sm text-gray-300 mb-6"
           >
             <span className="relative flex h-2.5 w-2.5">
@@ -153,34 +183,52 @@ export default function Hero() {
             Open to internships &amp; junior roles
           </motion.div>
 
-          <p className="text-blue-400 font-medium mb-4 text-lg">
+          <motion.p
+            variants={itemVariants}
+            className="text-blue-400 font-medium mb-4 text-lg"
+          >
             Hi, I'm Bora 👋
-          </p>
+          </motion.p>
 
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+          <motion.h1
+            variants={itemVariants}
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight"
+          >
             Building the
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-500 to-violet-500">
               {" "}Web
             </span>
             <br />
             One Line at a Time.
-          </h1>
+          </motion.h1>
 
-          <h2 className="text-xl sm:text-2xl text-gray-300 mt-6 h-9">
+          <motion.h2
+            variants={itemVariants}
+            className="text-xl sm:text-2xl text-gray-300 mt-6 h-9"
+          >
             {typed}
             <span className="text-blue-400 animate-pulse ml-0.5">|</span>
-          </h2>
+          </motion.h2>
 
-          <p className="text-gray-400 mt-5 leading-relaxed max-w-xl">
+          <motion.p
+            variants={itemVariants}
+            className="text-gray-400 mt-5 leading-relaxed max-w-xl"
+          >
             I'm a Web Development student passionate about
             creating modern, responsive, and user-friendly
             web applications. I enjoy learning new technologies
             and turning ideas into real projects.
-          </p>
+          </motion.p>
 
-          <div className="flex flex-wrap gap-3 mt-8 sm:gap-4 sm:mt-10">
+          <motion.div
+            variants={itemVariants}
+            className="flex flex-wrap gap-3 mt-8 sm:gap-4 sm:mt-10"
+          >
             <a
               href="#projects"
+              whileHover={{ y: -2 }}
+              whileTap={{ scale: 0.95 }}
+              transition={spring}
               className="bg-gradient-to-r from-blue-600 to-violet-600 hover:from-blue-500 hover:to-violet-500 shadow-lg shadow-blue-600/25 px-6 py-3 rounded-lg flex items-center gap-2 transition"
             >
               View My Work <ArrowRight size={18} />
@@ -189,42 +237,57 @@ export default function Hero() {
             <a
               href="/resume.pdf"
               download="Bora-CV.pdf"
+              whileHover={{ y: -2 }}
+              whileTap={{ scale: 0.95 }}
+              transition={spring}
               className="bg-white/5 backdrop-blur border border-white/10 hover:border-blue-500/60 px-6 py-3 rounded-lg flex items-center gap-2 transition"
             >
               Download CV <Download size={18} />
             </a>
-          </div>
+          </motion.div>
 
-          <div className="flex gap-3 mt-8 sm:gap-4 sm:mt-10 justify-center">
+          <motion.div
+            variants={itemVariants}
+            className="flex gap-3 mt-8 sm:gap-4 sm:mt-10 justify-center"
+          >
             <a
               href="https://github.com/bora4-netizen"
               aria-label="GitHub"
-              className="p-2 sm:p-2.5 rounded-full bg-white/5 backdrop-blur border border-white/10 text-gray-400 hover:text-blue-400 hover:border-blue-500/60 hover:-translate-y-1 transition"
+              whileHover={{ y: -2, scale: 1.05 }}
+              whileTap={{ scale: 0.9 }}
+              transition={spring}
+              className="p-2 sm:p-2.5 rounded-full bg-white/5 backdrop-blur border border-white/10 text-gray-400 hover:text-blue-400 hover:border-blue-500/60 transition"
             >
               <Github size={20} />
             </a>
             <a
               href="https://www.linkedin.com/in/bora-chork-1bb1843a7/"
               aria-label="LinkedIn"
-              className="p-2 sm:p-2.5 rounded-full bg-white/5 backdrop-blur border border-white/10 text-gray-400 hover:text-blue-400 hover:border-blue-500/60 hover:-translate-y-1 transition"
+              whileHover={{ y: -2, scale: 1.05 }}
+              whileTap={{ scale: 0.9 }}
+              transition={spring}
+              className="p-2 sm:p-2.5 rounded-full bg-white/5 backdrop-blur border border-white/10 text-gray-400 hover:text-blue-400 hover:border-blue-500/60 transition"
             >
               <Linkedin size={20} />
             </a>
             <a
               href={`mailto:${CONTACT_EMAIL}`}
               aria-label="Email"
-              className="p-2 sm:p-2.5 rounded-full bg-white/5 backdrop-blur border border-white/10 text-gray-400 hover:text-blue-400 hover:border-blue-500/60 hover:-translate-y-1 transition"
+              whileHover={{ y: -2, scale: 1.05 }}
+              whileTap={{ scale: 0.9 }}
+              transition={spring}
+              className="p-2 sm:p-2.5 rounded-full bg-white/5 backdrop-blur border border-white/10 text-gray-400 hover:text-blue-400 hover:border-blue-500/60 transition"
             >
               <Mail size={20} />
             </a>
-          </div>
+          </motion.div>
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
+          initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: false, amount: 0.3 }}
-          transition={{ duration: 0.8 }}
+          viewport={{ once: false, amount: 0.25 }}
+          transition={{ duration: 0.8, ...spring }}
           style={parallax(yPhoto)}
           className="flex justify-center"
         >
@@ -250,15 +313,15 @@ export default function Hero() {
               label="Laravel"
               dot="bg-red-400"
               className="-right-2 top-1/3 sm:-right-8"
-              delay={0.6}
-              duration={4.5}
+              delay={0.7}
+              duration={5.5}
             />
             <FloatChip
               label="Spring Boot"
               dot="bg-emerald-400"
               className="right-1 -bottom-4 sm:right-2 sm:-bottom-5"
-              delay={1.2}
-              duration={5}
+              delay={1.4}
+              duration={6}
             />
           </div>
         </motion.div>

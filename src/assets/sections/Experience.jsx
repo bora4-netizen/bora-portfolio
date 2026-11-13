@@ -2,6 +2,8 @@
 import { motion } from "framer-motion";
 import SectionTitle from "../components/SectionTitle";
 
+const spring = { type: "spring", stiffness: 300, damping: 24 };
+
 const experiences = [
   {
     type: "Education",
@@ -31,50 +33,74 @@ const experiences = [
 
 export default function Experience() {
   return (
-    <section id="experience" className="py-28 px-6 bg-[#0F172A]">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6">
+    <section id="experience" className="relative overflow-hidden py-28 px-6 bg-[#0F172A]">
+      <div className="relative max-w-4xl mx-auto px-4 sm:px-6 z-10">
 
-        <SectionTitle
-          title="My Journey"
-          subtitle="Education & experience"
-        />
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.4 }}
+          transition={{ duration: 0.7 }}
+          className="text-center mb-14"
+        >
+          <SectionTitle
+            title="My Journey"
+            subtitle="Education & experience"
+          />
+        </motion.div>
 
-        <div className="relative border-l-2 border-blue-500/40 ml-3 space-y-10">
+        <motion.div
+          variants={{
+            hidden: { opacity: 0 },
+            visible: {
+              opacity: 1,
+              transition: { staggerChildren: 0.18, delayChildren: 0.1 },
+            },
+          }}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, amount: 0.2 }}
+        >
+          <div className="relative border-l-2 border-blue-500/40 ml-3 space-y-10">
 
-          {experiences.map((item, index) => (
-            <motion.div
-              key={item.title}
-              initial={{ opacity: 0, x: -40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: false, amount: 0.3 }}
-              transition={{ duration: 0.6, delay: index * 0.15 }}
-              className="relative pl-8"
-            >
+            {experiences.map((item, index) => (
+              <motion.div
+                key={item.title}
+                initial={{ opacity: 0, x: -30, scale: 0.95 }}
+                whileInView={{ opacity: 1, x: 0, scale: 1 }}
+                viewport={{ once: false, amount: 0.3 }}
+                transition={{ duration: 0.5, delay: index * 0.16, ...spring }}
+                whileHover={{ x: -2 }}
+                whileTap={{ scale: 0.98 }}
+                className="relative pl-8"
+              >
 
-              <div className="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-blue-500 border-4 border-[#0F172A]" />
+                <div className="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-blue-500 border-4 border-[#0F172A]" />
 
-              <div className="bg-[#111827] border border-white/10 p-6 rounded-xl">
-                <p className="text-blue-400 text-sm mb-2">
-                  {item.type} · {item.period}
-                </p>
+                <div className="bg-[#111827] border border-white/10 p-6 rounded-xl">
+                  <p className="text-blue-400 text-sm mb-2">
+                    {item.type} · {item.period}
+                  </p>
 
-                <h3 className="text-xl font-bold">
-                  {item.title}
-                </h3>
+                  <h3 className="text-xl font-bold">
+                    {item.title}
+                  </h3>
 
-                <p className="text-gray-400 text-sm mt-1">
-                  {item.organization}
-                </p>
+                  <p className="text-gray-400 text-sm mt-1">
+                    {item.organization}
+                  </p>
 
-                <p className="text-gray-400 text-sm mt-4 leading-relaxed">
-                  {item.description}
-                </p>
-              </div>
+                  <p className="text-gray-400 text-sm mt-4 leading-relaxed">
+                    {item.description}
+                  </p>
+                </div>
 
-            </motion.div>
-          ))}
+              </motion.div>
+            ))}
 
-        </div>
+          </div>
+        </motion.div>
+
       </div>
     </section>
   );
