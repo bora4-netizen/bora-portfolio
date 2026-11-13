@@ -19,7 +19,7 @@ export default function Skills() {
               key={group.category}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
+              viewport={{ once: false, amount: 0.2 }}
               transition={{ duration: 0.6, delay: index * 0.12 }}
               className="bg-[#111827] border border-white/10 p-7 rounded-2xl hover:border-blue-500/40 transition"
             >

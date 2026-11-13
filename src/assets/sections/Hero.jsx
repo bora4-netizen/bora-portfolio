@@ -100,13 +100,15 @@ export default function Hero() {
 
         <motion.div
           initial={{ opacity: 0, x: -40 }}
-          animate={{ opacity: 1, x: 0 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: false, amount: 0.3 }}
           transition={{ duration: 0.8 }}
         >
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, amount: 0.5 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             className="inline-flex items-center gap-2.5 bg-white/5 backdrop-blur border border-white/10 px-4 py-2 rounded-full text-sm text-gray-300 mb-6"
           >
@@ -186,7 +188,8 @@ export default function Hero() {
 
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: false, amount: 0.3 }}
           transition={{ duration: 0.8 }}
           className="flex justify-center"
         >

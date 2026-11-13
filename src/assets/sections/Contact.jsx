@@ -47,7 +47,7 @@ export default function Contact() {
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
+            viewport={{ once: false, amount: 0.3 }}
             transition={{ duration: 0.7 }}
           >
             <h3 className="text-3xl font-bold mb-5">
@@ -86,7 +86,7 @@ export default function Contact() {
             onSubmit={handleSubmit}
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
+            viewport={{ once: false, amount: 0.3 }}
             transition={{ duration: 0.7, delay: 0.15 }}
             className="bg-[#111827] border border-white/10 p-7 rounded-2xl space-y-5"
           >

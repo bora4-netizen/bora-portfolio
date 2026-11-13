@@ -35,7 +35,7 @@ export default function About() {
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
+            viewport={{ once: false, amount: 0.3 }}
             transition={{ duration: 0.7 }}
           >
             <h3 className="text-3xl font-bold mb-6">
@@ -67,7 +67,7 @@ export default function About() {
                   key={item.title}
                   initial={{ opacity: 0, x: 40 }}
                   whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, amount: 0.3 }}
+                  viewport={{ once: false, amount: 0.3 }}
                   transition={{ duration: 0.6, delay: index * 0.15 }}
                   className="bg-[#111827] border border-white/10 p-6 rounded-xl flex gap-5 items-center"
                 >
