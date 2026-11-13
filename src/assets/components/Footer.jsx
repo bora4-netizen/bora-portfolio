@@ -20,7 +20,7 @@ export default function Footer() {
           <a href="https://www.linkedin.com/in/bora-chork-1bb1843a7/" aria-label="LinkedIn">
             <Linkedin size={20} />
           </a>
-          <a href="mailto:borazen18@gmail.com" aria-label="Email">
+          <a href="mailto:chorkkboraa@gmail.com" aria-label="Email">
             <Mail size={20} />
           </a>
           <a href="#home" aria-label="Back to top">

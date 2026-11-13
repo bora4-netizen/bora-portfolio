@@ -5,7 +5,7 @@ const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
 const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
 const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
-export const CONTACT_EMAIL = "borazen18@gmail.com";
+export const CONTACT_EMAIL = "chorkkboraa@gmail.com";
 
 // Free form backends. Neither needs an account. FormSubmit is the primary
 // because this address is already activated on it. sendm8 is the backup; it
