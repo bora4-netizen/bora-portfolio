@@ -8,7 +8,7 @@ const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 // Direct delivery service — no account needed, just the target inbox.
 // Requires a one-time activation: the first submission emails the owner,
 // who clicks the activation link in that email. After that it works silently.
-const FORMSUBMIT_ENDPOINT = "https://formsubmit.co/ajax/borazen18@gmail.com";
+const FORMSUBMIT_ENDPOINT = "https://formsubmit.co/ajax/chorkbora4@gmail.com";
 
 /** True when all three EmailJS credentials are present in .env */
 export const emailConfigured = Boolean(
@@ -29,7 +29,7 @@ if (!emailConfigured && import.meta.env.DEV) {
  * Send a contact message. Visitors never leave the page.
  * Delivery chain:
  *   1. EmailJS (when configured in .env)
- *   2. FormSubmit AJAX (default — direct to borazen18@gmail.com)
+ *   2. FormSubmit AJAX (default — direct to chorkbora4@gmail.com)
  */
 export async function sendContactMessage({ name, email, message }) {
   if (emailConfigured) {

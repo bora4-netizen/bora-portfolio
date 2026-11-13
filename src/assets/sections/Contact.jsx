@@ -118,10 +118,10 @@ export default function Contact() {
                 <div>
                   <p className="text-sm text-gray-500">Email</p>
                   <a
-                    href="mailto:borazen18@gmail.com"
+                    href="mailto:chorkbora4@gmail.com"
                     className="hover:text-blue-400 transition"
                   >
-                    borazen18@gmail.com
+                    chorkbora4@gmail.com
                   </a>
                 </div>
               </div>
@@ -224,7 +224,7 @@ export default function Contact() {
               {status === "error" && (
                 <p className="text-red-400 text-sm bg-red-500/10 border border-red-500/30 rounded-lg px-4 py-3">
                   Something went wrong. Please email me directly at
-                  borazen18@gmail.com.
+                  chorkbora4@gmail.com.
                 </p>
               )}
             </div>
