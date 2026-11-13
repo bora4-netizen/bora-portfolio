@@ -1,12 +1,11 @@
 
 import { motion } from "framer-motion";
 import {
-  Github,
-  Linkedin,
   Mail,
   Download,
   ArrowRight,
 } from "lucide-react";
+import { Github, Linkedin } from "../components/BrandIcons";
 
 export default function Hero() {
   return (
@@ -53,7 +52,7 @@ export default function Hero() {
 
             <a
               href="/resume.pdf"
-              download
+              download="Bora-CV.pdf"
               className="border border-white/20 hover:border-blue-500 px-6 py-3 rounded-lg flex items-center gap-2 transition"
             >
               Download CV <Download size={18} />
@@ -61,13 +60,13 @@ export default function Hero() {
           </div>
 
           <div className="flex gap-6 mt-10 text-gray-400">
-            <a href="https://github.com/YOUR_USERNAME">
+            <a href="https://github.com/bora4-netizen">
               <Github className="hover:text-blue-400" />
             </a>
-            <a href="https://linkedin.com/in/YOUR_USERNAME">
+            <a href="https://www.linkedin.com/in/bora-chork-1bb1843a7/">
               <Linkedin className="hover:text-blue-400" />
             </a>
-            <a href="mailto:YOUR_EMAIL@example.com">
+            <a href="mailto:chorkbora4@gmail.com">
               <Mail className="hover:text-blue-400" />
             </a>
           </div>
@@ -83,7 +82,7 @@ export default function Hero() {
             <div className="absolute inset-0 bg-blue-500 blur-[100px] opacity-20" />
 
             <img
-              src="/images/profile.jpg"
+              src="/images/bora.png"
               alt="Bora's profile"
               className="relative w-64 h-64 md:w-96 md:h-96 object-cover rounded-full border-4 border-blue-500/40 shadow-2xl"
             />

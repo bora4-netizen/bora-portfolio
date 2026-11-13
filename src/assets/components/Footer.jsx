@@ -1,5 +1,6 @@
 
-import { Github, Linkedin, Mail, ArrowUp } from "lucide-react";
+import { Mail, ArrowUp } from "lucide-react";
+import { Github, Linkedin } from "./BrandIcons";
 
 export default function Footer() {
   return (
@@ -11,13 +12,13 @@ export default function Footer() {
         </p>
 
         <div className="flex gap-5 text-gray-400">
-          <a href="https://github.com/YOUR_USERNAME" aria-label="GitHub">
+          <a href="https://github.com/bora4-netizen" aria-label="GitHub">
             <Github size={20} />
           </a>
-          <a href="https://linkedin.com/in/YOUR_USERNAME" aria-label="LinkedIn">
+          <a href="https://www.linkedin.com/in/bora-chork-1bb1843a7/" aria-label="LinkedIn">
             <Linkedin size={20} />
           </a>
-          <a href="mailto:YOUR_EMAIL@example.com" aria-label="Email">
+          <a href="mailto:chorkbora4@gmail.com" aria-label="Email">
             <Mail size={20} />
           </a>
           <a href="#home" aria-label="Back to top">

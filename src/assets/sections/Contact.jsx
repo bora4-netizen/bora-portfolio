@@ -29,7 +29,7 @@ export default function Contact() {
     );
 
     window.location.href =
-      `mailto:YOUR_EMAIL@example.com?subject=${subject}&body=${body}`;
+      `mailto:chorkbora4@gmail.com?subject=${subject}&body=${body}`;
   };
 
   return (
@@ -61,7 +61,7 @@ export default function Contact() {
                 <Mail className="text-blue-400" />
                 <div>
                   <p className="text-sm text-gray-500">Email</p>
-                  <p>YOUR_EMAIL@example.com</p>
+                  <p>chorkbora4@gmail.com</p>
                 </div>
               </div>
 

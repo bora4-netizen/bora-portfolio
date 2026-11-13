@@ -1,5 +1,6 @@
 
-import { Github, ExternalLink } from "lucide-react";
+import { ExternalLink, FileText } from "lucide-react";
+import { Github } from "./BrandIcons";
 
 export default function ProjectCard({ project }) {
   return (
@@ -34,23 +35,39 @@ export default function ProjectCard({ project }) {
         </div>
 
         <div className="flex gap-5">
-          <a
-            href={project.github}
-            target="_blank"
-            rel="noreferrer"
-            className="flex items-center gap-2 text-sm text-gray-300 hover:text-blue-400"
-          >
-            <Github size={17} /> GitHub
-          </a>
+          {project.github && project.github !== "#" && (
+            <a
+              href={project.github}
+              target="_blank"
+              rel="noreferrer"
+              className="flex items-center gap-2 text-sm text-gray-300 hover:text-blue-400"
+            >
+              <Github size={17} /> GitHub
+            </a>
+          )}
 
-          <a
-            href={project.demo}
-            target="_blank"
-            rel="noreferrer"
-            className="flex items-center gap-2 text-sm text-gray-300 hover:text-blue-400"
-          >
-            <ExternalLink size={17} /> Live Demo
-          </a>
+          {project.demo && project.demo !== "#" && (
+            <a
+              href={project.demo}
+              target="_blank"
+              rel="noreferrer"
+              className="flex items-center gap-2 text-sm text-gray-300 hover:text-blue-400"
+            >
+              <ExternalLink size={17} /> Live Demo
+            </a>
+          )}
+
+          {project.caseStudy && (
+            <a
+              href={project.caseStudy}
+              target="_blank"
+              rel="noreferrer"
+              download
+              className="flex items-center gap-2 text-sm text-gray-300 hover:text-blue-400"
+            >
+              <FileText size={17} /> Case Study
+            </a>
+          )}
         </div>
       </div>
     </div>
