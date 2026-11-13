@@ -1,4 +1,5 @@
 
+import { motion } from "framer-motion";
 import SectionTitle from "../components/SectionTitle";
 import { skills } from "../data/skills";
 
@@ -13,9 +14,13 @@ export default function Skills() {
         />
 
         <div className="grid sm:grid-cols-2 gap-6">
-          {skills.map((group) => (
-            <div
+          {skills.map((group, index) => (
+            <motion.div
               key={group.category}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.6, delay: index * 0.12 }}
               className="bg-[#111827] border border-white/10 p-7 rounded-2xl hover:border-blue-500/40 transition"
             >
               <h3 className="text-xl font-bold mb-6 text-blue-400">
@@ -32,7 +37,7 @@ export default function Skills() {
                   </span>
                 ))}
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
 

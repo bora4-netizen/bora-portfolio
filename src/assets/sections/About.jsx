@@ -1,4 +1,5 @@
 
+import { motion } from "framer-motion";
 import { Code2, GraduationCap, Lightbulb } from "lucide-react";
 import SectionTitle from "../components/SectionTitle";
 
@@ -31,7 +32,12 @@ export default function About() {
 
         <div className="grid md:grid-cols-2 gap-14 items-center">
 
-          <div>
+          <motion.div
+            initial={{ opacity: 0, x: -40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.7 }}
+          >
             <h3 className="text-3xl font-bold mb-6">
               Passionate About
               <span className="text-blue-500"> Web Development</span>
@@ -50,15 +56,19 @@ export default function About() {
               I am continuously improving my coding,
               problem-solving, and teamwork skills.
             </p>
-          </div>
+          </motion.div>
 
           <div className="grid gap-5">
-            {information.map((item) => {
+            {information.map((item, index) => {
               const Icon = item.icon;
 
               return (
-                <div
+                <motion.div
                   key={item.title}
+                  initial={{ opacity: 0, x: 40 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 0.6, delay: index * 0.15 }}
                   className="bg-[#111827] border border-white/10 p-6 rounded-xl flex gap-5 items-center"
                 >
                   <div className="bg-blue-500/10 p-4 rounded-lg">
@@ -73,7 +83,7 @@ export default function About() {
                       {item.description}
                     </p>
                   </div>
-                </div>
+                </motion.div>
               );
             })}
           </div>

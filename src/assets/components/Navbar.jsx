@@ -1,5 +1,6 @@
 
 import { useState } from "react";
+import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
 const links = [
@@ -15,7 +16,12 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 bg-[#0B1120]/90 backdrop-blur-lg border-b border-white/10">
+    <motion.header
+      initial={{ y: -80, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.6 }}
+      className="fixed top-0 left-0 w-full z-50 bg-[#0B1120]/90 backdrop-blur-lg border-b border-white/10"
+    >
       <nav className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
 
         <a href="#home" className="text-2xl font-bold">
@@ -64,6 +70,6 @@ export default function Navbar() {
           ))}
         </div>
       )}
-    </header>
+    </motion.header>
   );
 }

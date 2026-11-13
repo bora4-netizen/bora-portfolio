@@ -1,5 +1,6 @@
 
 import { useState } from "react";
+import { motion } from "framer-motion";
 import { Mail, MapPin, Send } from "lucide-react";
 import SectionTitle from "../components/SectionTitle";
 
@@ -43,7 +44,12 @@ export default function Contact() {
 
         <div className="grid md:grid-cols-2 gap-12">
 
-          <div>
+          <motion.div
+            initial={{ opacity: 0, x: -40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.7 }}
+          >
             <h3 className="text-3xl font-bold mb-5">
               Let's Build Something
               <span className="text-blue-500"> Together.</span>
@@ -74,10 +80,14 @@ export default function Contact() {
               </div>
 
             </div>
-          </div>
+          </motion.div>
 
-          <form
+          <motion.form
             onSubmit={handleSubmit}
+            initial={{ opacity: 0, x: 40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.7, delay: 0.15 }}
             className="bg-[#111827] border border-white/10 p-7 rounded-2xl space-y-5"
           >
 
@@ -133,7 +143,7 @@ export default function Contact() {
               Send Message <Send size={18} />
             </button>
 
-          </form>
+          </motion.form>
 
         </div>
       </div>

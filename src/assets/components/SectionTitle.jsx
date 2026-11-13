@@ -1,7 +1,15 @@
 
+import { motion } from "framer-motion";
+
 export default function SectionTitle({ title, subtitle }) {
   return (
-    <div className="text-center mb-14">
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.5 }}
+      transition={{ duration: 0.6 }}
+      className="text-center mb-14"
+    >
       <p className="text-blue-400 uppercase tracking-[4px] text-sm mb-3">
         {subtitle}
       </p>
@@ -11,6 +19,6 @@ export default function SectionTitle({ title, subtitle }) {
       </h2>
 
       <div className="w-20 h-1 bg-blue-500 mx-auto mt-5 rounded-full" />
-    </div>
+    </motion.div>
   );
 }

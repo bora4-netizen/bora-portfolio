@@ -1,4 +1,5 @@
 
+import { motion } from "framer-motion";
 import SectionTitle from "../components/SectionTitle";
 
 const experiences = [
@@ -41,7 +42,14 @@ export default function Experience() {
         <div className="relative border-l-2 border-blue-500/40 ml-3 space-y-10">
 
           {experiences.map((item, index) => (
-            <div key={index} className="relative pl-8">
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.6, delay: index * 0.15 }}
+              className="relative pl-8"
+            >
 
               <div className="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-blue-500 border-4 border-[#0F172A]" />
 
@@ -63,7 +71,7 @@ export default function Experience() {
                 </p>
               </div>
 
-            </div>
+            </motion.div>
           ))}
 
         </div>

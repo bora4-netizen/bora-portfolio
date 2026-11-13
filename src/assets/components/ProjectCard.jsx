@@ -1,10 +1,15 @@
 
+import { motion } from "framer-motion";
 import { ExternalLink, FileText } from "lucide-react";
 import { Github } from "./BrandIcons";
 
 export default function ProjectCard({ project }) {
   return (
-    <div className="group bg-[#111827] border border-white/10 rounded-2xl overflow-hidden hover:border-blue-500/50 transition duration-300">
+    <motion.div
+      whileHover={{ y: -6 }}
+      transition={{ type: "spring", stiffness: 300, damping: 20 }}
+      className="group bg-[#111827] border border-white/10 rounded-2xl overflow-hidden hover:border-blue-500/50 transition duration-300"
+    >
 
       <div className="overflow-hidden">
         <img
@@ -70,6 +75,6 @@ export default function ProjectCard({ project }) {
           )}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
