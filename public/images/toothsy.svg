@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" role="img" aria-label="Toothsy Dental Clinic">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#052e2b"/>
+      <stop offset="0.55" stop-color="#047857"/>
+      <stop offset="1" stop-color="#2dd4bf"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.82" cy="0.18" r="0.72">
+      <stop offset="0" stop-color="#ccfbf1" stop-opacity="0.75"/>
+      <stop offset="1" stop-color="#ccfbf1" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="600" fill="url(#bg)"/>
+  <circle cx="990" cy="120" r="270" fill="url(#glow)"/>
+  <g opacity="0.3" fill="none" stroke="#5eead4" stroke-width="3">
+    <circle cx="900" cy="360" r="75"/>
+    <circle cx="1040" cy="300" r="45"/>
+    <path d="M860 360c0-60 40-95 80-95s80 35 80 95c0 45-25 70-40 70s-15-30-40-30-25 30-40 30-40-25-40-70z" fill="#5eead4" fill-opacity="0.12"/>
+  </g>
+  <circle cx="170" cy="500" r="185" fill="#2dd4bf" opacity="0.16"/>
+  <path d="M0 488 C 230 392 435 568 705 480 S 1040 398 1200 458 L1200 600 L0 600 Z" fill="#0b1120" opacity="0.35"/>
+  <text x="80" y="275" fill="#ffffff" font-family="Inter, Arial, sans-serif" font-size="66" font-weight="700">Toothsy</text>
+  <text x="82" y="340" fill="#99f6e4" font-family="Inter, Arial, sans-serif" font-size="30" letter-spacing="5">DENTAL CLINIC</text>
+  <text x="82" y="420" fill="#5eead4" font-family="Inter, Arial, sans-serif" font-size="24">Nuxt.js · Vue.js · Strapi</text>
+</svg>

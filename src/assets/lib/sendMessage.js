@@ -7,12 +7,11 @@ const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
 export const CONTACT_EMAIL = "borazen18@gmail.com";
 
-// Free form backends. Neither needs an account. sendm8 asks the owner to
-// confirm once per email address and then works on every domain, so it is the
-// default. FormSubmit asks for confirmation once per domain, so it is only a
-// backup (e.g. a new deployment domain that hasn't been activated yet).
-const SENDM8_ENDPOINT = `https://sendm8.com/f/${CONTACT_EMAIL}`;
+// Free form backends. Neither needs an account. FormSubmit is the primary
+// because this address is already activated on it. sendm8 is the backup; it
+// stores messages until its one-time confirmation link has been clicked.
 const FORMSUBMIT_ENDPOINT = `https://formsubmit.co/ajax/${CONTACT_EMAIL}`;
+const SENDM8_ENDPOINT = `https://sendm8.com/f/${CONTACT_EMAIL}`;
 
 /** True when all three EmailJS credentials are present in .env */
 export const emailConfigured = Boolean(
@@ -23,7 +22,7 @@ export const emailConfigured = Boolean(
 if (!emailConfigured && import.meta.env.DEV) {
   console.info(
     "[contact] EmailJS is not configured — messages are delivered via " +
-      "sendm8 (with FormSubmit as a backup) instead. To use EmailJS, add " +
+      "FormSubmit (with sendm8 as a backup) instead. To use EmailJS, add " +
       "VITE_EMAILJS_SERVICE_ID, VITE_EMAILJS_TEMPLATE_ID and " +
       "VITE_EMAILJS_PUBLIC_KEY to .env (see .env.example), then restart " +
       "the dev server."
@@ -34,8 +33,8 @@ if (!emailConfigured && import.meta.env.DEV) {
  * Send a contact message. Visitors never leave the page.
  * Delivery chain:
  *   1. EmailJS (when configured in .env)
- *   2. sendm8 (default — one-time confirmation, works on all domains)
- *   3. FormSubmit AJAX (backup — one-time confirmation per domain)
+ *   2. FormSubmit AJAX (primary — this address is already activated)
+ *   3. sendm8 (backup — stores the message until its confirmation is clicked)
  */
 export async function sendContactMessage({ name, email, message }) {
   if (emailConfigured) {
@@ -55,10 +54,13 @@ export async function sendContactMessage({ name, email, message }) {
   }
 
   try {
-    return await sendViaSendm8({ name, email, message });
-  } catch (sendm8Error) {
-    console.warn("[contact] sendm8 failed, trying FormSubmit:", sendm8Error);
-    return sendViaFormSubmit({ name, email, message });
+    return await sendViaFormSubmit({ name, email, message });
+  } catch (formSubmitError) {
+    console.warn(
+      "[contact] FormSubmit failed, trying sendm8:",
+      formSubmitError
+    );
+    return sendViaSendm8({ name, email, message });
   }
 }
 

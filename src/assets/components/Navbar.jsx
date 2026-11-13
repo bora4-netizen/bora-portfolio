@@ -51,6 +51,8 @@ export default function Navbar() {
           onClick={() => setIsOpen(!isOpen)}
           className="md:hidden text-white"
           aria-label="Toggle navigation"
+          aria-expanded={isOpen}
+          aria-controls="mobile-menu"
         >
           {isOpen ? <X size={26} /> : <Menu size={26} />}
         </button>
@@ -58,6 +60,7 @@ export default function Navbar() {
 
       {isOpen && (
         <motion.div
+          id="mobile-menu"
           initial={{ opacity: 0, y: -12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.25 }}

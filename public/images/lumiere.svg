@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" role="img" aria-label="Lumiere Beauty">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2e1065"/>
+      <stop offset="0.55" stop-color="#6d28d9"/>
+      <stop offset="1" stop-color="#e879f9"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.8" cy="0.18" r="0.75">
+      <stop offset="0" stop-color="#f5d0fe" stop-opacity="0.75"/>
+      <stop offset="1" stop-color="#f5d0fe" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="600" fill="url(#bg)"/>
+  <circle cx="985" cy="115" r="280" fill="url(#glow)"/>
+  <g fill="none" stroke="#f0abfc" stroke-width="3" opacity="0.35">
+    <circle cx="930" cy="330" r="110"/>
+    <circle cx="930" cy="330" r="70"/>
+    <path d="M930 150v50M930 460v50M750 330h50M1060 330h50"/>
+  </g>
+  <circle cx="168" cy="500" r="185" fill="#e879f9" opacity="0.16"/>
+  <path d="M0 486 C 230 390 430 568 700 480 S 1040 398 1200 458 L1200 600 L0 600 Z" fill="#0b1120" opacity="0.35"/>
+  <text x="80" y="275" fill="#ffffff" font-family="Inter, Arial, sans-serif" font-size="66" font-weight="700">Lumiere</text>
+  <text x="82" y="340" fill="#f5d0fe" font-family="Inter, Arial, sans-serif" font-size="30" letter-spacing="5">BEAUTY</text>
+  <text x="82" y="420" fill="#f0abfc" font-family="Inter, Arial, sans-serif" font-size="24">Java · Spring Boot · MySQL</text>
+</svg>

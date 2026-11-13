@@ -1,6 +1,6 @@
 
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import {
   Mail,
   Download,
@@ -62,6 +62,16 @@ function FloatChip({ label, dot, className, delay = 0, duration = 4 }) {
 
 export default function Hero() {
   const typed = useTypewriter(roles);
+  const reduceMotion = useReducedMotion();
+
+  // Parallax layers — each moves at a different speed while scrolling
+  const { scrollY } = useScroll();
+  const yBlob1 = useTransform(scrollY, [0, 900], [0, 140]);
+  const yBlob2 = useTransform(scrollY, [0, 900], [0, -90]);
+  const yBlob3 = useTransform(scrollY, [0, 900], [0, 110]);
+  const yGrid = useTransform(scrollY, [0, 900], [0, 70]);
+  const yPhoto = useTransform(scrollY, [0, 900], [0, -60]);
+  const parallax = (value) => (reduceMotion ? undefined : { y: value });
 
   return (
     <section
@@ -69,34 +79,57 @@ export default function Hero() {
       className="relative min-h-screen flex items-center pt-28 pb-16 px-6 overflow-hidden"
     >
 
-      {/* Aurora background */}
+      {/* Aurora background — parallax layers */}
       <motion.div
-        animate={{ x: [0, 40, 0], y: [0, 30, 0] }}
-        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute -top-32 -left-32 w-[28rem] h-[28rem] sm:w-[35rem] sm:h-[35rem] md:w-[40rem] md:h-[40rem] bg-blue-600/25 rounded-full blur-3xl"
-      />
-      <motion.div
-        animate={{ x: [0, -35, 0], y: [0, 40, 0] }}
-        transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-1/4 -right-40 sm:top-1/5 -right-[12rem] sm:-right-[18rem] md:-right-40 w-[30rem] h-[30rem] bg-violet-600/20 rounded-full blur-3xl"
-      />
-      <motion.div
-        animate={{ x: [0, 30, 0], y: [0, -25, 0] }}
-        transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute -bottom-40 sm:-bottom-32 left-1/3 sm:left-1/4 w-[26rem] h-[26rem] bg-cyan-500/15 rounded-full blur-3xl"
-      />
+        style={parallax(yBlob1)}
+        className="absolute -top-32 -left-32"
+      >
+        <motion.div
+          animate={reduceMotion ? undefined : { x: [0, 40, 0], y: [0, 30, 0] }}
+          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+          className="w-[28rem] h-[28rem] sm:w-[35rem] sm:h-[35rem] md:w-[40rem] md:h-[40rem] bg-blue-600/25 rounded-full blur-3xl"
+        />
+      </motion.div>
 
-      {/* Grid overlay */}
-      <div
+      <motion.div
+        style={parallax(yBlob2)}
+        className="absolute top-1/4 -right-[12rem] sm:top-[20%] sm:-right-[18rem] md:-right-40"
+      >
+        <motion.div
+          animate={reduceMotion ? undefined : { x: [0, -35, 0], y: [0, 40, 0] }}
+          transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
+          className="w-[30rem] h-[30rem] bg-violet-600/20 rounded-full blur-3xl"
+        />
+      </motion.div>
+
+      <motion.div
+        style={parallax(yBlob3)}
+        className="absolute -bottom-40 sm:-bottom-32 left-1/3 sm:left-1/4"
+      >
+        <motion.div
+          animate={reduceMotion ? undefined : { x: [0, 30, 0], y: [0, -25, 0] }}
+          transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
+          className="w-[26rem] h-[26rem] bg-cyan-500/15 rounded-full blur-3xl"
+        />
+      </motion.div>
+
+      {/* Grid overlay — drifts slower than the content */}
+      <motion.div
+        style={parallax(yGrid)}
         className="absolute inset-0 opacity-[0.35]"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(148,163,184,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(148,163,184,0.07) 1px, transparent 1px)",
-          backgroundSize: "56px 56px",
-        }}
-      />
+        aria-hidden="true"
+      >
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage:
+              "linear-gradient(rgba(148,163,184,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(148,163,184,0.07) 1px, transparent 1px)",
+            backgroundSize: "56px 56px",
+          }}
+        />
+      </motion.div>
 
-      <div className="relative max-w-7xl mx-auto w-full grid gap-10 md:grid-cols-2 gap-14 items-center">
+      <div className="relative max-w-7xl mx-auto w-full grid gap-10 md:grid-cols-2 md:gap-14 items-center">
 
         <motion.div
           initial={{ opacity: 0, x: -40 }}
@@ -191,6 +224,7 @@ export default function Hero() {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: false, amount: 0.3 }}
           transition={{ duration: 0.8 }}
+          style={parallax(yPhoto)}
           className="flex justify-center"
         >
           <div className="relative">
@@ -201,7 +235,8 @@ export default function Hero() {
               <img
                 src="/images/bora.png"
                 alt="Bora's profile"
-                className="w-64 h-64 sm:w-72 sm:h-72 md:w-96 md:h-96 object-cover rounded-[2.5rem] block"              />
+                className="w-64 h-64 sm:w-72 sm:h-72 md:w-96 md:h-96 object-cover rounded-[2.5rem] block"
+              />
             </div>
 
             <FloatChip

@@ -3,7 +3,12 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, MapPin, Send } from "lucide-react";
 import SectionTitle from "../components/SectionTitle";
-import { buildMailtoLink, sendContactMessage } from "../lib/sendMessage";
+import Parallax from "../components/Parallax";
+import {
+  CONTACT_EMAIL,
+  buildMailtoLink,
+  sendContactMessage,
+} from "../lib/sendMessage";
 
 const inputClass =
   "w-full bg-[#0B1120] border border-white/10 rounded-lg px-4 py-3 outline-none focus:border-blue-500";
@@ -40,7 +45,8 @@ export default function Contact() {
     message: "",
   });
   const [honeypot, setHoneypot] = useState("");
-  const [status, setStatus] = useState("idle"); // idle | sending | success | error
+  // idle | sending | success | pending | error
+  const [status, setStatus] = useState("idle");
   const [errorMessage, setErrorMessage] = useState("");
 
   // Hide the "sent" confirmation a few seconds after it appears
@@ -51,8 +57,8 @@ export default function Contact() {
   }, [status]);
 
   const handleChange = (e) => {
-    // New input clears any previous success/error feedback
-    if (status === "success" || status === "error") {
+    // New input clears any previous success/pending/error feedback
+    if (status === "success" || status === "pending" || status === "error") {
       setStatus("idle");
       setErrorMessage("");
     }
@@ -76,7 +82,15 @@ export default function Contact() {
     setStatus("sending");
 
     try {
-      await sendContactMessage(form);
+      const result = await sendContactMessage(form);
+
+      // sendm8 stores messages but withholds delivery until the owner clicks
+      // its one-time confirmation link. Don't claim "sent" in that case.
+      if (result?.pending === "confirmation") {
+        setStatus("pending");
+        return;
+      }
+
       setStatus("success");
       setForm({ name: "", email: "", message: "" });
     } catch (error) {
@@ -91,8 +105,19 @@ export default function Contact() {
   const mailtoLink = buildMailtoLink(form);
 
   return (
-    <section id="contact" className="py-16 px-4 sm:py-28 sm:px-6">
-      <div className="max-w-7xl mx-auto">
+    <section
+      id="contact"
+      className="relative overflow-hidden py-16 px-4 sm:py-28 sm:px-6"
+    >
+      <Parallax
+        className="absolute -bottom-24 -right-16 pointer-events-none"
+        from={60}
+        to={-60}
+      >
+        <div className="w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl" />
+      </Parallax>
+
+      <div className="relative max-w-7xl mx-auto">
 
         <SectionTitle
           title="Get In Touch"
@@ -125,10 +150,10 @@ export default function Contact() {
                 <div>
                   <p className="text-sm text-gray-500">Email</p>
                   <a
-                    href="mailto:borazen18@gmail.com"
+                    href={`mailto:${CONTACT_EMAIL}`}
                     className="hover:text-blue-400 transition"
                   >
-                    borazen18@gmail.com
+                    {CONTACT_EMAIL}
                   </a>
                 </div>
               </div>
@@ -228,6 +253,21 @@ export default function Contact() {
                 </p>
               )}
 
+              {status === "pending" && (
+                <p className="text-amber-300 text-sm bg-amber-500/10 border border-amber-500/30 rounded-lg px-4 py-3">
+                  Your message was saved, but email delivery is still being
+                  set up, so it may be delayed. For anything urgent, email me
+                  directly at{" "}
+                  <a
+                    href={mailtoLink}
+                    className="underline underline-offset-2 hover:text-amber-200"
+                  >
+                    {CONTACT_EMAIL}
+                  </a>
+                  .
+                </p>
+              )}
+
               {status === "error" && (
                 <div className="text-red-400 text-sm bg-red-500/10 border border-red-500/30 rounded-lg px-4 py-3">
                   <p>
@@ -237,7 +277,7 @@ export default function Contact() {
                       href={mailtoLink}
                       className="underline underline-offset-2 hover:text-red-300"
                     >
-                      borazen18@gmail.com
+                      {CONTACT_EMAIL}
                     </a>
                     .
                   </p>
