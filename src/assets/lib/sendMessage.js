@@ -7,7 +7,7 @@ const SERVICE_ID = envValue(import.meta.env.VITE_EMAILJS_SERVICE_ID);
 const TEMPLATE_ID = envValue(import.meta.env.VITE_EMAILJS_TEMPLATE_ID);
 const PUBLIC_KEY = envValue(import.meta.env.VITE_EMAILJS_PUBLIC_KEY);
 
-export const CONTACT_EMAIL = "chorkkboraa@gmail.com";
+export const CONTACT_EMAIL = "chorkbora4@gmail.com";
 
 // Free form backends, used when EmailJS is not configured (or fails).
 // FormSubmit is the primary: after a one-time activation click it delivers
