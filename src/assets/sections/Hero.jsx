@@ -73,17 +73,17 @@ export default function Hero() {
       <motion.div
         animate={{ x: [0, 40, 0], y: [0, 30, 0] }}
         transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute -top-32 -left-32 w-[28rem] h-[28rem] bg-blue-600/25 rounded-full blur-3xl"
+        className="absolute -top-32 -left-32 w-[28rem] h-[28rem] sm:w-[35rem] sm:h-[35rem] md:w-[40rem] md:h-[40rem] bg-blue-600/25 rounded-full blur-3xl"
       />
       <motion.div
         animate={{ x: [0, -35, 0], y: [0, 40, 0] }}
         transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-1/4 -right-40 w-[30rem] h-[30rem] bg-violet-600/20 rounded-full blur-3xl"
+        className="absolute top-1/4 -right-40 sm:top-1/5 -right-[12rem] sm:-right-[18rem] md:-right-40 w-[30rem] h-[30rem] bg-violet-600/20 rounded-full blur-3xl"
       />
       <motion.div
         animate={{ x: [0, 30, 0], y: [0, -25, 0] }}
         transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute -bottom-40 left-1/3 w-[26rem] h-[26rem] bg-cyan-500/15 rounded-full blur-3xl"
+        className="absolute -bottom-40 sm:-bottom-32 left-1/3 sm:left-1/4 w-[26rem] h-[26rem] bg-cyan-500/15 rounded-full blur-3xl"
       />
 
       {/* Grid overlay */}
@@ -96,7 +96,7 @@ export default function Hero() {
         }}
       />
 
-      <div className="relative max-w-7xl mx-auto w-full grid md:grid-cols-2 gap-14 items-center">
+      <div className="relative max-w-7xl mx-auto w-full grid gap-10 md:grid-cols-2 gap-14 items-center">
 
         <motion.div
           initial={{ opacity: 0, x: -40 }}
@@ -123,7 +123,7 @@ export default function Hero() {
             Hi, I'm Bora 👋
           </p>
 
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
             Building the
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-500 to-violet-500">
               {" "}Web
@@ -132,7 +132,7 @@ export default function Hero() {
             One Line at a Time.
           </h1>
 
-          <h2 className="text-2xl text-gray-300 mt-6 h-9">
+          <h2 className="text-xl sm:text-2xl text-gray-300 mt-6 h-9">
             {typed}
             <span className="text-blue-400 animate-pulse ml-0.5">|</span>
           </h2>
@@ -144,7 +144,7 @@ export default function Hero() {
             and turning ideas into real projects.
           </p>
 
-          <div className="flex flex-wrap gap-4 mt-8">
+          <div className="flex flex-wrap gap-3 mt-8 sm:gap-4 sm:mt-10">
             <a
               href="#projects"
               className="bg-gradient-to-r from-blue-600 to-violet-600 hover:from-blue-500 hover:to-violet-500 shadow-lg shadow-blue-600/25 px-6 py-3 rounded-lg flex items-center gap-2 transition"
@@ -161,27 +161,27 @@ export default function Hero() {
             </a>
           </div>
 
-          <div className="flex gap-4 mt-10">
+          <div className="flex gap-3 mt-8 sm:gap-4 sm:mt-10 justify-center">
             <a
               href="https://github.com/bora4-netizen"
               aria-label="GitHub"
-              className="p-2.5 rounded-full bg-white/5 backdrop-blur border border-white/10 text-gray-400 hover:text-blue-400 hover:border-blue-500/60 hover:-translate-y-1 transition"
+              className="p-2 sm:p-2.5 rounded-full bg-white/5 backdrop-blur border border-white/10 text-gray-400 hover:text-blue-400 hover:border-blue-500/60 hover:-translate-y-1 transition"
             >
-              <Github size={22} />
+              <Github size={20} />
             </a>
             <a
               href="https://www.linkedin.com/in/bora-chork-1bb1843a7/"
               aria-label="LinkedIn"
-              className="p-2.5 rounded-full bg-white/5 backdrop-blur border border-white/10 text-gray-400 hover:text-blue-400 hover:border-blue-500/60 hover:-translate-y-1 transition"
+              className="p-2 sm:p-2.5 rounded-full bg-white/5 backdrop-blur border border-white/10 text-gray-400 hover:text-blue-400 hover:border-blue-500/60 hover:-translate-y-1 transition"
             >
-              <Linkedin size={22} />
+              <Linkedin size={20} />
             </a>
             <a
               href="mailto:borazen18@gmail.com"
               aria-label="Email"
-              className="p-2.5 rounded-full bg-white/5 backdrop-blur border border-white/10 text-gray-400 hover:text-blue-400 hover:border-blue-500/60 hover:-translate-y-1 transition"
+              className="p-2 sm:p-2.5 rounded-full bg-white/5 backdrop-blur border border-white/10 text-gray-400 hover:text-blue-400 hover:border-blue-500/60 hover:-translate-y-1 transition"
             >
-              <Mail size={22} />
+              <Mail size={20} />
             </a>
           </div>
         </motion.div>
@@ -201,20 +201,19 @@ export default function Hero() {
               <img
                 src="/images/bora.png"
                 alt="Bora's profile"
-                className="w-64 h-64 sm:w-72 sm:h-72 md:w-96 md:h-96 object-cover rounded-[2.5rem] block"
-              />
+                className="w-64 h-64 sm:w-72 sm:h-72 md:w-96 md:h-96 object-cover rounded-[2.5rem] block"              />
             </div>
 
             <FloatChip
               label="React"
               dot="bg-cyan-400"
-              className="-left-3 top-8 sm:-left-6 sm:top-10"
+              className="-left-2 top-8 sm:-left-6 sm:top-10"
               delay={0}
             />
             <FloatChip
               label="Laravel"
               dot="bg-red-400"
-              className="-right-4 top-1/3 sm:-right-8"
+              className="-right-2 top-1/3 sm:-right-8"
               delay={0.6}
               duration={4.5}
             />

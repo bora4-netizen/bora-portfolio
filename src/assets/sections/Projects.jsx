@@ -14,7 +14,7 @@ export default function Projects() {
           subtitle="My recent work"
         />
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid sm:grid-cols-2 gap-6 sm:gap-8">
           {projects.map((project, index) => (
             <motion.div
               key={project.title}

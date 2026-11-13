@@ -30,7 +30,7 @@ export default function About() {
           subtitle="Get to know me"
         />
 
-        <div className="grid md:grid-cols-2 gap-14 items-center">
+        <div className="grid gap-8 sm:gap-14 md:grid-cols-2 items-center">
 
           <motion.div
             initial={{ opacity: 0, x: -40 }}
@@ -69,7 +69,7 @@ export default function About() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: false, amount: 0.3 }}
                   transition={{ duration: 0.6, delay: index * 0.15 }}
-                  className="bg-[#111827] border border-white/10 p-6 rounded-xl flex gap-5 items-center"
+                  className="bg-[#111827] border border-white/10 p-5 sm:p-6 rounded-xl flex gap-4 sm:gap-5 items-center"
                 >
                   <div className="bg-blue-500/10 p-4 rounded-lg">
                     <Icon className="text-blue-400" size={28} />

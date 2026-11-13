@@ -84,7 +84,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-28 px-6">
+    <section id="contact" className="py-16 px-4 sm:py-28 sm:px-6">
       <div className="max-w-7xl mx-auto">
 
         <SectionTitle
@@ -92,7 +92,7 @@ export default function Contact() {
           subtitle="Contact me"
         />
 
-        <div className="grid md:grid-cols-2 gap-12">
+        <div className="grid md:grid-cols-2 gap-8 sm:gap-12">
 
           <motion.div
             initial={{ opacity: 0, x: -40 }}
@@ -105,7 +105,7 @@ export default function Contact() {
               <span className="text-blue-500"> Together.</span>
             </h3>
 
-            <p className="text-gray-400 leading-relaxed mb-8">
+            <p className="text-gray-400 leading-relaxed mb-8 sm:mb-10">
               I'm open to learning opportunities, internships,
               collaborations, and junior developer positions.
               Feel free to send me a message.
@@ -113,7 +113,7 @@ export default function Contact() {
 
             <div className="space-y-6">
 
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-3 sm:gap-4">
                 <Mail className="text-blue-400" />
                 <div>
                   <p className="text-sm text-gray-500">Email</p>
@@ -126,7 +126,7 @@ export default function Contact() {
                 </div>
               </div>
 
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-3 sm:gap-4">
                 <MapPin className="text-blue-400" />
                 <div>
                   <p className="text-sm text-gray-500">Location</p>
@@ -144,7 +144,7 @@ export default function Contact() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: false, amount: 0.3 }}
             transition={{ duration: 0.7, delay: 0.15 }}
-            className="bg-[#111827] border border-white/10 p-7 rounded-2xl space-y-5"
+            className="bg-[#111827] border border-white/10 p-4 sm:p-7 rounded-2xl space-y-5"
           >
 
             {/* Honeypot — hidden from humans, catches spam bots */}
@@ -223,7 +223,10 @@ export default function Contact() {
 
               {status === "error" && (
                 <p className="text-red-400 text-sm bg-red-500/10 border border-red-500/30 rounded-lg px-4 py-3">
-                  Something went wrong. Please email me directly at
+                  Something went wrong. EmailJS is not configured — please add
+                  your VITE_EMAILJS_SERVICE_ID, VITE_EMAILJS_TEMPLATE_ID, and
+                  VITE_EMAILJS_PUBLIC_KEY to .env (see .env.example), then
+                  restart the dev server. Or email me directly at
                   borazen18@gmail.com.
                 </p>
               )}
