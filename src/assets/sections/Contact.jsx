@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, MapPin, Send } from "lucide-react";
 import SectionTitle from "../components/SectionTitle";
-import { sendContactMessage } from "../lib/sendMessage";
+import { buildMailtoLink, sendContactMessage } from "../lib/sendMessage";
 
 const inputClass =
   "w-full bg-[#0B1120] border border-white/10 rounded-lg px-4 py-3 outline-none focus:border-blue-500";
@@ -41,6 +41,7 @@ export default function Contact() {
   });
   const [honeypot, setHoneypot] = useState("");
   const [status, setStatus] = useState("idle"); // idle | sending | success | error
+  const [errorMessage, setErrorMessage] = useState("");
 
   // Hide the "sent" confirmation a few seconds after it appears
   useEffect(() => {
@@ -53,6 +54,7 @@ export default function Contact() {
     // New input clears any previous success/error feedback
     if (status === "success" || status === "error") {
       setStatus("idle");
+      setErrorMessage("");
     }
 
     setForm({
@@ -79,9 +81,14 @@ export default function Contact() {
       setForm({ name: "", email: "", message: "" });
     } catch (error) {
       console.error("Contact form failed to send:", error);
+      setErrorMessage(
+        import.meta.env.DEV && error?.message ? error.message : ""
+      );
       setStatus("error");
     }
   };
+
+  const mailtoLink = buildMailtoLink(form);
 
   return (
     <section id="contact" className="py-16 px-4 sm:py-28 sm:px-6">
@@ -222,13 +229,24 @@ export default function Contact() {
               )}
 
               {status === "error" && (
-                <p className="text-red-400 text-sm bg-red-500/10 border border-red-500/30 rounded-lg px-4 py-3">
-                  Something went wrong. EmailJS is not configured — please add
-                  your VITE_EMAILJS_SERVICE_ID, VITE_EMAILJS_TEMPLATE_ID, and
-                  VITE_EMAILJS_PUBLIC_KEY to .env (see .env.example), then
-                  restart the dev server. Or email me directly at
-                  borazen18@gmail.com.
-                </p>
+                <div className="text-red-400 text-sm bg-red-500/10 border border-red-500/30 rounded-lg px-4 py-3">
+                  <p>
+                    Sorry, your message could not be sent right now. You can
+                    email me directly at{" "}
+                    <a
+                      href={mailtoLink}
+                      className="underline underline-offset-2 hover:text-red-300"
+                    >
+                      borazen18@gmail.com
+                    </a>
+                    .
+                  </p>
+                  {errorMessage && (
+                    <p className="mt-2 text-red-300/80 break-words">
+                      {errorMessage}
+                    </p>
+                  )}
+                </div>
               )}
             </div>
 

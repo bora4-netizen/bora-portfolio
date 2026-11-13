@@ -5,10 +5,12 @@ const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
 const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
 const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
+export const CONTACT_EMAIL = "borazen18@gmail.com";
+
 // Direct delivery service — no account needed, just the target inbox.
 // Requires a one-time activation: the first submission emails the owner,
 // who clicks the activation link in that email. After that it works silently.
-const FORMSUBMIT_ENDPOINT = "https://formsubmit.co/ajax/borazen18@gmail.com";
+const FORMSUBMIT_ENDPOINT = `https://formsubmit.co/ajax/${CONTACT_EMAIL}`;
 
 /** True when all three EmailJS credentials are present in .env */
 export const emailConfigured = Boolean(
@@ -72,9 +74,27 @@ async function sendViaFormSubmit({ name, email, message }) {
 
   if (!response.ok || !(data.success === "true" || data.success === true)) {
     const reason =
-      typeof data.message === "string" ? `: ${data.message}` : "";
-    throw new Error(`Message could not be delivered${reason}`);
+      typeof data.message === "string" ? data.message : "Message could not be delivered.";
+    throw new Error(reason);
   }
 
   return data;
+}
+
+/** Prefilled `mailto:` link used as the always-available fallback. */
+export function buildMailtoLink({ name, email, message }) {
+  const subject = `Portfolio message from ${name || "a visitor"}`;
+  const body = [
+    message,
+    "",
+    "—",
+    name && `Name: ${name}`,
+    email && `Email: ${email}`,
+  ]
+    .filter(Boolean)
+    .join("\n");
+
+  return `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
+    subject
+  )}&body=${encodeURIComponent(body)}`;
 }
