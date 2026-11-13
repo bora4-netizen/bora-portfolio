@@ -2,7 +2,14 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, MapPin, Send } from "lucide-react";
+import emailjs from "@emailjs/browser";
 import SectionTitle from "../components/SectionTitle";
+
+const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+const isConfigured = Boolean(SERVICE_ID && TEMPLATE_ID && PUBLIC_KEY);
 
 export default function Contact() {
   const [form, setForm] = useState({
@@ -10,6 +17,7 @@ export default function Contact() {
     email: "",
     message: "",
   });
+  const [status, setStatus] = useState("idle"); // idle | sending | success | error
 
   const handleChange = (e) => {
     setForm({
@@ -18,9 +26,7 @@ export default function Contact() {
     });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
+  const openMailto = () => {
     const subject = encodeURIComponent(
       `Portfolio contact from ${form.name}`
     );
@@ -31,6 +37,38 @@ export default function Contact() {
 
     window.location.href =
       `mailto:chorkbora4@gmail.com?subject=${subject}&body=${body}`;
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // Fallback: if EmailJS keys aren't set up yet, use the email app
+    if (!isConfigured) {
+      openMailto();
+      return;
+    }
+
+    setStatus("sending");
+
+    try {
+      await emailjs.send(
+        SERVICE_ID,
+        TEMPLATE_ID,
+        {
+          from_name: form.name,
+          from_email: form.email,
+          reply_to: form.email,
+          message: form.message,
+        },
+        { publicKey: PUBLIC_KEY }
+      );
+
+      setStatus("success");
+      setForm({ name: "", email: "", message: "" });
+    } catch (error) {
+      console.error("EmailJS error:", error);
+      setStatus("error");
+    }
   };
 
   return (
@@ -136,11 +174,28 @@ export default function Contact() {
               />
             </div>
 
+            {status === "success" && (
+              <p className="text-emerald-400 text-sm bg-emerald-500/10 border border-emerald-500/30 rounded-lg px-4 py-3">
+                ✓ Message sent! I'll get back to you soon.
+              </p>
+            )}
+
+            {status === "error" && (
+              <p className="text-red-400 text-sm bg-red-500/10 border border-red-500/30 rounded-lg px-4 py-3">
+                Something went wrong. Please email me directly at
+                chorkbora4@gmail.com.
+              </p>
+            )}
+
             <button
               type="submit"
-              className="w-full bg-blue-600 hover:bg-blue-700 py-3 rounded-lg flex justify-center items-center gap-2 transition"
+              disabled={status === "sending"}
+              className="w-full bg-blue-600 hover:bg-blue-700 disabled:opacity-60 disabled:cursor-not-allowed py-3 rounded-lg flex justify-center items-center gap-2 transition"
             >
-              Send Message <Send size={18} />
+              {status === "sending"
+                ? <>Sending...</>
+                : <>Send Message <Send size={18} /></>
+              }
             </button>
 
           </motion.form>
