@@ -1,15 +1,19 @@
 
 import emailjs from "@emailjs/browser";
 
-const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+const envValue = (value) => (value ?? "").trim();
+
+const SERVICE_ID = envValue(import.meta.env.VITE_EMAILJS_SERVICE_ID);
+const TEMPLATE_ID = envValue(import.meta.env.VITE_EMAILJS_TEMPLATE_ID);
+const PUBLIC_KEY = envValue(import.meta.env.VITE_EMAILJS_PUBLIC_KEY);
 
 export const CONTACT_EMAIL = "chorkkboraa@gmail.com";
 
-// Free form backends. Neither needs an account. FormSubmit is the primary
-// because this address is already activated on it. sendm8 is the backup; it
-// stores messages until its one-time confirmation link has been clicked.
+// Free form backends, used when EmailJS is not configured (or fails).
+// FormSubmit is the primary: after a one-time activation click it delivers
+// immediately. sendm8 is the backup: it stores messages and only starts
+// delivering once its one-time confirmation link has been clicked.
+// Both services must be activated for CONTACT_EMAIL — see README.md.
 const FORMSUBMIT_ENDPOINT = `https://formsubmit.co/ajax/${CONTACT_EMAIL}`;
 const SENDM8_ENDPOINT = `https://sendm8.com/f/${CONTACT_EMAIL}`;
 
@@ -33,24 +37,31 @@ if (!emailConfigured && import.meta.env.DEV) {
  * Send a contact message. Visitors never leave the page.
  * Delivery chain:
  *   1. EmailJS (when configured in .env)
- *   2. FormSubmit AJAX (primary — this address is already activated)
+ *   2. FormSubmit AJAX (fails over if EmailJS errors)
  *   3. sendm8 (backup — stores the message until its confirmation is clicked)
  */
 export async function sendContactMessage({ name, email, message }) {
   if (emailConfigured) {
-    return emailjs.send(
-      SERVICE_ID,
-      TEMPLATE_ID,
-      {
-        from_name: name,
-        from_email: email,
-        reply_to: email,
-        to_name: "Bora",
-        message,
-        sent_at: new Date().toLocaleString(),
-      },
-      { publicKey: PUBLIC_KEY }
-    );
+    try {
+      return await emailjs.send(
+        SERVICE_ID,
+        TEMPLATE_ID,
+        {
+          from_name: name,
+          from_email: email,
+          reply_to: email,
+          to_name: "Bora",
+          message,
+          sent_at: new Date().toLocaleString(),
+        },
+        { publicKey: PUBLIC_KEY }
+      );
+    } catch (emailJsError) {
+      console.warn(
+        "[contact] EmailJS failed, falling back to FormSubmit:",
+        emailJsError
+      );
+    }
   }
 
   try {
@@ -115,6 +126,7 @@ async function sendViaFormSubmit({ name, email, message }) {
       _subject: `Portfolio message from ${name}`,
       _replyto: email,
       _captcha: "false",
+      _honey: "",
     }),
   });
 
@@ -125,6 +137,15 @@ async function sendViaFormSubmit({ name, email, message }) {
       typeof data.message === "string"
         ? data.message
         : "Message could not be delivered.";
+
+    if (reason.toLowerCase().includes("needs activation")) {
+      throw new Error(
+        `FormSubmit is not activated for ${CONTACT_EMAIL}. ` +
+          "Click the 'Activate Form' link in the email FormSubmit sent, " +
+          "then try again."
+      );
+    }
+
     throw new Error(reason);
   }
 

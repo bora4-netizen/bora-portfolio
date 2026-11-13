@@ -49,10 +49,13 @@ export default function Contact() {
   const [status, setStatus] = useState("idle");
   const [errorMessage, setErrorMessage] = useState("");
 
-  // Hide the "sent" confirmation a few seconds after it appears
+  // Auto-dismiss transient feedback. Errors stay visible until the visitor
+  // edits the form, so they always have time to read them.
   useEffect(() => {
-    if (status !== "success") return;
-    const timeout = setTimeout(() => setStatus("idle"), 4000);
+    const delays = { success: 4000, pending: 12000 };
+    const delay = delays[status];
+    if (!delay) return;
+    const timeout = setTimeout(() => setStatus("idle"), delay);
     return () => clearTimeout(timeout);
   }, [status]);
 
@@ -171,7 +174,6 @@ export default function Contact() {
 
           <motion.form
             onSubmit={handleSubmit}
-            noValidate={false}
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: false, amount: 0.3 }}
