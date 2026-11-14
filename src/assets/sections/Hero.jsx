@@ -256,7 +256,7 @@ export default function Hero() {
               whileHover={{ y: -2, scale: 1.05 }}
               whileTap={{ scale: 0.9 }}
               transition={spring}
-              className="p-2 sm:p-2.5 rounded-full bg-white/5 backdrop-blur border border-white/10 text-gray-400 hover:text-blue-400 hover:border-blue-500/60 transition"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-gray-400 backdrop-blur transition hover:border-blue-500/60 hover:text-blue-400 sm:h-11 sm:w-11"
             >
               <Github size={20} />
             </motion.a>
@@ -266,7 +266,7 @@ export default function Hero() {
               whileHover={{ y: -2, scale: 1.05 }}
               whileTap={{ scale: 0.9 }}
               transition={spring}
-              className="p-2 sm:p-2.5 rounded-full bg-white/5 backdrop-blur border border-white/10 text-gray-400 hover:text-blue-400 hover:border-blue-500/60 transition"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-gray-400 backdrop-blur transition hover:border-blue-500/60 hover:text-blue-400 sm:h-11 sm:w-11"
             >
               <Linkedin size={20} />
             </motion.a>
@@ -276,7 +276,7 @@ export default function Hero() {
               whileHover={{ y: -2, scale: 1.05 }}
               whileTap={{ scale: 0.9 }}
               transition={spring}
-              className="p-2 sm:p-2.5 rounded-full bg-white/5 backdrop-blur border border-white/10 text-gray-400 hover:text-blue-400 hover:border-blue-500/60 transition"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-gray-400 backdrop-blur transition hover:border-blue-500/60 hover:text-blue-400 sm:h-11 sm:w-11"
             >
               <Mail size={20} />
             </motion.a>
