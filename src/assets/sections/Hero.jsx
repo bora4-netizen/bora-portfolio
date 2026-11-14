@@ -85,7 +85,7 @@ function FloatChip({ label, dot, className, delay = 0, duration = 5 }) {
         repeat: Infinity,
         ease: "easeInOut",
       }}
-      className={`absolute z-10 flex items-center gap-1.5 sm:gap-2 bg-[#111827]/80 backdrop-blur border border-white/10 px-2.5 py-1.5 sm:px-3.5 sm:py-2 rounded-full text-xs sm:text-sm text-gray-200 shadow-lg shadow-black/30 ${className}`}
+      className={`absolute z-10 flex items-center gap-1.5 bg-[#111827]/85 backdrop-blur-md border border-white/10 px-2.5 py-1 sm:px-3.5 sm:py-2 rounded-full text-[0.7rem] xs:text-xs sm:text-sm text-gray-200 shadow-lg shadow-black/30 ${className}`}
     >
       <span className={`w-2 h-2 rounded-full ${dot}`} />
       {label}
@@ -109,7 +109,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center pt-28 pb-16 px-6 overflow-hidden"
+      className="relative flex min-h-svh items-center overflow-hidden px-4 pb-16 pt-24 sm:px-6 sm:pb-20 sm:pt-28"
     >
 
       {/* Aurora background — parallax layers */}
@@ -120,7 +120,7 @@ export default function Hero() {
         <motion.div
           animate={reduceMotion ? undefined : { x: [0, 30, 0], y: [0, 22, 0] }}
           transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
-          className="w-[28rem] h-[28rem] sm:w-[35rem] sm:h-[35rem] md:w-[40rem] md:h-[40rem] bg-blue-600/25 rounded-full blur-3xl"
+          className="h-[22rem] w-[22rem] rounded-full bg-blue-600/25 blur-3xl sm:h-[35rem] sm:w-[35rem] md:h-[40rem] md:w-[40rem]"
         />
       </motion.div>
 
@@ -131,7 +131,7 @@ export default function Hero() {
         <motion.div
           animate={reduceMotion ? undefined : { x: [0, -28, 0], y: [0, 32, 0] }}
           transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
-          className="w-[30rem] h-[30rem] bg-violet-600/20 rounded-full blur-3xl"
+          className="h-[24rem] w-[24rem] rounded-full bg-violet-600/20 blur-3xl sm:h-[30rem] sm:w-[30rem]"
         />
       </motion.div>
 
@@ -142,7 +142,7 @@ export default function Hero() {
         <motion.div
           animate={reduceMotion ? undefined : { x: [0, 24, 0], y: [0, -20, 0] }}
           transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
-          className="w-[26rem] h-[26rem] bg-cyan-500/15 rounded-full blur-3xl"
+          className="h-[20rem] w-[20rem] rounded-full bg-cyan-500/15 blur-3xl sm:h-[26rem] sm:w-[26rem]"
         />
       </motion.div>
 
@@ -162,7 +162,7 @@ export default function Hero() {
         />
       </motion.div>
 
-      <div className="relative max-w-7xl mx-auto w-full grid gap-10 md:grid-cols-2 md:gap-14 items-center">
+      <div className="relative mx-auto grid w-full max-w-7xl items-center gap-12 md:grid-cols-2 md:gap-14">
 
         <motion.div
           variants={containerVariants}
@@ -174,7 +174,7 @@ export default function Hero() {
 
           <motion.div
             variants={itemVariants}
-            className="inline-flex items-center gap-2.5 bg-white/5 backdrop-blur border border-white/10 px-4 py-2 rounded-full text-sm text-gray-300 mb-6"
+            className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3.5 py-1.5 text-xs text-gray-300 backdrop-blur sm:mb-6 sm:gap-2.5 sm:px-4 sm:py-2 sm:text-sm"
           >
             <span className="relative flex h-2.5 w-2.5">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60" />
@@ -185,14 +185,14 @@ export default function Hero() {
 
           <motion.p
             variants={itemVariants}
-            className="text-blue-400 font-medium mb-4 text-lg"
+            className="mb-3 text-base font-medium text-blue-400 sm:mb-4 sm:text-lg"
           >
             Hi, I'm Bora 👋
           </motion.p>
 
           <motion.h1
             variants={itemVariants}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight"
+            className="text-4xl font-bold leading-[1.12] tracking-tight sm:text-5xl lg:text-6xl"
           >
             Building the
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-500 to-violet-500">
@@ -204,7 +204,7 @@ export default function Hero() {
 
           <motion.h2
             variants={itemVariants}
-            className="text-xl sm:text-2xl text-gray-300 mt-6 h-9"
+            className="mt-4 flex min-h-8 items-center text-lg text-gray-300 sm:mt-6 sm:min-h-9 sm:text-2xl"
           >
             {typed}
             <span className="text-blue-400 animate-pulse ml-0.5">|</span>
@@ -212,7 +212,7 @@ export default function Hero() {
 
           <motion.p
             variants={itemVariants}
-            className="text-gray-400 mt-5 leading-relaxed max-w-xl"
+            className="mt-4 max-w-xl text-sm leading-relaxed text-gray-400 sm:mt-5 sm:text-base"
           >
             I'm a Web Development student passionate about
             creating modern, responsive, and user-friendly
@@ -222,14 +222,14 @@ export default function Hero() {
 
           <motion.div
             variants={itemVariants}
-            className="flex flex-wrap gap-3 mt-8 sm:gap-4 sm:mt-10"
+            className="mt-7 flex w-full flex-col gap-3 sm:mt-10 sm:w-auto sm:flex-row sm:gap-4"
           >
             <a
               href="#projects"
               whileHover={{ y: -2 }}
               whileTap={{ scale: 0.95 }}
               transition={spring}
-              className="bg-gradient-to-r from-blue-600 to-violet-600 hover:from-blue-500 hover:to-violet-500 shadow-lg shadow-blue-600/25 px-6 py-3 rounded-lg flex items-center gap-2 transition"
+              className="flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 to-violet-600 px-6 py-3 font-medium shadow-lg shadow-blue-600/25 transition hover:from-blue-500 hover:to-violet-500 sm:w-auto"
             >
               View My Work <ArrowRight size={18} />
             </a>
@@ -240,7 +240,7 @@ export default function Hero() {
               whileHover={{ y: -2 }}
               whileTap={{ scale: 0.95 }}
               transition={spring}
-              className="bg-white/5 backdrop-blur border border-white/10 hover:border-blue-500/60 px-6 py-3 rounded-lg flex items-center gap-2 transition"
+              className="flex min-h-12 w-full items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 px-6 py-3 font-medium backdrop-blur transition hover:border-blue-500/60 sm:w-auto"
             >
               Download CV <Download size={18} />
             </a>
@@ -248,7 +248,7 @@ export default function Hero() {
 
           <motion.div
             variants={itemVariants}
-            className="flex gap-3 mt-8 sm:gap-4 sm:mt-10 justify-center"
+            className="mt-7 flex justify-start gap-3 sm:mt-9 sm:gap-4"
           >
             <a
               href="https://github.com/bora4-netizen"
@@ -289,37 +289,37 @@ export default function Hero() {
           viewport={{ once: false, amount: 0.25 }}
           transition={{ duration: 0.8, ...spring }}
           style={parallax(yPhoto)}
-          className="flex justify-center"
+          className="flex justify-center md:justify-end"
         >
           <div className="relative">
 
             <div className="absolute inset-0 bg-gradient-to-r from-blue-600/40 to-violet-600/40 blur-[80px]" />
 
-            <div className="relative bg-gradient-to-tr from-blue-500 to-violet-500 p-[3px] rounded-[2.5rem] shadow-2xl shadow-blue-600/20">
+            <div className="relative rounded-[2rem] bg-gradient-to-tr from-blue-500 to-violet-500 p-[3px] shadow-2xl shadow-blue-600/20 sm:rounded-[2.5rem]">
               <img
                 src="/images/bora.png"
                 alt="Bora's profile"
-                className="w-64 h-64 sm:w-72 sm:h-72 md:w-96 md:h-96 object-cover rounded-[2.5rem] block"
+                className="block h-56 w-56 rounded-[2rem] object-cover xs:h-60 xs:w-60 sm:h-72 sm:w-72 sm:rounded-[2.5rem] md:h-80 md:w-80 lg:h-96 lg:w-96"
               />
             </div>
 
             <FloatChip
               label="React"
               dot="bg-cyan-400"
-              className="-left-2 top-8 sm:-left-6 sm:top-10"
+              className="-left-1 top-5 xs:-left-3 xs:top-7 sm:-left-6 sm:top-10"
               delay={0}
             />
             <FloatChip
               label="Laravel"
               dot="bg-red-400"
-              className="-right-2 top-1/3 sm:-right-8"
+              className="-right-1 top-1/3 xs:-right-4 sm:-right-8"
               delay={0.7}
               duration={5.5}
             />
             <FloatChip
               label="Spring Boot"
               dot="bg-emerald-400"
-              className="right-1 -bottom-4 sm:right-2 sm:-bottom-5"
+              className="-bottom-3 right-1 xs:-bottom-4 sm:right-2 sm:-bottom-5"
               delay={1.4}
               duration={6}
             />

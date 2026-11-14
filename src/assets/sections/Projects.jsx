@@ -9,7 +9,7 @@ const spring = { type: "spring", stiffness: 300, damping: 24 };
 
 export default function Projects() {
   return (
-    <section id="projects" className="relative overflow-hidden py-28 px-6">
+    <section id="projects" className="relative overflow-hidden px-4 py-16 sm:px-6 sm:py-24 lg:py-28">
       <Parallax
         className="absolute top-1/3 -left-24 pointer-events-none"
         from={-35}
@@ -25,7 +25,7 @@ export default function Projects() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.4 }}
           transition={{ duration: 0.7 }}
-          className="text-center mb-14"
+          className="text-center"
         >
           <SectionTitle
             title="Featured Projects"
@@ -45,7 +45,7 @@ export default function Projects() {
           whileInView="visible"
           viewport={{ once: false, amount: 0.2 }}
         >
-          <div className="grid sm:grid-cols-2 gap-6 sm:gap-8">
+          <div className="grid gap-5 sm:grid-cols-2 sm:gap-8">
             {projects.map((project, index) => (
               <motion.div
                 key={project.title}

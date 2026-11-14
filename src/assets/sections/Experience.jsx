@@ -33,15 +33,15 @@ const experiences = [
 
 export default function Experience() {
   return (
-    <section id="experience" className="relative overflow-hidden py-28 px-6 bg-[#0F172A]">
-      <div className="relative max-w-4xl mx-auto px-4 sm:px-6 z-10">
+    <section id="experience" className="relative overflow-hidden bg-[#0F172A] px-4 py-16 sm:px-6 sm:py-24 lg:py-28">
+      <div className="relative z-10 mx-auto max-w-4xl">
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.4 }}
           transition={{ duration: 0.7 }}
-          className="text-center mb-14"
+          className="text-center"
         >
           <SectionTitle
             title="My Journey"
@@ -61,7 +61,7 @@ export default function Experience() {
           whileInView="visible"
           viewport={{ once: false, amount: 0.2 }}
         >
-          <div className="relative border-l-2 border-blue-500/40 ml-3 space-y-10">
+          <div className="relative ml-2 space-y-6 border-l-2 border-blue-500/40 sm:ml-3 sm:space-y-10">
 
             {experiences.map((item, index) => (
               <motion.div
@@ -72,17 +72,17 @@ export default function Experience() {
                 transition={{ duration: 0.5, delay: index * 0.16, ...spring }}
                 whileHover={{ x: -2 }}
                 whileTap={{ scale: 0.98 }}
-                className="relative pl-8"
+                className="relative pl-6 sm:pl-8"
               >
 
                 <div className="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-blue-500 border-4 border-[#0F172A]" />
 
-                <div className="bg-[#111827] border border-white/10 p-6 rounded-xl">
-                  <p className="text-blue-400 text-sm mb-2">
+                <div className="bg-[#111827] border border-white/10 p-5 rounded-2xl sm:p-6">
+                  <p className="mb-2 text-xs text-blue-400 sm:text-sm">
                     {item.type} · {item.period}
                   </p>
 
-                  <h3 className="text-xl font-bold">
+                  <h3 className="text-lg font-bold sm:text-xl">
                     {item.title}
                   </h3>
 
@@ -90,7 +90,7 @@ export default function Experience() {
                     {item.organization}
                   </p>
 
-                  <p className="text-gray-400 text-sm mt-4 leading-relaxed">
+                  <p className="mt-3 text-sm leading-relaxed text-gray-400 sm:mt-4">
                     {item.description}
                   </p>
                 </div>

@@ -7,7 +7,7 @@ const spring = { type: "spring", stiffness: 300, damping: 24 };
 
 export default function Skills() {
   return (
-    <section id="skills" className="relative overflow-hidden py-28 px-6 bg-[#0F172A]">
+    <section id="skills" className="relative overflow-hidden bg-[#0F172A] px-4 py-16 sm:px-6 sm:py-24 lg:py-28">
       <div className="relative max-w-7xl mx-auto z-10">
 
         <motion.div
@@ -15,7 +15,7 @@ export default function Skills() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.4 }}
           transition={{ duration: 0.7 }}
-          className="text-center mb-14"
+          className="text-center"
         >
           <SectionTitle
             title="Technical Skills"
@@ -35,7 +35,7 @@ export default function Skills() {
           whileInView="visible"
           viewport={{ once: false, amount: 0.2 }}
         >
-          <div className="grid sm:grid-cols-2 gap-6">
+          <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
             {skills.map((group, index) => (
               <motion.div
                 key={group.category}
@@ -45,13 +45,13 @@ export default function Skills() {
                 transition={{ duration: 0.5, delay: index * 0.12, ...spring }}
                 whileHover={{ y: -6 }}
                 whileTap={{ scale: 0.98 }}
-                className="bg-[#111827] border border-white/10 p-7 rounded-2xl hover:border-blue-500/50 transition duration-300"
+                className="rounded-2xl border border-white/10 bg-[#111827] p-5 transition duration-300 hover:border-blue-500/50 sm:p-7"
               >
-                <h3 className="text-xl font-bold mb-6 text-blue-400">
+                <h3 className="mb-4 text-lg font-bold text-blue-400 sm:mb-6 sm:text-xl">
                   {group.category}
                 </h3>
 
-                <div className="flex flex-wrap gap-3">
+                <div className="flex flex-wrap gap-2 sm:gap-3">
                   {group.items.map((skill, skillIdx) => (
                     <motion.span
                       key={skill}
@@ -61,7 +61,7 @@ export default function Skills() {
                       transition={{ duration: 0.4, delay: index * 0.1 + skillIdx * 0.04 }}
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
-                      className="bg-[#1E293B] text-gray-300 px-4 py-2 rounded-lg text-sm hover:bg-blue-600 hover:text-white transition"
+                      className="rounded-lg bg-[#1E293B] px-3 py-1.5 text-xs text-gray-300 transition hover:bg-blue-600 hover:text-white sm:px-4 sm:py-2 sm:text-sm"
                     >
                       {skill}
                     </motion.span>

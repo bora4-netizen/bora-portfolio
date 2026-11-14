@@ -26,7 +26,7 @@ const information = [
 
 export default function About() {
   return (
-    <section id="about" className="relative overflow-hidden py-28 px-6">
+    <section id="about" className="relative overflow-hidden px-4 py-16 sm:px-6 sm:py-24 lg:py-28">
       <Parallax
         className="absolute -top-24 right-0 pointer-events-none"
         from={40}
@@ -41,7 +41,7 @@ export default function About() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.4 }}
           transition={{ duration: 0.7 }}
-          className="text-center mb-14"
+          className="text-center"
         >
           <SectionTitle
             title="About Me"
@@ -49,7 +49,7 @@ export default function About() {
           />
         </motion.div>
 
-        <div className="grid gap-8 sm:gap-14 md:grid-cols-2 items-center">
+        <div className="grid items-center gap-8 sm:gap-14 md:grid-cols-2">
 
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -57,19 +57,19 @@ export default function About() {
             viewport={{ once: false, amount: 0.3 }}
             transition={{ duration: 0.7 }}
           >
-            <h3 className="text-3xl font-bold mb-6">
+            <h3 className="mb-4 text-2xl font-bold tracking-tight sm:mb-6 sm:text-3xl">
               Passionate About
               <span className="text-blue-500"> Web Development</span>
             </h3>
 
-            <p className="text-gray-400 leading-relaxed mb-5">
+            <p className="mb-4 text-sm leading-relaxed text-gray-400 sm:mb-5 sm:text-base">
               My name is Bora, and I am currently studying
               Web Development. I enjoy building websites
               and web applications that provide useful
               experiences for users.
             </p>
 
-            <p className="text-gray-400 leading-relaxed">
+            <p className="text-sm leading-relaxed text-gray-400 sm:text-base">
               I have experience working with frontend
               technologies and backend frameworks.
               I am continuously improving my coding,
@@ -102,10 +102,10 @@ export default function About() {
                     transition={{ duration: 0.5, delay: index * 0.12, ...spring }}
                     whileHover={{ y: -4 }}
                     whileTap={{ scale: 0.98 }}
-                    className="bg-[#111827] border border-white/10 p-5 sm:p-6 rounded-xl flex gap-4 sm:gap-5 items-center"
+                    className="flex items-center gap-4 rounded-2xl border border-white/10 bg-[#111827] p-4 sm:gap-5 sm:p-6"
                   >
-                    <div className="bg-blue-500/10 p-4 rounded-lg">
-                      <Icon className="text-blue-400" size={28} />
+                    <div className="rounded-xl bg-blue-500/10 p-3 sm:p-4">
+                      <Icon className="text-blue-400" size={24} />
                     </div>
 
                     <div>

@@ -13,7 +13,7 @@ import {
 const spring = { type: "spring", stiffness: 300, damping: 24 };
 
 const inputClass =
-  "w-full bg-[#0B1120] border border-white/10 rounded-lg px-4 py-3 outline-none focus:border-blue-500";
+  "w-full min-h-12 bg-[#0B1120] border border-white/10 rounded-xl px-4 py-3 text-base outline-none transition focus:border-blue-500";
 
 function Spinner() {
   return (
@@ -112,7 +112,7 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="relative overflow-hidden py-16 px-4 sm:py-28 sm:px-6"
+      className="relative overflow-hidden px-4 py-16 sm:px-6 sm:py-24 lg:py-28"
     >
       <Parallax
         className="absolute -bottom-24 -right-16 pointer-events-none"
@@ -129,7 +129,7 @@ export default function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.4 }}
           transition={{ duration: 0.7 }}
-          className="text-center mb-14"
+          className="text-center"
         >
           <SectionTitle
             title="Get In Touch"
@@ -137,7 +137,7 @@ export default function Contact() {
           />
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-8 sm:gap-12">
+        <div className="grid gap-8 md:grid-cols-2 sm:gap-12">
 
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -145,12 +145,12 @@ export default function Contact() {
             viewport={{ once: false, amount: 0.3 }}
             transition={{ duration: 0.7 }}
           >
-            <h3 className="text-3xl font-bold mb-5">
+            <h3 className="mb-4 text-2xl font-bold tracking-tight sm:mb-5 sm:text-3xl">
               Let's Build Something
               <span className="text-blue-500"> Together.</span>
             </h3>
 
-            <p className="text-gray-400 leading-relaxed mb-8 sm:mb-10">
+            <p className="mb-8 text-sm leading-relaxed text-gray-400 sm:mb-10 sm:text-base">
               I'm open to learning opportunities, internships,
               collaborations, and junior developer positions.
               Feel free to send me a message.
@@ -171,7 +171,7 @@ export default function Contact() {
                   <p className="text-sm text-gray-500">Email</p>
                   <a
                     href={`mailto:${CONTACT_EMAIL}`}
-                    className="hover:text-blue-400 transition"
+                    className="break-all transition hover:text-blue-400"
                   >
                     {CONTACT_EMAIL}
                   </a>
@@ -203,7 +203,7 @@ export default function Contact() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: false, amount: 0.3 }}
             transition={{ duration: 0.7, delay: 0.15 }}
-            className="bg-[#111827] border border-white/10 p-4 sm:p-7 rounded-2xl space-y-5"
+            className="space-y-5 rounded-2xl border border-white/10 bg-[#111827] p-4 sm:p-7"
           >
 
             {/* Honeypot — hidden from humans, catches spam bots */}
@@ -353,7 +353,7 @@ export default function Contact() {
               whileTap={{ scale: 0.98 }}
               transition={spring}
               disabled={status === "sending"}
-              className="w-full bg-blue-600 hover:bg-blue-700 disabled:opacity-60 disabled:cursor-not-allowed py-3 rounded-lg flex justify-center items-center gap-2 transition"
+              className="flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-blue-600 py-3 font-medium transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-60"
             >
               {status === "sending"
                 ? <>Sending <Spinner /></>

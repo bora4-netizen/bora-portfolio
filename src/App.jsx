@@ -11,11 +11,11 @@ import Contact from "./assets/sections/Contact";
 
 function App() {
   return (
-    <div className="min-h-screen bg-[#0B1120] text-white">
+    <div className="min-h-svh overflow-x-clip bg-[#0B1120] text-white">
 
       <Navbar />
 
-      <main>
+      <main className="overflow-x-clip">
         <Hero />
         <About />
         <Skills />
