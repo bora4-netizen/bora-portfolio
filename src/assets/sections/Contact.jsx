@@ -13,7 +13,7 @@ import {
 const spring = { type: "spring", stiffness: 300, damping: 24 };
 
 const inputClass =
-  "w-full min-h-12 bg-[#0B1120] border border-white/10 rounded-xl px-4 py-3 text-base outline-none transition focus:border-blue-500";
+  "w-full px-4 py-3 rounded-lg border border-white/10 bg-[#0B1120]/50 outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500/50 transition-all text-sm text-white placeholder-gray-500";
 
 function Spinner() {
   return (
@@ -112,7 +112,7 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="relative overflow-hidden px-4 py-16 sm:px-6 sm:py-24 lg:py-28"
+      className="relative overflow-hidden py-16 px-4 sm:py-28 sm:px-6"
     >
       <Parallax
         className="absolute -bottom-24 -right-16 pointer-events-none"
@@ -125,11 +125,11 @@ export default function Contact() {
       <div className="relative max-w-7xl mx-auto z-10">
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.4 }}
           transition={{ duration: 0.7 }}
-          className="text-center"
+          className="text-center mb-14"
         >
           <SectionTitle
             title="Get In Touch"
@@ -137,7 +137,7 @@ export default function Contact() {
           />
         </motion.div>
 
-        <div className="grid gap-8 md:grid-cols-2 sm:gap-12">
+        <div className="grid md:grid-cols-2 gap-8 sm:gap-12">
 
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -145,12 +145,12 @@ export default function Contact() {
             viewport={{ once: false, amount: 0.3 }}
             transition={{ duration: 0.7 }}
           >
-            <h3 className="mb-4 text-2xl font-bold tracking-tight sm:mb-5 sm:text-3xl">
+            <h3 className="text-3xl font-bold mb-5 tracking-tight">
               Let's Build Something
               <span className="text-blue-500"> Together.</span>
             </h3>
 
-            <p className="mb-8 text-sm leading-relaxed text-gray-400 sm:mb-10 sm:text-base">
+            <p className="text-gray-400 leading-relaxed mb-8 sm:mb-10 text-sm sm:text-base">
               I'm open to learning opportunities, internships,
               collaborations, and junior developer positions.
               Feel free to send me a message.
@@ -168,10 +168,12 @@ export default function Contact() {
               >
                 <Mail className="text-blue-400" />
                 <div>
-                  <p className="text-sm text-gray-500">Email</p>
+                  <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">
+                    Email
+                  </p>
                   <a
                     href={`mailto:${CONTACT_EMAIL}`}
-                    className="break-all transition hover:text-blue-400"
+                    className="text-blue-400 hover:text-blue-300 transition text-sm"
                   >
                     {CONTACT_EMAIL}
                   </a>
@@ -188,8 +190,10 @@ export default function Contact() {
               >
                 <MapPin className="text-blue-400" />
                 <div>
-                  <p className="text-sm text-gray-500">Location</p>
-                  <p>Cambodia</p>
+                  <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">
+                    Location
+                  </p>
+                  <p className="text-sm text-gray-300">Cambodia</p>
                 </div>
               </motion.div>
 
@@ -203,163 +207,166 @@ export default function Contact() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: false, amount: 0.3 }}
             transition={{ duration: 0.7, delay: 0.15 }}
-            className="space-y-5 rounded-2xl border border-white/10 bg-[#111827] p-4 sm:p-7"
+            className="relative p-1 rounded-2xl border border-transparent bg-[#111827]/50 backdrop-blur-sm transition-all hover:border-blue-500/40 hover:shadow-[0_0_50px_rgba(59,130,246,0.2)]"
           >
+            <div className="inset-0 rounded-2xl p-[1px] bg-gradient-to-r from-blue-500/30 to-violet-500/30 mask-[linear-gradient(0,0)_0_0_padding-box_0_0_-webkit-mask] -webkit-mask-composite destination-out" />
+            <div className="relative p-4 sm:p-7 space-y-5">
 
-            {/* Honeypot — hidden from humans, catches spam bots */}
-            <div className="absolute opacity-0 pointer-events-none" aria-hidden="true">
-              <label htmlFor="company">Company</label>
-              <input
-                id="company"
-                type="text"
-                name="company"
-                value={honeypot}
-                onChange={(e) => setHoneypot(e.target.value)}
-                tabIndex={-1}
-                autoComplete="off"
-              />
-            </div>
-
-            <motion.div
-              whileHover={{ borderColor: "blue-500/40" }}
-              transition={{ duration: 0.2 }}
-            >
-              <div>
-                <label htmlFor="contact-name" className="block mb-2 text-sm">
-                  Your Name
-                </label>
+              {/* Honeypot — hidden from humans, catches spam bots */}
+              <div className="absolute opacity-0 pointer-events-none" aria-hidden="true">
+                <label htmlFor="company">Company</label>
                 <input
-                  id="contact-name"
+                  id="company"
                   type="text"
-                  name="name"
-                  value={form.name}
-                  onChange={handleChange}
-                  required
-                  maxLength={80}
-                  autoComplete="name"
-                  placeholder="e.g. Your Name"
-                  className={inputClass}
+                  name="company"
+                  value={honeypot}
+                  onChange={(e) => setHoneypot(e.target.value)}
+                  tabIndex={-1}
+                  autoComplete="off"
                 />
               </div>
-            </motion.div>
 
-            <motion.div
-              whileHover={{ borderColor: "blue-500/40" }}
-              transition={{ duration: 0.2 }}
-            >
-              <div>
-                <label htmlFor="contact-email" className="block mb-2 text-sm">
-                  Your Email
-                </label>
-                <input
-                  id="contact-email"
-                  type="email"
-                  name="email"
-                  value={form.email}
-                  onChange={handleChange}
-                  required
-                  maxLength={120}
-                  autoComplete="email"
-                  placeholder="you@example.com"
-                  className={inputClass}
-                />
-              </div>
-            </motion.div>
+              <motion.div
+                whileHover={{ borderColor: "blue-500/30" }}
+                transition={{ duration: 0.2 }}
+              >
+                <div className="relative">
+                  <label htmlFor="contact-name" className="absolute -top-2.5 left-3 px-1 text-xs font-semibold text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity peer-focus:opacity-100">
+                    Your Name
+                  </label>
+                  <input
+                    id="contact-name"
+                    type="text"
+                    name="name"
+                    value={form.name}
+                    onChange={handleChange}
+                    required
+                    maxLength={80}
+                    autoComplete="name"
+                    placeholder=" "
+                    className={inputClass + " peer"}
+                  />
+                </div>
+              </motion.div>
 
-            <motion.div
-              whileHover={{ borderColor: "blue-500/40" }}
-              transition={{ duration: 0.2 }}
-            >
-              <div>
-                <label htmlFor="contact-message" className="block mb-2 text-sm">
-                  Your Message
-                </label>
-                <textarea
-                  id="contact-message"
-                  name="message"
-                  value={form.message}
-                  onChange={handleChange}
-                  required
-                  rows={5}
-                  maxLength={1200}
-                  placeholder="Write your message..."
-                  className={`${inputClass} resize-none`}
-                />
-              </div>
-            </motion.div>
+              <motion.div
+                whileHover={{ borderColor: "blue-500/30" }}
+                transition={{ duration: 0.2 }}
+              >
+                <div className="relative">
+                  <label htmlFor="contact-email" className="absolute -top-2.5 left-3 px-1 text-xs font-semibold text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity peer-focus:opacity-100">
+                    Your Email
+                  </label>
+                  <input
+                    id="contact-email"
+                    type="email"
+                    name="email"
+                    value={form.email}
+                    onChange={handleChange}
+                    required
+                    maxLength={120}
+                    autoComplete="email"
+                    placeholder=" "
+                    className={inputClass + " peer"}
+                  />
+                </div>
+              </motion.div>
 
-            <div aria-live="polite">
-              {status === "success" && (
-                <motion.p
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3 }}
-                  className="text-emerald-400 text-sm bg-emerald-500/10 border border-emerald-500/30 rounded-lg px-4 py-3"
-                >
-                  ✓ Message sent! I'll get back to you soon.
-                </motion.p>
-              )}
+              <motion.div
+                whileHover={{ borderColor: "blue-500/30" }}
+                transition={{ duration: 0.2 }}
+              >
+                <div className="relative">
+                  <label htmlFor="contact-message" className="absolute -top-2.5 left-3 px-1 text-xs font-semibold text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity peer-focus:opacity-100">
+                    Your Message
+                  </label>
+                  <textarea
+                    id="contact-message"
+                    name="message"
+                    value={form.message}
+                    onChange={handleChange}
+                    required
+                    rows={5}
+                    maxLength={1200}
+                    placeholder=" "
+                    className={`${inputClass} resize-none peer`}
+                  />
+                </div>
+              </motion.div>
 
-              {status === "pending" && (
-                <motion.p
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3 }}
-                  className="text-amber-300 text-sm bg-amber-500/10 border border-amber-500/30 rounded-lg px-4 py-3"
-                >
-                  Your message was saved, but email delivery is still being
-                  set up, so it may be delayed. For anything urgent, email me
-                  directly at{" "}
-                  <a
-                    href={mailtoLink}
-                    className="underline underline-offset-2 hover:text-amber-200"
+              <div aria-live="polite">
+                {status === "success" && (
+                  <motion.p
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="text-emerald-400 text-sm bg-emerald-500/10 border border-emerald-500/30 rounded-lg px-4 py-3"
                   >
-                    {CONTACT_EMAIL}
-                  </a>
-                  .
-                </motion.p>
-              )}
+                    ✓ Message sent! I'll get back to you soon.
+                  </motion.p>
+                )}
 
-              {status === "error" && (
-                <motion.div
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3 }}
-                  className="text-red-400 text-sm bg-red-500/10 border border-red-500/30 rounded-lg px-4 py-3"
-                >
-                  <p>
-                    Sorry, your message could not be sent right now. You can
-                    email me directly at{" "}
+                {status === "pending" && (
+                  <motion.p
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="text-amber-300 text-sm bg-amber-500/10 border border-amber-500/30 rounded-lg px-4 py-3"
+                  >
+                    Your message was saved, but email delivery is still being
+                    set up, so it may be delayed. For anything urgent, email me
+                    directly at{" "}
                     <a
                       href={mailtoLink}
-                      className="underline underline-offset-2 hover:text-red-300"
+                      className="underline underline-offset-2 hover:text-amber-200"
                     >
                       {CONTACT_EMAIL}
                     </a>
                     .
-                  </p>
-                  {errorMessage && (
-                    <p className="mt-2 text-red-300/80 break-words">
-                      {errorMessage}
+                  </motion.p>
+                )}
+
+                {status === "error" && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="text-red-400 text-sm bg-red-500/10 border border-red-500/30 rounded-lg px-4 py-3"
+                  >
+                    <p>
+                      Sorry, your message could not be sent right now. You can
+                      email me directly at{" "}
+                      <a
+                        href={mailtoLink}
+                        className="underline underline-offset-2 hover:text-red-300"
+                      >
+                        {CONTACT_EMAIL}
+                      </a>
+                      .
                     </p>
-                  )}
-                </motion.div>
-              )}
+                    {errorMessage && (
+                      <p className="mt-2 text-red-300/80 break-words">
+                        {errorMessage}
+                      </p>
+                    )}
+                  </motion.div>
+                )}
+              </div>
+
+              <motion.button
+                type="submit"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                transition={spring}
+                disabled={status === "sending"}
+                className="w-full py-3 rounded-xl bg-gradient-to-r from-blue-600 to-violet-600 hover:from-blue-500 hover:to-violet-500 shadow-lg shadow-blue-600/25 transition-all disabled:opacity-60 disabled:cursor-not-allowed font-medium"
+              >
+                {status === "sending"
+                  ? <>Sending <Spinner /></>
+                  : <>Send Message <Send size={18} /></>}
+              </motion.button>
+
             </div>
-
-            <motion.button
-              type="submit"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              transition={spring}
-              disabled={status === "sending"}
-              className="flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-blue-600 py-3 font-medium transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-60"
-            >
-              {status === "sending"
-                ? <>Sending <Spinner /></>
-                : <>Send Message <Send size={18} /></>}
-            </motion.button>
-
           </motion.form>
 
         </div>

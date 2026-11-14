@@ -1,9 +1,10 @@
 
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import {
   Mail,
-  Download,
+  Eye,
   ArrowRight,
 } from "lucide-react";
 import { Github, Linkedin } from "../components/BrandIcons";
@@ -234,16 +235,15 @@ export default function Hero() {
               View My Work <ArrowRight size={18} />
             </motion.a>
 
-            <motion.a
-              href="/resume.pdf"
-              download="Bora-CV.pdf"
+            <Link
+              to="/cv"
               whileHover={{ y: -2 }}
               whileTap={{ scale: 0.95 }}
               transition={spring}
               className="flex min-h-12 w-full items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 px-6 py-3 font-medium backdrop-blur transition hover:border-blue-500/60 sm:w-auto"
             >
-              Download CV <Download size={18} />
-            </motion.a>
+              View CV <Eye size={18} />
+            </Link>
           </motion.div>
 
           <motion.div

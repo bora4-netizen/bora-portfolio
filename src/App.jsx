@@ -1,4 +1,5 @@
 
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./assets/components/Navbar";
 import Footer from "./assets/components/Footer";
 
@@ -8,25 +9,35 @@ import Skills from "./assets/sections/Skills";
 import Projects from "./assets/sections/Projects";
 import Experience from "./assets/sections/Experience";
 import Contact from "./assets/sections/Contact";
+import CV from "./assets/pages/CV";
 
 function App() {
   return (
-    <div className="min-h-svh overflow-x-clip bg-[#0B1120] text-white">
+    <BrowserRouter>
+      <div className="min-h-svh overflow-x-clip bg-[#0B1120] text-white">
 
-      <Navbar />
+        <Navbar />
 
-      <main className="overflow-x-clip">
-        <Hero />
-        <About />
-        <Skills />
-        <Projects />
-        <Experience />
-        <Contact />
-      </main>
+        <main className="overflow-x-clip">
+          <Routes>
+            <Route path="/" element={
+              <>
+                <Hero />
+                <About />
+                <Skills />
+                <Projects />
+                <Experience />
+                <Contact />
+              </>
+            } />
+            <Route path="/cv" element={<CV />} />
+          </Routes>
+        </main>
 
-      <Footer />
+        <Footer />
 
-    </div>
+      </div>
+    </BrowserRouter>
   );
 }
 

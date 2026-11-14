@@ -1,5 +1,6 @@
 
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import {
   AnimatePresence,
   motion,
@@ -109,13 +110,17 @@ export default function Navbar() {
     >
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex justify-between items-center">
 
-        <a
-          href="#home"
+        <Link
+          to="/"
           onClick={(event) => closeAndNavigate(event, "#home")}
-          className="text-xl sm:text-2xl font-bold tracking-tight"
+          className="flex items-center gap-2"
         >
-          BORA<span className="text-blue-500">.</span>
-        </a>
+          <img
+            src="/logos/logo.png"
+            alt="Bora logo"
+            className="h-10 sm:h-12 w-auto"
+          />
+        </Link>
 
         <div className="hidden md:flex items-center gap-1 lg:gap-2">
           {links.map((link) => {
