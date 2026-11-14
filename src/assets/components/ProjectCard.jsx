@@ -50,7 +50,7 @@ export default function ProjectCard({ project }) {
 
         <div className="flex flex-wrap gap-x-5 gap-y-1">
           {project.github && project.github !== "#" && (
-            <a
+            <motion.a
               href={project.github}
               target="_blank"
               rel="noreferrer"
@@ -60,11 +60,11 @@ export default function ProjectCard({ project }) {
               className="flex min-h-11 items-center gap-2 text-sm text-gray-300 transition hover:text-blue-400"
             >
               <Github size={17} /> GitHub
-            </a>
+            </motion.a>
           )}
 
           {project.demo && project.demo !== "#" && (
-            <a
+            <motion.a
               href={project.demo}
               target="_blank"
               rel="noreferrer"
@@ -74,11 +74,11 @@ export default function ProjectCard({ project }) {
               className="flex min-h-11 items-center gap-2 text-sm text-gray-300 transition hover:text-blue-400"
             >
               <ExternalLink size={17} /> Live Demo
-            </a>
+            </motion.a>
           )}
 
           {project.caseStudy && (
-            <a
+            <motion.a
               href={project.caseStudy}
               target="_blank"
               rel="noreferrer"
@@ -89,7 +89,7 @@ export default function ProjectCard({ project }) {
               className="flex min-h-11 items-center gap-2 text-sm text-gray-300 transition hover:text-blue-400"
             >
               <FileText size={17} /> Case Study
-            </a>
+            </motion.a>
           )}
         </div>
       </div>

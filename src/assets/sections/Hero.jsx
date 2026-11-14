@@ -224,7 +224,7 @@ export default function Hero() {
             variants={itemVariants}
             className="mt-7 flex w-full flex-col gap-3 sm:mt-10 sm:w-auto sm:flex-row sm:gap-4"
           >
-            <a
+            <motion.a
               href="#projects"
               whileHover={{ y: -2 }}
               whileTap={{ scale: 0.95 }}
@@ -232,9 +232,9 @@ export default function Hero() {
               className="flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 to-violet-600 px-6 py-3 font-medium shadow-lg shadow-blue-600/25 transition hover:from-blue-500 hover:to-violet-500 sm:w-auto"
             >
               View My Work <ArrowRight size={18} />
-            </a>
+            </motion.a>
 
-            <a
+            <motion.a
               href="/resume.pdf"
               download="Bora-CV.pdf"
               whileHover={{ y: -2 }}
@@ -243,14 +243,14 @@ export default function Hero() {
               className="flex min-h-12 w-full items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 px-6 py-3 font-medium backdrop-blur transition hover:border-blue-500/60 sm:w-auto"
             >
               Download CV <Download size={18} />
-            </a>
+            </motion.a>
           </motion.div>
 
           <motion.div
             variants={itemVariants}
             className="mt-7 flex justify-start gap-3 sm:mt-9 sm:gap-4"
           >
-            <a
+            <motion.a
               href="https://github.com/bora4-netizen"
               aria-label="GitHub"
               whileHover={{ y: -2, scale: 1.05 }}
@@ -259,8 +259,8 @@ export default function Hero() {
               className="p-2 sm:p-2.5 rounded-full bg-white/5 backdrop-blur border border-white/10 text-gray-400 hover:text-blue-400 hover:border-blue-500/60 transition"
             >
               <Github size={20} />
-            </a>
-            <a
+            </motion.a>
+            <motion.a
               href="https://www.linkedin.com/in/bora-chork-1bb1843a7/"
               aria-label="LinkedIn"
               whileHover={{ y: -2, scale: 1.05 }}
@@ -269,8 +269,8 @@ export default function Hero() {
               className="p-2 sm:p-2.5 rounded-full bg-white/5 backdrop-blur border border-white/10 text-gray-400 hover:text-blue-400 hover:border-blue-500/60 transition"
             >
               <Linkedin size={20} />
-            </a>
-            <a
+            </motion.a>
+            <motion.a
               href={`mailto:${CONTACT_EMAIL}`}
               aria-label="Email"
               whileHover={{ y: -2, scale: 1.05 }}
@@ -279,7 +279,7 @@ export default function Hero() {
               className="p-2 sm:p-2.5 rounded-full bg-white/5 backdrop-blur border border-white/10 text-gray-400 hover:text-blue-400 hover:border-blue-500/60 transition"
             >
               <Mail size={20} />
-            </a>
+            </motion.a>
           </motion.div>
         </motion.div>
 
