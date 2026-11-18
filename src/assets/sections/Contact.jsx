@@ -41,6 +41,7 @@ export default function Contact() {
   });
   const [honeypot, setHoneypot] = useState("");
   const [status, setStatus] = useState("idle"); // idle | sending | success | error
+  const [errorDetail, setErrorDetail] = useState("");
 
   // Hide the "sent" confirmation a few seconds after it appears
   useEffect(() => {
@@ -53,6 +54,7 @@ export default function Contact() {
     // New input clears any previous success/error feedback
     if (status === "success" || status === "error") {
       setStatus("idle");
+      setErrorDetail("");
     }
 
     setForm({
@@ -72,14 +74,18 @@ export default function Contact() {
     }
 
     setStatus("sending");
+    setErrorDetail("");
 
     try {
       await sendContactMessage(form);
       setStatus("success");
       setForm({ name: "", email: "", message: "" });
     } catch (error) {
-      console.error("Contact form failed to send:", error);
+      // EmailJS errors carry the reason in .text, everything else in .message
+      const detail = error?.message || error?.text || "";
+      console.error("Contact form failed to send:", detail || error);
       setStatus("error");
+      setErrorDetail(detail);
     }
   };
 
@@ -144,7 +150,7 @@ export default function Contact() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: false, amount: 0.3 }}
             transition={{ duration: 0.7, delay: 0.15 }}
-            className="bg-[#111827] border border-white/10 p-7 rounded-2xl space-y-5"
+            className="relative bg-[#111827] border border-white/10 p-7 rounded-2xl space-y-5"
           >
 
             {/* Honeypot — hidden from humans, catches spam bots */}
@@ -222,10 +228,23 @@ export default function Contact() {
               )}
 
               {status === "error" && (
-                <p className="text-red-400 text-sm bg-red-500/10 border border-red-500/30 rounded-lg px-4 py-3">
-                  Something went wrong. Please email me directly at
-                  chorkbora4@gmail.com.
-                </p>
+                <div className="text-red-400 text-sm bg-red-500/10 border border-red-500/30 rounded-lg px-4 py-3 space-y-1">
+                  <p>
+                    Something went wrong. Please email me directly at{" "}
+                    <a
+                      href="mailto:chorkbora4@gmail.com"
+                      className="underline hover:text-red-300 transition"
+                    >
+                      chorkbora4@gmail.com
+                    </a>
+                    .
+                  </p>
+                  {errorDetail && (
+                    <p className="text-xs text-red-400/70 break-words">
+                      {errorDetail}
+                    </p>
+                  )}
+                </div>
               )}
             </div>
 
