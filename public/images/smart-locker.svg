@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" role="img" aria-label="Smart Locker System">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0c2744"/>
+      <stop offset="0.55" stop-color="#075985"/>
+      <stop offset="1" stop-color="#22d3ee"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.85" cy="0.2" r="0.7">
+      <stop offset="0" stop-color="#a5f3fc" stop-opacity="0.7"/>
+      <stop offset="1" stop-color="#a5f3fc" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="600" fill="url(#bg)"/>
+  <circle cx="1000" cy="120" r="270" fill="url(#glow)"/>
+  <g fill="none" stroke="#67e8f9" stroke-width="3" opacity="0.35">
+    <rect x="800" y="250" width="90" height="90" rx="12"/>
+    <rect x="910" y="250" width="90" height="90" rx="12"/>
+    <rect x="800" y="360" width="90" height="90" rx="12"/>
+    <rect x="910" y="360" width="90" height="90" rx="12"/>
+    <circle cx="845" cy="295" r="7" fill="#67e8f9" stroke="none"/>
+    <circle cx="955" cy="295" r="7" fill="#67e8f9" stroke="none"/>
+    <circle cx="845" cy="405" r="7" fill="#67e8f9" stroke="none"/>
+  </g>
+  <circle cx="170" cy="500" r="180" fill="#22d3ee" opacity="0.16"/>
+  <path d="M0 490 C 240 400 430 570 700 480 S 1040 400 1200 460 L1200 600 L0 600 Z" fill="#0b1120" opacity="0.35"/>
+  <text x="80" y="275" fill="#ffffff" font-family="Inter, Arial, sans-serif" font-size="66" font-weight="700">Smart Locker</text>
+  <text x="82" y="340" fill="#a5f3fc" font-family="Inter, Arial, sans-serif" font-size="30" letter-spacing="5">MANAGEMENT SYSTEM</text>
+  <text x="82" y="420" fill="#67e8f9" font-family="Inter, Arial, sans-serif" font-size="24">Laravel · PHP · PostgreSQL</text>
+</svg>

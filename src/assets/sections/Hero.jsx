@@ -1,12 +1,14 @@
 
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import {
   Mail,
-  Download,
+  Eye,
   ArrowRight,
 } from "lucide-react";
 import { Github, Linkedin } from "../components/BrandIcons";
+import { CONTACT_EMAIL } from "../lib/sendMessage";
 
 const roles = [
   "Junior Web Developer",
@@ -15,7 +17,29 @@ const roles = [
   "Lifelong Learner",
 ];
 
-function useTypewriter(words, typeSpeed = 85, deleteSpeed = 40, pause = 1600) {
+// Modern spring config for natural-feeling motion
+const spring = { type: "spring", stiffness: 260, damping: 22 };
+
+// Staggered reveal variants for content groups
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.12, delayChildren: 0.1 },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 24, scale: 0.95 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: spring,
+  },
+};
+
+function useTypewriter(words, typeSpeed = 70, deleteSpeed = 35, pause = 1700) {
   const [wordIndex, setWordIndex] = useState(0);
   const [text, setText] = useState("");
   const [deleting, setDeleting] = useState(false);
@@ -47,12 +71,22 @@ function useTypewriter(words, typeSpeed = 85, deleteSpeed = 40, pause = 1600) {
   return text;
 }
 
-function FloatChip({ label, dot, className, delay = 0, duration = 4 }) {
+function FloatChip({ label, dot, className, delay = 0, duration = 5 }) {
   return (
     <motion.div
-      animate={{ y: [0, -10, 0] }}
-      transition={{ duration, repeat: Infinity, ease: "easeInOut", delay }}
-      className={`absolute z-10 flex items-center gap-1.5 sm:gap-2 bg-[#111827]/80 backdrop-blur border border-white/10 px-2.5 py-1.5 sm:px-3.5 sm:py-2 rounded-full text-xs sm:text-sm text-gray-200 shadow-lg shadow-black/30 ${className}`}
+      initial={{ opacity: 0, y: 10, scale: 0.9 }}
+      animate={{
+        opacity: 1,
+        y: [0, -12, 0],
+        scale: 1,
+      }}
+      transition={{
+        delay,
+        duration,
+        repeat: Infinity,
+        ease: "easeInOut",
+      }}
+      className={`absolute z-10 flex items-center gap-1.5 bg-[#111827]/85 backdrop-blur-md border border-white/10 px-2.5 py-1 sm:px-3.5 sm:py-2 rounded-full text-[0.7rem] xs:text-xs sm:text-sm text-gray-200 shadow-lg shadow-black/30 ${className}`}
     >
       <span className={`w-2 h-2 rounded-full ${dot}`} />
       {label}
@@ -62,55 +96,86 @@ function FloatChip({ label, dot, className, delay = 0, duration = 4 }) {
 
 export default function Hero() {
   const typed = useTypewriter(roles);
+  const reduceMotion = useReducedMotion();
+
+  // Subtle parallax layers — restrained movement for a modern feel
+  const { scrollY } = useScroll();
+  const yBlob1 = useTransform(scrollY, [0, 1200], [0, 80]);
+  const yBlob2 = useTransform(scrollY, [0, 1200], [0, -60]);
+  const yBlob3 = useTransform(scrollY, [0, 1200], [0, 70]);
+  const yGrid = useTransform(scrollY, [0, 1200], [0, 40]);
+  const yPhoto = useTransform(scrollY, [0, 1200], [0, -40]);
+  const parallax = (value) => (reduceMotion ? undefined : { y: value });
 
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center pt-28 pb-16 px-6 overflow-hidden"
+      className="relative flex min-h-svh items-center overflow-hidden px-4 pb-16 pt-24 sm:px-6 sm:pb-20 sm:pt-28"
     >
 
-      {/* Aurora background */}
+      {/* Aurora background — parallax layers */}
       <motion.div
-        animate={{ x: [0, 40, 0], y: [0, 30, 0] }}
-        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute -top-32 -left-32 w-[28rem] h-[28rem] bg-blue-600/25 rounded-full blur-3xl"
-      />
-      <motion.div
-        animate={{ x: [0, -35, 0], y: [0, 40, 0] }}
-        transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-1/4 -right-40 w-[30rem] h-[30rem] bg-violet-600/20 rounded-full blur-3xl"
-      />
-      <motion.div
-        animate={{ x: [0, 30, 0], y: [0, -25, 0] }}
-        transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute -bottom-40 left-1/3 w-[26rem] h-[26rem] bg-cyan-500/15 rounded-full blur-3xl"
-      />
+        style={parallax(yBlob1)}
+        className="absolute -top-32 -left-32"
+      >
+        <motion.div
+          animate={reduceMotion ? undefined : { x: [0, 30, 0], y: [0, 22, 0] }}
+          transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
+          className="h-[22rem] w-[22rem] rounded-full bg-blue-600/25 blur-3xl sm:h-[35rem] sm:w-[35rem] md:h-[40rem] md:w-[40rem]"
+        />
+      </motion.div>
 
-      {/* Grid overlay */}
-      <div
-        className="absolute inset-0 opacity-[0.35]"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(148,163,184,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(148,163,184,0.07) 1px, transparent 1px)",
-          backgroundSize: "56px 56px",
-        }}
-      />
+      <motion.div
+        style={parallax(yBlob2)}
+        className="absolute top-1/4 -right-[12rem] sm:top-[20%] sm:-right-[18rem] md:-right-40"
+      >
+        <motion.div
+          animate={reduceMotion ? undefined : { x: [0, -28, 0], y: [0, 32, 0] }}
+          transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
+          className="h-[24rem] w-[24rem] rounded-full bg-violet-600/20 blur-3xl sm:h-[30rem] sm:w-[30rem]"
+        />
+      </motion.div>
 
-      <div className="relative max-w-7xl mx-auto w-full grid md:grid-cols-2 gap-14 items-center">
+      <motion.div
+        style={parallax(yBlob3)}
+        className="absolute -bottom-40 sm:-bottom-32 left-1/3 sm:left-1/4"
+      >
+        <motion.div
+          animate={reduceMotion ? undefined : { x: [0, 24, 0], y: [0, -20, 0] }}
+          transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
+          className="h-[20rem] w-[20rem] rounded-full bg-cyan-500/15 blur-3xl sm:h-[26rem] sm:w-[26rem]"
+        />
+      </motion.div>
+
+      {/* Grid overlay — drifts slower than the content */}
+      <motion.div
+        style={parallax(yGrid)}
+        className="absolute inset-0 opacity-[0.35] aria-hidden-true"
+        aria-hidden="true"
+      >
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage:
+              "linear-gradient(rgba(148,163,184,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(148,163,184,0.07) 1px, transparent 1px)",
+            backgroundSize: "56px 56px",
+          }}
+        />
+      </motion.div>
+
+      <div className="relative mx-auto grid w-full max-w-7xl items-center gap-12 md:grid-cols-2 md:gap-14">
 
         <motion.div
-          initial={{ opacity: 0, x: -40 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: false, amount: 0.3 }}
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, amount: 0.25 }}
           transition={{ duration: 0.8 }}
         >
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.5 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="inline-flex items-center gap-2.5 bg-white/5 backdrop-blur border border-white/10 px-4 py-2 rounded-full text-sm text-gray-300 mb-6"
+            variants={itemVariants}
+            className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3.5 py-1.5 text-xs text-gray-300 backdrop-blur sm:mb-6 sm:gap-2.5 sm:px-4 sm:py-2 sm:text-sm"
           >
             <span className="relative flex h-2.5 w-2.5">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60" />
@@ -119,111 +184,144 @@ export default function Hero() {
             Open to internships &amp; junior roles
           </motion.div>
 
-          <p className="text-blue-400 font-medium mb-4 text-lg">
+          <motion.p
+            variants={itemVariants}
+            className="mb-3 text-base font-medium text-blue-400 sm:mb-4 sm:text-lg"
+          >
             Hi, I'm Bora 👋
-          </p>
+          </motion.p>
 
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
+          <motion.h1
+            variants={itemVariants}
+            className="text-4xl font-bold leading-[1.12] tracking-tight sm:text-5xl lg:text-6xl"
+          >
             Building the
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-500 to-violet-500">
               {" "}Web
             </span>
             <br />
             One Line at a Time.
-          </h1>
+          </motion.h1>
 
-          <h2 className="text-2xl text-gray-300 mt-6 h-9">
+          <motion.h2
+            variants={itemVariants}
+            className="mt-4 flex min-h-8 items-center text-lg text-gray-300 sm:mt-6 sm:min-h-9 sm:text-2xl"
+          >
             {typed}
             <span className="text-blue-400 animate-pulse ml-0.5">|</span>
-          </h2>
+          </motion.h2>
 
-          <p className="text-gray-400 mt-5 leading-relaxed max-w-xl">
+          <motion.p
+            variants={itemVariants}
+            className="mt-4 max-w-xl text-sm leading-relaxed text-gray-400 sm:mt-5 sm:text-base"
+          >
             I'm a Web Development student passionate about
             creating modern, responsive, and user-friendly
             web applications. I enjoy learning new technologies
             and turning ideas into real projects.
-          </p>
+          </motion.p>
 
-          <div className="flex flex-wrap gap-4 mt-8">
-            <a
+          <motion.div
+            variants={itemVariants}
+            className="mt-7 flex w-full flex-col gap-3 sm:mt-10 sm:w-auto sm:flex-row sm:gap-4"
+          >
+            <motion.a
               href="#projects"
-              className="bg-gradient-to-r from-blue-600 to-violet-600 hover:from-blue-500 hover:to-violet-500 shadow-lg shadow-blue-600/25 px-6 py-3 rounded-lg flex items-center gap-2 transition"
+              whileHover={{ y: -2 }}
+              whileTap={{ scale: 0.95 }}
+              transition={spring}
+              className="flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 to-violet-600 px-6 py-3 font-medium shadow-lg shadow-blue-600/25 transition hover:from-blue-500 hover:to-violet-500 sm:w-auto"
             >
               View My Work <ArrowRight size={18} />
-            </a>
+            </motion.a>
 
-            <a
-              href="/resume.pdf"
-              download="Bora-CV.pdf"
-              className="bg-white/5 backdrop-blur border border-white/10 hover:border-blue-500/60 px-6 py-3 rounded-lg flex items-center gap-2 transition"
+            <Link
+              to="/cv"
+              whileHover={{ y: -2 }}
+              whileTap={{ scale: 0.95 }}
+              transition={spring}
+              className="flex min-h-12 w-full items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 px-6 py-3 font-medium backdrop-blur transition hover:border-blue-500/60 sm:w-auto"
             >
-              Download CV <Download size={18} />
-            </a>
-          </div>
+              View CV <Eye size={18} />
+            </Link>
+          </motion.div>
 
-          <div className="flex gap-4 mt-10">
-            <a
+          <motion.div
+            variants={itemVariants}
+            className="mt-7 flex justify-start gap-3 sm:mt-9 sm:gap-4"
+          >
+            <motion.a
               href="https://github.com/bora4-netizen"
               aria-label="GitHub"
-              className="p-2.5 rounded-full bg-white/5 backdrop-blur border border-white/10 text-gray-400 hover:text-blue-400 hover:border-blue-500/60 hover:-translate-y-1 transition"
+              whileHover={{ y: -2, scale: 1.05 }}
+              whileTap={{ scale: 0.9 }}
+              transition={spring}
+              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-gray-400 backdrop-blur transition hover:border-blue-500/60 hover:text-blue-400 sm:h-11 sm:w-11"
             >
-              <Github size={22} />
-            </a>
-            <a
+              <Github size={20} />
+            </motion.a>
+            <motion.a
               href="https://www.linkedin.com/in/bora-chork-1bb1843a7/"
               aria-label="LinkedIn"
-              className="p-2.5 rounded-full bg-white/5 backdrop-blur border border-white/10 text-gray-400 hover:text-blue-400 hover:border-blue-500/60 hover:-translate-y-1 transition"
+              whileHover={{ y: -2, scale: 1.05 }}
+              whileTap={{ scale: 0.9 }}
+              transition={spring}
+              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-gray-400 backdrop-blur transition hover:border-blue-500/60 hover:text-blue-400 sm:h-11 sm:w-11"
             >
-              <Linkedin size={22} />
-            </a>
-            <a
-              href="mailto:chorkbora4@gmail.com"
+              <Linkedin size={20} />
+            </motion.a>
+            <motion.a
+              href={`mailto:${CONTACT_EMAIL}`}
               aria-label="Email"
-              className="p-2.5 rounded-full bg-white/5 backdrop-blur border border-white/10 text-gray-400 hover:text-blue-400 hover:border-blue-500/60 hover:-translate-y-1 transition"
+              whileHover={{ y: -2, scale: 1.05 }}
+              whileTap={{ scale: 0.9 }}
+              transition={spring}
+              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-gray-400 backdrop-blur transition hover:border-blue-500/60 hover:text-blue-400 sm:h-11 sm:w-11"
             >
-              <Mail size={22} />
-            </a>
-          </div>
+              <Mail size={20} />
+            </motion.a>
+          </motion.div>
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
+          initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: false, amount: 0.3 }}
-          transition={{ duration: 0.8 }}
-          className="flex justify-center"
+          viewport={{ once: false, amount: 0.25 }}
+          transition={{ duration: 0.8, ...spring }}
+          style={parallax(yPhoto)}
+          className="flex justify-center md:justify-end"
         >
           <div className="relative">
 
             <div className="absolute inset-0 bg-gradient-to-r from-blue-600/40 to-violet-600/40 blur-[80px]" />
 
-            <div className="relative bg-gradient-to-tr from-blue-500 to-violet-500 p-[3px] rounded-[2.5rem] shadow-2xl shadow-blue-600/20">
+            <div className="relative rounded-[2rem] bg-gradient-to-tr from-blue-500 to-violet-500 p-[3px] shadow-2xl shadow-blue-600/20 sm:rounded-[2.5rem]">
               <img
                 src="/images/bora.png"
                 alt="Bora's profile"
-                className="w-64 h-64 sm:w-72 sm:h-72 md:w-96 md:h-96 object-cover rounded-[2.5rem] block"
+                className="block h-56 w-56 rounded-[2rem] object-cover xs:h-60 xs:w-60 sm:h-72 sm:w-72 sm:rounded-[2.5rem] md:h-80 md:w-80 lg:h-96 lg:w-96"
               />
             </div>
 
             <FloatChip
               label="React"
               dot="bg-cyan-400"
-              className="-left-3 top-8 sm:-left-6 sm:top-10"
+              className="-left-1 top-5 xs:-left-3 xs:top-7 sm:-left-6 sm:top-10"
               delay={0}
             />
             <FloatChip
               label="Laravel"
               dot="bg-red-400"
-              className="-right-4 top-1/3 sm:-right-8"
-              delay={0.6}
-              duration={4.5}
+              className="-right-1 top-1/3 xs:-right-4 sm:-right-8"
+              delay={0.7}
+              duration={5.5}
             />
             <FloatChip
               label="Spring Boot"
               dot="bg-emerald-400"
-              className="right-1 -bottom-4 sm:right-2 sm:-bottom-5"
-              delay={1.2}
-              duration={5}
+              className="-bottom-3 right-1 xs:-bottom-4 sm:right-2 sm:-bottom-5"
+              delay={1.4}
+              duration={6}
             />
           </div>
         </motion.div>

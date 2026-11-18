@@ -4,21 +4,39 @@ import { motion } from "framer-motion";
 export default function SectionTitle({ title, subtitle }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: false, amount: 0.5 }}
-      transition={{ duration: 0.6 }}
-      className="text-center mb-14"
+      viewport={{ once: false, amount: 0.4 }}
+      transition={{ duration: 0.7 }}
+      className="mb-10 text-center sm:mb-14"
     >
-      <p className="text-blue-400 uppercase tracking-[4px] text-sm mb-3">
+      <motion.p
+        initial={{ opacity: 0, y: 8 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: false, amount: 0.4 }}
+        transition={{ duration: 0.5, delay: 0.1 }}
+        className="mb-3 text-xs uppercase tracking-[3px] text-blue-400 sm:text-sm sm:tracking-[4px]"
+      >
         {subtitle}
-      </p>
+      </motion.p>
 
-      <h2 className="text-3xl md:text-5xl font-bold">
+      <motion.h2
+        initial={{ opacity: 0, y: 8 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: false, amount: 0.4 }}
+        transition={{ duration: 0.5, delay: 0.18 }}
+        className="text-2xl font-bold tracking-tight sm:text-3xl md:text-4xl lg:text-5xl"
+      >
         {title}
-      </h2>
+      </motion.h2>
 
-      <div className="w-20 h-1 bg-blue-500 mx-auto mt-5 rounded-full" />
+      <motion.div
+        initial={{ width: 0 }}
+        whileInView={{ width: "100%" }}
+        viewport={{ once: false, amount: 0.4 }}
+        transition={{ duration: 0.8, delay: 0.28, ease: "easeOut" }}
+        className="mx-auto mt-4 h-1 w-16 rounded-full bg-blue-500 sm:mt-5 sm:w-20"
+      />
     </motion.div>
   );
 }
