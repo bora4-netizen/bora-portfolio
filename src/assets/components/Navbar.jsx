@@ -7,7 +7,8 @@ import {
   useScroll,
   useSpring,
 } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Mail } from "lucide-react";
+import FuturisticButton from "./FuturisticButton";
 
 const links = [
   { name: "Home", href: "#home" },
@@ -106,7 +107,7 @@ export default function Navbar() {
       initial={{ y: -80, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6 }}
-      className="fixed top-0 left-0 w-full z-50 bg-[#0B1120]/90 backdrop-blur-xl border-b border-white/10"
+      className="fixed top-0 left-0 w-full z-50 bg-[#04060f]/80 backdrop-blur-xl border-b border-white/10 shadow-[0_12px_40px_-24px_rgba(59,130,246,0.5)]"
     >
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex justify-between items-center">
 
@@ -150,12 +151,15 @@ export default function Navbar() {
           })}
         </div>
 
-        <a
+        <FuturisticButton
           href="#contact"
-          className="hidden md:inline-flex items-center justify-center min-h-10 bg-blue-600 hover:bg-blue-700 px-5 rounded-lg text-sm lg:text-base font-medium transition"
+          size="sm"
+          variant="gradient"
+          icon={Mail}
+          className="hidden md:inline-flex"
         >
-          Hire Me
-        </a>
+          Contact Me
+        </FuturisticButton>
 
         <button
           type="button"
@@ -196,7 +200,7 @@ export default function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.25, ease: "easeInOut" }}
-            className="md:hidden overflow-hidden border-t border-white/10 bg-[#0B1120]/95 backdrop-blur-xl"
+            className="md:hidden overflow-hidden border-t border-white/10 bg-[#04060f]/95 backdrop-blur-xl"
           >
             <div className="max-h-[calc(100svh-5rem)] overflow-y-auto overscroll-contain px-4 py-4 sm:px-6">
               <div className="flex flex-col gap-1">
@@ -226,16 +230,23 @@ export default function Navbar() {
                   );
                 })}
 
-                <motion.a
-                  href="#contact"
-                  onClick={(event) => closeAndNavigate(event, "#contact")}
+                <motion.div
                   initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.28 }}
-                  className="mt-3 inline-flex min-h-12 items-center justify-center rounded-xl bg-gradient-to-r from-blue-600 to-violet-600 px-5 font-medium text-white shadow-lg shadow-blue-600/25 active:scale-[0.99] transition"
+                  className="mt-3"
                 >
-                  Hire Me
-                </motion.a>
+                  <FuturisticButton
+                    href="#contact"
+                    onClick={(event) => closeAndNavigate(event, "#contact")}
+                    size="md"
+                    variant="gradient"
+                    icon={Mail}
+                    className="w-full"
+                  >
+                    Contact Me
+                  </FuturisticButton>
+                </motion.div>
               </div>
             </div>
           </motion.div>

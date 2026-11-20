@@ -3,10 +3,11 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, MapPin, Send } from "lucide-react";
 import SectionTitle from "../components/SectionTitle";
+import FuturisticButton from "../components/FuturisticButton";
 import { sendContactMessage } from "../lib/sendMessage";
 
 const inputClass =
-  "w-full bg-[#0B1120] border border-white/10 rounded-lg px-4 py-3 outline-none focus:border-blue-500";
+  "w-full rounded-lg border border-white/10 bg-[#050816]/70 px-4 py-3 outline-none transition placeholder:text-slate-500 focus:border-cyan-400/60 focus:ring-2 focus:ring-blue-500/15";
 
 function Spinner() {
   return (
@@ -150,7 +151,7 @@ export default function Contact() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: false, amount: 0.3 }}
             transition={{ duration: 0.7, delay: 0.15 }}
-            className="relative bg-[#111827] border border-white/10 p-7 rounded-2xl space-y-5"
+            className="relative bg-[#0B1120]/75 border border-white/10 p-7 rounded-2xl space-y-5 shadow-[0_24px_80px_-40px_rgba(37,99,235,0.45)] backdrop-blur-sm"
           >
 
             {/* Honeypot — hidden from humans, catches spam bots */}
@@ -248,16 +249,24 @@ export default function Contact() {
               )}
             </div>
 
-            <button
+            <FuturisticButton
               type="submit"
+              variant="primary"
+              size="lg"
+              icon={status === "sending" ? undefined : Send}
+              iconRight
               disabled={status === "sending"}
-              className="w-full bg-blue-600 hover:bg-blue-700 disabled:opacity-60 disabled:cursor-not-allowed py-3 rounded-lg flex justify-center items-center gap-2 transition"
+              className="w-full"
             >
-              {status === "sending"
-                ? <>Sending <Spinner /></>
-                : <>Send Message <Send size={18} /></>
-              }
-            </button>
+              {status === "sending" ? (
+                <span className="inline-flex items-center gap-2">
+                  <Spinner />
+                  Sending...
+                </span>
+              ) : (
+                "Send Message"
+              )}
+            </FuturisticButton>
 
           </motion.form>
 

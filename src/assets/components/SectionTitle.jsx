@@ -31,11 +31,11 @@ export default function SectionTitle({ title, subtitle }) {
       </motion.h2>
 
       <motion.div
-        initial={{ width: 0 }}
-        whileInView={{ width: "100%" }}
+        initial={{ scaleX: 0 }}
+        whileInView={{ scaleX: 1 }}
         viewport={{ once: false, amount: 0.4 }}
         transition={{ duration: 0.8, delay: 0.28, ease: "easeOut" }}
-        className="mx-auto mt-4 h-1 w-16 rounded-full bg-blue-500 sm:mt-5 sm:w-20"
+        className="mx-auto mt-4 h-1 w-16 origin-center rounded-full bg-gradient-to-r from-blue-500 via-cyan-400 to-violet-500 sm:mt-5 sm:w-20"
       />
     </motion.div>
   );

@@ -7,7 +7,7 @@ const spring = { type: "spring", stiffness: 300, damping: 24 };
 
 export default function Skills() {
   return (
-    <section id="skills" className="relative overflow-hidden py-28 px-6 bg-[#0F172A]">
+    <section id="skills" className="relative overflow-hidden py-28 px-6 bg-[#0F172A]/45">
       <div className="relative max-w-7xl mx-auto z-10">
 
         <motion.div
@@ -45,7 +45,7 @@ export default function Skills() {
                 transition={{ duration: 0.5, delay: index * 0.12, ...spring }}
                 whileHover={{ y: -6 }}
                 whileTap={{ scale: 0.98 }}
-                className="relative p-7 sm:p-8 rounded-2xl border border-white/10 bg-[#111827]/60 backdrop-blur-sm transition-all hover:border-blue-500/40 hover:bg-[#111827]/80 hover:shadow-[0_0_40px_rgba(59,130,246,0.15])"
+                className="relative p-7 sm:p-8 rounded-2xl border border-white/10 bg-[#111827]/60 backdrop-blur-sm transition-all hover:border-blue-500/40 hover:bg-[#111827]/80 hover:shadow-[0_0_40px_rgba(59,130,246,0.15)]"
               >
                 <div className="absolute inset-0 rounded-2xl bg-gradient-to-tr from-blue-500/10 to-violet-500/10 blur opacity-0 group-hover:opacity-100 transition-opacity" />
                 <h3 className="relative z-10 text-xl font-bold mb-6 text-blue-400">

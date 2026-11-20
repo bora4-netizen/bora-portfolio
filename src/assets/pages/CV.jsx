@@ -1,13 +1,13 @@
 
 import { motion } from "framer-motion";
 import { Download, ArrowLeft, Mail } from "lucide-react";
-import Navbar from "../components/Navbar";
+import FuturisticButton from "../components/FuturisticButton";
+
+const YEAR = new Date().getFullYear();
 
 export default function CV() {
   return (
-    <div className="min-h-svh overflow-x-clip bg-[#0B1120] text-white">
-
-      <Navbar />
+    <div className="min-h-svh overflow-x-clip text-white">
 
       <main className="overflow-x-clip pt-28 pb-16 px-6">
         <div className="max-w-3xl mx-auto">
@@ -35,7 +35,7 @@ export default function CV() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="bg-[#111827] border border-white/10 rounded-2xl p-8 sm:p-12 shadow-2xl shadow-black/40"
+            className="bg-[#0B1120]/75 border border-white/10 rounded-2xl p-8 sm:p-12 shadow-2xl shadow-black/40 backdrop-blur-sm"
           >
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 mb-10">
               <div>
@@ -47,24 +47,23 @@ export default function CV() {
                 </p>
               </div>
 
-              <a
+              <FuturisticButton
                 href="/resume.pdf"
                 download="Bora-CV.pdf"
-                whileHover={{ y: -2 }}
-                whileTap={{ scale: 0.96 }}
-                transition={{ type: "spring", stiffness: 300, damping: 22 }}
-                className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-violet-600 hover:from-blue-500 hover:to-violet-500 shadow-lg shadow-blue-600/30 px-6 py-3 rounded-xl font-medium transition"
+                variant="outline"
+                size="md"
+                icon={Download}
+                className="shrink-0"
               >
-                <Download size={18} />
                 Download CV
-              </a>
+              </FuturisticButton>
             </div>
 
             <div className="grid sm:grid-cols-2 gap-6 mb-10">
               <motion.div
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.2 }}
-                className="p-5 rounded-xl border border-white/5 bg-[#0B1120]/40"
+                className="p-5 rounded-xl border border-white/5 bg-[#050816]/50"
               >
                 <h3 className="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-3">
                   Email
@@ -80,7 +79,7 @@ export default function CV() {
               <motion.div
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.2 }}
-                className="p-5 rounded-xl border border-white/5 bg-[#0B1120]/40"
+                className="p-5 rounded-xl border border-white/5 bg-[#050816]/50"
               >
                 <h3 className="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-3">
                   Location
@@ -101,7 +100,7 @@ export default function CV() {
               </p>
             </div>
 
-            <div className="mt-10 rounded-2xl border border-white/10 bg-[#0B1120]/40 overflow-hidden shadow-inner">
+            <div className="mt-10 rounded-2xl border border-white/10 bg-[#050816]/50 overflow-hidden shadow-inner">
               <embed
                 src="/resume.pdf"
                 type="application/pdf"
@@ -117,7 +116,7 @@ export default function CV() {
                 </span>
               </div>
               <p className="text-xs text-gray-500">
-                © {new Date().getFullYear()} Bora. All rights reserved.
+                © {YEAR} Bora. All rights reserved.
               </p>
             </div>
           </motion.div>

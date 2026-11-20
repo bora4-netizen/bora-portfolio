@@ -1,13 +1,13 @@
 
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import {
   Mail,
-  Eye,
+  Download,
   ArrowRight,
 } from "lucide-react";
 import { Github, Linkedin } from "../components/BrandIcons";
+import FuturisticButton from "../components/FuturisticButton";
 import { CONTACT_EMAIL } from "../lib/sendMessage";
 
 const roles = [
@@ -98,12 +98,8 @@ export default function Hero() {
   const typed = useTypewriter(roles);
   const reduceMotion = useReducedMotion();
 
-  // Subtle parallax layers — restrained movement for a modern feel
+  // Subtle parallax for the portrait — restrained movement for a modern feel
   const { scrollY } = useScroll();
-  const yBlob1 = useTransform(scrollY, [0, 1200], [0, 80]);
-  const yBlob2 = useTransform(scrollY, [0, 1200], [0, -60]);
-  const yBlob3 = useTransform(scrollY, [0, 1200], [0, 70]);
-  const yGrid = useTransform(scrollY, [0, 1200], [0, 40]);
   const yPhoto = useTransform(scrollY, [0, 1200], [0, -40]);
   const parallax = (value) => (reduceMotion ? undefined : { y: value });
 
@@ -112,56 +108,6 @@ export default function Hero() {
       id="home"
       className="relative flex min-h-svh items-center overflow-hidden px-4 pb-16 pt-24 sm:px-6 sm:pb-20 sm:pt-28"
     >
-
-      {/* Aurora background — parallax layers */}
-      <motion.div
-        style={parallax(yBlob1)}
-        className="absolute -top-32 -left-32"
-      >
-        <motion.div
-          animate={reduceMotion ? undefined : { x: [0, 30, 0], y: [0, 22, 0] }}
-          transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
-          className="h-[22rem] w-[22rem] rounded-full bg-blue-600/25 blur-3xl sm:h-[35rem] sm:w-[35rem] md:h-[40rem] md:w-[40rem]"
-        />
-      </motion.div>
-
-      <motion.div
-        style={parallax(yBlob2)}
-        className="absolute top-1/4 -right-[12rem] sm:top-[20%] sm:-right-[18rem] md:-right-40"
-      >
-        <motion.div
-          animate={reduceMotion ? undefined : { x: [0, -28, 0], y: [0, 32, 0] }}
-          transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
-          className="h-[24rem] w-[24rem] rounded-full bg-violet-600/20 blur-3xl sm:h-[30rem] sm:w-[30rem]"
-        />
-      </motion.div>
-
-      <motion.div
-        style={parallax(yBlob3)}
-        className="absolute -bottom-40 sm:-bottom-32 left-1/3 sm:left-1/4"
-      >
-        <motion.div
-          animate={reduceMotion ? undefined : { x: [0, 24, 0], y: [0, -20, 0] }}
-          transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
-          className="h-[20rem] w-[20rem] rounded-full bg-cyan-500/15 blur-3xl sm:h-[26rem] sm:w-[26rem]"
-        />
-      </motion.div>
-
-      {/* Grid overlay — drifts slower than the content */}
-      <motion.div
-        style={parallax(yGrid)}
-        className="absolute inset-0 opacity-[0.35] aria-hidden-true"
-        aria-hidden="true"
-      >
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage:
-              "linear-gradient(rgba(148,163,184,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(148,163,184,0.07) 1px, transparent 1px)",
-            backgroundSize: "56px 56px",
-          }}
-        />
-      </motion.div>
 
       <div className="relative mx-auto grid w-full max-w-7xl items-center gap-12 md:grid-cols-2 md:gap-14">
 
@@ -223,27 +169,29 @@ export default function Hero() {
 
           <motion.div
             variants={itemVariants}
-            className="mt-7 flex w-full flex-col gap-3 sm:mt-10 sm:w-auto sm:flex-row sm:gap-4"
+            className="mt-7 flex w-full flex-col gap-3 sm:mt-10 sm:w-auto sm:flex-row sm:flex-wrap sm:gap-4"
           >
-            <motion.a
+            <FuturisticButton
               href="#projects"
-              whileHover={{ y: -2 }}
-              whileTap={{ scale: 0.95 }}
-              transition={spring}
-              className="flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 to-violet-600 px-6 py-3 font-medium shadow-lg shadow-blue-600/25 transition hover:from-blue-500 hover:to-violet-500 sm:w-auto"
+              variant="primary"
+              size="lg"
+              icon={ArrowRight}
+              iconRight
+              className="w-full sm:w-auto"
             >
-              View My Work <ArrowRight size={18} />
-            </motion.a>
+              View My Projects
+            </FuturisticButton>
 
-            <Link
-              to="/cv"
-              whileHover={{ y: -2 }}
-              whileTap={{ scale: 0.95 }}
-              transition={spring}
-              className="flex min-h-12 w-full items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 px-6 py-3 font-medium backdrop-blur transition hover:border-blue-500/60 sm:w-auto"
+            <FuturisticButton
+              href="/resume.pdf"
+              download="Bora-CV.pdf"
+              variant="outline"
+              size="lg"
+              icon={Download}
+              className="w-full sm:w-auto"
             >
-              View CV <Eye size={18} />
-            </Link>
+              Download CV
+            </FuturisticButton>
           </motion.div>
 
           <motion.div

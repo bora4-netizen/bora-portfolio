@@ -33,7 +33,7 @@ const experiences = [
 
 export default function Experience() {
   return (
-    <section id="experience" className="relative overflow-hidden py-28 px-6 bg-[#0F172A]">
+    <section id="experience" className="relative overflow-hidden py-28 px-6 bg-[#0F172A]/45">
       <div className="relative max-w-4xl mx-auto px-4 sm:px-6 z-10">
 
         <motion.div
@@ -77,7 +77,7 @@ export default function Experience() {
 
                 <div className="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-blue-500 border-4 border-[#0F172A] shadow-[0_0_15px_rgba(59,130,246,0.5)]" />
 
-                <div className="relative p-6 rounded-xl border border-white/10 bg-[#111827]/60 backdrop-blur-sm transition-all hover:border-blue-500/40 hover:bg-[#111827]/80 hover:shadow-[0_0_40px_rgba(59,130,246,0.15])">
+                <div className="relative p-6 rounded-xl border border-white/10 bg-[#111827]/60 backdrop-blur-sm transition-all hover:border-blue-500/40 hover:bg-[#111827]/80 hover:shadow-[0_0_40px_rgba(59,130,246,0.15)]">
                   <div className="absolute inset-0 rounded-xl bg-gradient-to-tr from-blue-500/10 to-violet-500/10 blur opacity-0 group-hover:opacity-100 transition-opacity" />
                   <div className="relative z-10">
                     <p className="text-blue-400 text-sm mb-2 font-medium">

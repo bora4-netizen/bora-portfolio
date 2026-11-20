@@ -2,6 +2,7 @@
 import { motion } from "framer-motion";
 import { ExternalLink, FileText } from "lucide-react";
 import { Github } from "./BrandIcons";
+import FuturisticButton from "./FuturisticButton";
 
 const spring = { type: "spring", stiffness: 300, damping: 22 };
 
@@ -39,8 +40,6 @@ export default function ProjectCard({ project }) {
           {project.technologies.map((tech) => (
             <span
               key={tech}
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.2 }}
               className="text-xs bg-blue-500/10 text-blue-400 px-3 py-1 rounded-full border border-blue-500/20 transition-all hover:bg-blue-600/30 hover:text-white"
             >
               {tech}
@@ -48,48 +47,45 @@ export default function ProjectCard({ project }) {
           ))}
         </div>
 
-        <div className="flex gap-4">
+        <div className="flex flex-wrap gap-3">
           {project.github && project.github !== "#" && (
-            <a
+            <FuturisticButton
               href={project.github}
               target="_blank"
               rel="noreferrer"
-              whileHover={{ y: -2 }}
-              whileTap={{ scale: 0.95 }}
-              transition={spring}
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-white/10 bg-white/5 text-sm text-gray-300 font-medium transition-all hover:text-blue-400 hover:border-blue-500/40 hover:bg-white/10"
+              variant="ghost"
+              size="sm"
+              icon={Github}
             >
-              <Github size={16} /> GitHub
-            </a>
+              GitHub
+            </FuturisticButton>
           )}
 
           {project.demo && project.demo !== "#" && (
-            <a
+            <FuturisticButton
               href={project.demo}
               target="_blank"
               rel="noreferrer"
-              whileHover={{ y: -2 }}
-              whileTap={{ scale: 0.95 }}
-              transition={spring}
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-white/10 bg-white/5 text-sm text-gray-300 font-medium transition-all hover:text-blue-400 hover:border-blue-500/40 hover:bg-white/10"
+              variant="ghost"
+              size="sm"
+              icon={ExternalLink}
             >
-              <ExternalLink size={16} /> Live Demo
-            </a>
+              Live Demo
+            </FuturisticButton>
           )}
 
           {project.caseStudy && (
-            <a
+            <FuturisticButton
               href={project.caseStudy}
               target="_blank"
               rel="noreferrer"
               download
-              whileHover={{ y: -2 }}
-              whileTap={{ scale: 0.95 }}
-              transition={spring}
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-white/10 bg-white/5 text-sm text-gray-300 font-medium transition-all hover:text-blue-400 hover:border-blue-500/40 hover:bg-white/10"
+              variant="ghost"
+              size="sm"
+              icon={FileText}
             >
-              <FileText size={16} /> Case Study
-            </a>
+              Case Study
+            </FuturisticButton>
           )}
         </div>
       </div>

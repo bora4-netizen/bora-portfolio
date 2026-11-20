@@ -2,6 +2,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./assets/components/Navbar";
 import Footer from "./assets/components/Footer";
+import FuturisticBackground from "./assets/components/FuturisticBackground";
 
 import Hero from "./assets/sections/Hero";
 import About from "./assets/sections/About";
@@ -14,28 +15,30 @@ import CV from "./assets/pages/CV";
 function App() {
   return (
     <BrowserRouter>
-      <div className="min-h-svh overflow-x-clip bg-[#0B1120] text-white">
+      <div className="relative isolate min-h-svh overflow-x-clip text-white">
+        <FuturisticBackground />
 
-        <Navbar />
+        <div className="relative z-10">
+          <Navbar />
 
-        <main className="overflow-x-clip">
-          <Routes>
-            <Route path="/" element={
-              <>
-                <Hero />
-                <About />
-                <Skills />
-                <Projects />
-                <Experience />
-                <Contact />
-              </>
-            } />
-            <Route path="/cv" element={<CV />} />
-          </Routes>
-        </main>
+          <main className="overflow-x-clip">
+            <Routes>
+              <Route path="/" element={
+                <>
+                  <Hero />
+                  <About />
+                  <Skills />
+                  <Projects />
+                  <Experience />
+                  <Contact />
+                </>
+              } />
+              <Route path="/cv" element={<CV />} />
+            </Routes>
+          </main>
 
-        <Footer />
-
+          <Footer />
+        </div>
       </div>
     </BrowserRouter>
   );
