@@ -33,7 +33,7 @@ const experiences = [
 
 export default function Experience() {
   return (
-    <section id="experience" className="relative overflow-hidden py-28 px-6">
+    <section id="experience" className="relative overflow-hidden py-20 px-4 sm:px-6 sm:py-28">
       <div className="relative max-w-4xl mx-auto px-4 sm:px-6 z-10">
 
         <motion.div

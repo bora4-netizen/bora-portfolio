@@ -91,7 +91,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-28 px-6">
+    <section id="contact" className="py-20 px-4 sm:px-6 sm:py-28">
       <div className="max-w-7xl mx-auto">
 
         <SectionTitle
@@ -99,7 +99,7 @@ export default function Contact() {
           subtitle="Contact me"
         />
 
-        <div className="grid md:grid-cols-2 gap-12">
+        <div className="grid md:grid-cols-2 gap-8 sm:gap-12">
 
           <motion.div
             initial={{ opacity: 0, x: -40 }}

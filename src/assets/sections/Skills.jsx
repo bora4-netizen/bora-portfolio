@@ -7,7 +7,7 @@ const spring = { type: "spring", stiffness: 300, damping: 24 };
 
 export default function Skills() {
   return (
-    <section id="skills" className="relative overflow-hidden py-28 px-6">
+    <section id="skills" className="relative overflow-hidden py-20 px-4 sm:px-6 sm:py-28">
       <div className="relative max-w-7xl mx-auto z-10">
 
         <motion.div

@@ -26,7 +26,7 @@ const information = [
 
 export default function About() {
   return (
-    <section id="about" className="relative overflow-hidden py-28 px-6">
+    <section id="about" className="relative overflow-hidden py-20 px-4 sm:px-6 sm:py-28">
       <Parallax
         className="absolute -top-24 right-0 pointer-events-none"
         from={40}

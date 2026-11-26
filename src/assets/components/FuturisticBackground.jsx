@@ -811,7 +811,7 @@ export default function FuturisticBackground() {
     window.addEventListener("pointermove", onPointerMove, { passive: true });
 
     return () => window.removeEventListener("pointermove", onPointerMove);
-  }, [reduceMotion, glowX, glowY, pointerX, pointerY, smoothGlowX, smoothGlowY]);
+  }, [reduceMotion, glowX, glowY, glowAngle, pointerX, pointerY, smoothGlowX, smoothGlowY]);
 
   const parallax = (x, y) => (reduceMotion ? undefined : { x, y });
 

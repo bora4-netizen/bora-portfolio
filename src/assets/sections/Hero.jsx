@@ -110,7 +110,7 @@ export default function Hero() {
       className="relative flex min-h-svh items-center overflow-hidden px-4 pb-16 pt-24 sm:px-6 sm:pb-20 sm:pt-28"
     >
 
-      <div className="relative mx-auto grid w-full max-w-7xl items-center gap-12 md:grid-cols-2 md:gap-14">
+      <div className="relative mx-auto grid w-full max-w-7xl items-center gap-10 md:grid-cols-2 md:gap-14">
 
         <motion.div
           variants={containerVariants}
