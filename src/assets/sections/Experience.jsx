@@ -33,7 +33,7 @@ const experiences = [
 
 export default function Experience() {
   return (
-    <section id="experience" className="relative overflow-hidden py-28 px-6 bg-[#0F172A]/45">
+    <section id="experience" className="relative overflow-hidden py-28 px-6">
       <div className="relative max-w-4xl mx-auto px-4 sm:px-6 z-10">
 
         <motion.div
@@ -61,7 +61,7 @@ export default function Experience() {
           whileInView="visible"
           viewport={{ once: false, amount: 0.2 }}
         >
-          <div className="relative border-l-2 border-blue-500/40 ml-3 space-y-10">
+          <div className="relative border-l-2 border-cyan-400/30 ml-3 space-y-10">
 
             {experiences.map((item, index) => (
               <motion.div
@@ -75,10 +75,11 @@ export default function Experience() {
                 className="relative pl-8"
               >
 
-                <div className="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-blue-500 border-4 border-[#0F172A] shadow-[0_0_15px_rgba(59,130,246,0.5)]" />
+                <div className="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-cyan-400 border-4 border-[#060514] shadow-[0_0_15px_rgba(34,211,238,0.6)]" />
 
-                <div className="relative p-6 rounded-xl border border-white/10 bg-[#111827]/60 backdrop-blur-sm transition-all hover:border-blue-500/40 hover:bg-[#111827]/80 hover:shadow-[0_0_40px_rgba(59,130,246,0.15)]">
-                  <div className="absolute inset-0 rounded-xl bg-gradient-to-tr from-blue-500/10 to-violet-500/10 blur opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="group relative p-6 rounded-xl border border-white/10 bg-[#0a0a24]/50 backdrop-blur-xl transition-all hover:border-cyan-400/40 hover:bg-[#0a0a24]/10 hover:shadow-[0_0_40px_rgba(34,211,238,0.15)]">
+                  <div className="space-scene pointer-events-none absolute inset-0 rounded-xl opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                  <div className="absolute inset-0 rounded-xl bg-gradient-to-tr from-cyan-500/10 to-violet-500/10 blur opacity-0 group-hover:opacity-100 transition-opacity" />
                   <div className="relative z-10">
                     <p className="text-blue-400 text-sm mb-2 font-medium">
                       {item.type} · {item.period}

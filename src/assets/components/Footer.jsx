@@ -9,7 +9,7 @@ const YEAR = new Date().getFullYear();
 export default function Footer() {
   return (
     <footer className="relative overflow-hidden px-4 py-10 sm:px-6 sm:py-14 border-t border-white/10">
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-blue-400/40 to-transparent" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-400/40 to-transparent" />
 
       <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 text-center md:flex-row md:text-left md:gap-10">
         <div className="flex items-center gap-2">
@@ -28,35 +28,35 @@ export default function Footer() {
           <a
             href="https://github.com/bora4-netizen"
             aria-label="GitHub"
-            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 transition-all hover:bg-white/10 hover:border-blue-500/40 hover:text-blue-400 hover:-translate-y-1"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 backdrop-blur transition-all hover:bg-white/10 hover:border-cyan-400/40 hover:text-cyan-400 hover:-translate-y-1"
           >
             <Github size={20} />
           </a>
           <a
             href="https://www.linkedin.com/in/bora-chork-1bb1843a7/"
             aria-label="LinkedIn"
-            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 transition-all hover:bg-white/10 hover:border-blue-500/40 hover:text-blue-400 hover:-translate-y-1"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 backdrop-blur transition-all hover:bg-white/10 hover:border-cyan-400/40 hover:text-cyan-400 hover:-translate-y-1"
           >
             <Linkedin size={20} />
           </a>
           <a
             href={`mailto:${CONTACT_EMAIL}`}
             aria-label="Email"
-            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 transition-all hover:bg-white/10 hover:border-blue-500/40 hover:text-blue-400 hover:-translate-y-1"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 backdrop-blur transition-all hover:bg-white/10 hover:border-cyan-400/40 hover:text-cyan-400 hover:-translate-y-1"
           >
             <Mail size={20} />
           </a>
           <Link
             to="/cv"
             aria-label="View CV"
-            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 transition-all hover:bg-white/10 hover:border-blue-500/40 hover:text-blue-400 hover:-translate-y-1"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 backdrop-blur transition-all hover:bg-white/10 hover:border-cyan-400/40 hover:text-cyan-400 hover:-translate-y-1"
           >
             <FileText size={20} />
           </Link>
           <a
             href="#home"
             aria-label="Back to top"
-            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 transition-all hover:bg-white/10 hover:border-blue-500/40 hover:text-blue-400 hover:-translate-y-1"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 backdrop-blur transition-all hover:bg-white/10 hover:border-cyan-400/40 hover:text-cyan-400 hover:-translate-y-1"
           >
             <ArrowUp size={20} />
           </a>

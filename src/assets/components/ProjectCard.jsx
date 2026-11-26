@@ -12,9 +12,10 @@ export default function ProjectCard({ project }) {
       whileHover={{ y: -8 }}
       whileTap={{ scale: 0.98 }}
       transition={spring}
-      className="group relative p-1 rounded-2xl border border-transparent bg-[#111827]/50 backdrop-blur-sm transition-all hover:border-blue-500/40 hover:shadow-[0_0_50px_rgba(59,130,246,0.2)]"
+      className="group relative p-1 rounded-2xl border border-transparent bg-[#0a0a24]/40 backdrop-blur-xl transition-all hover:border-cyan-400/40 hover:bg-[#0a0a24]/5 hover:shadow-[0_0_50px_rgba(34,211,238,0.2)]"
     >
-      <div className="inset-0 rounded-2xl p-[1px] bg-gradient-to-r from-blue-500/30 to-violet-500/30 mask-[linear-gradient(0,0)_0_0_padding-box_0_0_-webkit-mask] -webkit-mask-composite destination-out" />
+      <div className="inset-0 rounded-2xl p-[1px] bg-gradient-to-r from-cyan-500/30 to-violet-500/30 mask-[linear-gradient(0,0)_0_0_padding-box_0_0_-webkit-mask] -webkit-mask-composite destination-out" />
+      <div className="space-scene pointer-events-none absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
       <div className="relative overflow-hidden rounded-xl group-hover:rounded-[1.5rem] transition-rounded">
         <motion.img
           src={project.image}
@@ -40,7 +41,7 @@ export default function ProjectCard({ project }) {
           {project.technologies.map((tech) => (
             <span
               key={tech}
-              className="text-xs bg-blue-500/10 text-blue-400 px-3 py-1 rounded-full border border-blue-500/20 transition-all hover:bg-blue-600/30 hover:text-white"
+              className="text-xs bg-cyan-500/10 text-cyan-400 px-3 py-1 rounded-full border border-cyan-500/20 transition-all hover:bg-cyan-600/30 hover:text-white"
             >
               {tech}
             </span>

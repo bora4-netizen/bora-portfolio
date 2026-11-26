@@ -129,9 +129,126 @@ svg {
   animation: float-slow 18s ease-in-out infinite;
 }
 
+.portrait-orbit {
+  animation: portrait-orbit 14s linear infinite;
+}
+
+.portrait-orbit--reverse {
+  animation: portrait-orbit 22s linear infinite reverse;
+}
+
+.portrait-aura {
+  animation: portrait-aura 16s ease-in-out infinite;
+}
+
+.holo-beam {
+  animation: holo-beam 4.5s linear infinite;
+}
+
+.holo-flicker {
+  animation: holo-flicker 6s ease-in-out infinite;
+}
+
+.portrait-ring {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  padding: 2px;
+  border-radius: inherit;
+  background: conic-gradient(
+    from var(--btn-angle),
+    transparent 0deg,
+    #22d3ee 55deg,
+    #3b82f6 130deg,
+    transparent 190deg,
+    #a855f7 290deg,
+    transparent 360deg
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  animation: btn-border-spin 5s linear infinite;
+  pointer-events: none;
+}
+
 .futuristic-noise {
   background-image: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='180'%20height='180'%20viewBox='0%200%20180%20180'%3E%3Cfilter%20id='n'%3E%3CfeTurbulence%20type='fractalNoise'%20baseFrequency='0.8'%20numOctaves='3'%20stitchTiles='stitch'/%3E%3C/filter%3E%3Crect%20width='180'%20height='180'%20filter='url(%23n)'%20opacity='0.55'/%3E%3C/svg%3E");
   background-size: 180px 180px;
+}
+
+/* Crisp starfield revealed on card hover */
+.starfield {
+  background-image:
+    radial-gradient(1px 1px at 20px 30px, rgba(255, 255, 255, 0.95), transparent),
+    radial-gradient(1px 1px at 90px 130px, rgba(255, 255, 255, 0.7), transparent),
+    radial-gradient(1.5px 1.5px at 160px 60px, rgba(207, 227, 255, 0.9), transparent),
+    radial-gradient(1px 1px at 230px 190px, rgba(255, 255, 255, 0.65), transparent),
+    radial-gradient(1px 1px at 300px 110px, rgba(233, 213, 255, 0.8), transparent),
+    radial-gradient(1.5px 1.5px at 60px 210px, rgba(165, 243, 252, 0.85), transparent),
+    radial-gradient(1px 1px at 340px 40px, rgba(255, 255, 255, 0.75), transparent),
+    radial-gradient(1px 1px at 130px 250px, rgba(255, 255, 255, 0.6), transparent);
+  background-size: 360px 280px;
+  background-repeat: repeat;
+}
+
+/* Space scene revealed on card hover — matches the solar background */
+.space-scene {
+  background-image:
+    radial-gradient(1px 1px at 15% 25%, rgba(255, 255, 255, 0.9), transparent),
+    radial-gradient(1px 1px at 55% 14%, rgba(207, 227, 255, 0.8), transparent),
+    radial-gradient(1.5px 1.5px at 80% 34%, rgba(255, 255, 255, 0.85), transparent),
+    radial-gradient(1px 1px at 35% 70%, rgba(233, 213, 255, 0.8), transparent),
+    radial-gradient(1px 1px at 70% 82%, rgba(255, 255, 255, 0.7), transparent),
+    radial-gradient(1px 1px at 90% 58%, rgba(165, 243, 252, 0.8), transparent),
+    radial-gradient(1px 1px at 25% 55%, rgba(255, 255, 255, 0.65), transparent),
+    radial-gradient(circle at 32% 42%, rgba(255, 240, 200, 0.95) 0%, rgba(255, 186, 96, 0.55) 6%, rgba(255, 150, 60, 0.18) 18%, transparent 34%),
+    radial-gradient(ellipse 60% 50% at 78% 70%, rgba(59, 130, 246, 0.3), transparent 70%),
+    radial-gradient(ellipse 50% 45% at 18% 82%, rgba(34, 211, 238, 0.22), transparent 70%);
+  filter: saturate(1.1);
+  -webkit-mask: radial-gradient(circle at 50% 50%, black 0%, black 60%, transparent 86%);
+  mask: radial-gradient(circle at 50% 50%, black 0%, black 60%, transparent 86%);
+  animation: space-drift 20s ease-in-out infinite;
+  animation-play-state: paused;
+}
+
+.group:hover .space-scene,
+.group:focus-within .space-scene {
+  animation-play-state: running;
+}
+
+@keyframes space-drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(-4px, -6px, 0) scale(1.05);
+  }
+}
+
+/* Cursor-following missile flame */
+.missile-flame {
+  transform-box: fill-box;
+  transform-origin: right center;
+  animation: flame-flicker 0.16s ease-in-out infinite alternate;
+}
+
+.missile-flame--inner {
+  animation-duration: 0.1s;
+}
+
+@keyframes flame-flicker {
+  from {
+    transform: scaleX(0.7);
+    opacity: 0.8;
+  }
+  to {
+    transform: scaleX(1.15);
+    opacity: 1;
+  }
 }
 
 @keyframes aurora-drift {
@@ -184,6 +301,52 @@ svg {
   }
   50% {
     transform: translate3d(6px, -12px, 0) rotate(3deg);
+  }
+}
+
+@keyframes portrait-orbit {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes portrait-aura {
+  0%,
+  100% {
+    opacity: 0.75;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.06);
+  }
+}
+
+@keyframes holo-beam {
+  0% {
+    transform: translateY(-120%);
+  }
+  100% {
+    transform: translateY(520%);
+  }
+}
+
+@keyframes holo-flicker {
+  0%,
+  100% {
+    opacity: 0.9;
+  }
+  48% {
+    opacity: 0.9;
+  }
+  50% {
+    opacity: 0.55;
+  }
+  52% {
+    opacity: 0.9;
+  }
+  70% {
+    opacity: 0.75;
   }
 }
 

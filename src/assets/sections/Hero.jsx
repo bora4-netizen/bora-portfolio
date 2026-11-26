@@ -11,9 +11,10 @@ import FuturisticButton from "../components/FuturisticButton";
 import { CONTACT_EMAIL } from "../lib/sendMessage";
 
 const roles = [
-  "Junior Web Developer",
+  "Full Stack Developer",
   "Frontend Developer",
   "Backend Developer",
+  "Junior Web Developer",
   "Lifelong Learner",
 ];
 
@@ -132,7 +133,7 @@ export default function Hero() {
 
           <motion.p
             variants={itemVariants}
-            className="mb-3 text-base font-medium text-blue-400 sm:mb-4 sm:text-lg"
+            className="mb-3 text-base font-medium text-cyan-400 sm:mb-4 sm:text-lg"
           >
             Hi, I'm Bora 👋
           </motion.p>
@@ -142,7 +143,7 @@ export default function Hero() {
             className="text-4xl font-bold leading-[1.12] tracking-tight sm:text-5xl lg:text-6xl"
           >
             Building the
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-500 to-violet-500">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-violet-500">
               {" "}Web
             </span>
             <br />
@@ -154,7 +155,7 @@ export default function Hero() {
             className="mt-4 flex min-h-8 items-center text-lg text-gray-300 sm:mt-6 sm:min-h-9 sm:text-2xl"
           >
             {typed}
-            <span className="text-blue-400 animate-pulse ml-0.5">|</span>
+            <span className="text-cyan-400 animate-pulse ml-0.5">|</span>
           </motion.h2>
 
           <motion.p
@@ -204,7 +205,7 @@ export default function Hero() {
               whileHover={{ y: -2, scale: 1.05 }}
               whileTap={{ scale: 0.9 }}
               transition={spring}
-              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-gray-400 backdrop-blur transition hover:border-blue-500/60 hover:text-blue-400 sm:h-11 sm:w-11"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-gray-400 backdrop-blur transition hover:border-cyan-400/60 hover:text-cyan-400 sm:h-11 sm:w-11"
             >
               <Github size={20} />
             </motion.a>
@@ -214,7 +215,7 @@ export default function Hero() {
               whileHover={{ y: -2, scale: 1.05 }}
               whileTap={{ scale: 0.9 }}
               transition={spring}
-              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-gray-400 backdrop-blur transition hover:border-blue-500/60 hover:text-blue-400 sm:h-11 sm:w-11"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-gray-400 backdrop-blur transition hover:border-cyan-400/60 hover:text-cyan-400 sm:h-11 sm:w-11"
             >
               <Linkedin size={20} />
             </motion.a>
@@ -224,7 +225,7 @@ export default function Hero() {
               whileHover={{ y: -2, scale: 1.05 }}
               whileTap={{ scale: 0.9 }}
               transition={spring}
-              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-gray-400 backdrop-blur transition hover:border-blue-500/60 hover:text-blue-400 sm:h-11 sm:w-11"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-gray-400 backdrop-blur transition hover:border-cyan-400/60 hover:text-cyan-400 sm:h-11 sm:w-11"
             >
               <Mail size={20} />
             </motion.a>
@@ -239,16 +240,41 @@ export default function Hero() {
           style={parallax(yPhoto)}
           className="flex justify-center md:justify-end"
         >
-          <div className="relative">
+          <div className="float-slow relative">
 
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-600/40 to-violet-600/40 blur-[80px]" />
+            {/* Soft glow */}
+            <div className="portrait-aura absolute inset-0 bg-gradient-to-tr from-blue-500/45 via-indigo-500/40 to-cyan-400/45 blur-[80px]" />
 
-            <div className="relative rounded-[2rem] bg-gradient-to-tr from-blue-500 to-violet-500 p-[3px] shadow-2xl shadow-blue-600/20 sm:rounded-[2.5rem]">
-              <img
-                src="/images/bora.png"
-                alt="Bora's profile"
-                className="block h-56 w-56 rounded-[2rem] object-cover xs:h-60 xs:w-60 sm:h-72 sm:w-72 sm:rounded-[2.5rem] md:h-80 md:w-80 lg:h-96 lg:w-96"
-              />
+            {/* Frosted glass card */}
+            <div className="relative rounded-[2rem] border border-white/15 bg-white/5 p-2 shadow-2xl shadow-blue-900/40 backdrop-blur-xl sm:rounded-[2.5rem]">
+              {/* Top hairline highlight */}
+              <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-white/60 to-transparent" />
+
+              <div className="relative overflow-hidden rounded-[1.6rem] sm:rounded-[2rem]">
+                <img
+                  src="/images/bora.png"
+                  alt="Bora's profile"
+                  className="block h-56 w-56 object-cover xs:h-60 xs:w-60 sm:h-72 sm:w-72 md:h-80 md:w-80 lg:h-96 lg:w-96"
+                />
+
+                {/* Glass sheen */}
+                <div
+                  className="pointer-events-none absolute inset-0"
+                  style={{
+                    background:
+                      "linear-gradient(125deg, rgba(255,255,255,0.28) 0%, rgba(255,255,255,0.05) 28%, transparent 46%, transparent 70%, rgba(96,165,250,0.12) 100%)",
+                  }}
+                />
+                {/* Subtle color grade */}
+                <div
+                  className="pointer-events-none absolute inset-0"
+                  style={{
+                    background:
+                      "linear-gradient(135deg, rgba(59,130,246,0.18), rgba(34,211,238,0.14) 55%, rgba(99,102,241,0.20))",
+                    mixBlendMode: "soft-light",
+                  }}
+                />
+              </div>
             </div>
 
             <FloatChip

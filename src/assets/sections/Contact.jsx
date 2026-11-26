@@ -7,7 +7,7 @@ import FuturisticButton from "../components/FuturisticButton";
 import { sendContactMessage } from "../lib/sendMessage";
 
 const inputClass =
-  "w-full rounded-lg border border-white/10 bg-[#050816]/70 px-4 py-3 outline-none transition placeholder:text-slate-500 focus:border-cyan-400/60 focus:ring-2 focus:ring-blue-500/15";
+  "w-full rounded-lg border border-white/10 bg-[#050816]/60 px-4 py-3 outline-none backdrop-blur transition placeholder:text-slate-500 focus:border-cyan-400/60 focus:ring-2 focus:ring-cyan-500/15";
 
 function Spinner() {
   return (
@@ -109,7 +109,7 @@ export default function Contact() {
           >
             <h3 className="text-3xl font-bold mb-5">
               Let's Build Something
-              <span className="text-blue-500"> Together.</span>
+              <span className="text-cyan-400"> Together.</span>
             </h3>
 
             <p className="text-gray-400 leading-relaxed mb-8">
@@ -121,12 +121,12 @@ export default function Contact() {
             <div className="space-y-6">
 
               <div className="flex items-center gap-4">
-                <Mail className="text-blue-400" />
+                <Mail className="text-cyan-400" />
                 <div>
                   <p className="text-sm text-gray-500">Email</p>
                   <a
                     href="mailto:chorkbora4@gmail.com"
-                    className="hover:text-blue-400 transition"
+                    className="hover:text-cyan-400 transition"
                   >
                     chorkbora4@gmail.com
                   </a>
@@ -134,7 +134,7 @@ export default function Contact() {
               </div>
 
               <div className="flex items-center gap-4">
-                <MapPin className="text-blue-400" />
+                <MapPin className="text-cyan-400" />
                 <div>
                   <p className="text-sm text-gray-500">Location</p>
                   <p>Cambodia</p>
@@ -151,7 +151,7 @@ export default function Contact() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: false, amount: 0.3 }}
             transition={{ duration: 0.7, delay: 0.15 }}
-            className="relative bg-[#0B1120]/75 border border-white/10 p-7 rounded-2xl space-y-5 shadow-[0_24px_80px_-40px_rgba(37,99,235,0.45)] backdrop-blur-sm"
+            className="relative bg-[#0a0a24]/50 border border-white/10 p-7 rounded-2xl space-y-5 shadow-[0_24px_80px_-40px_rgba(34,211,238,0.35)] backdrop-blur-xl"
           >
 
             {/* Honeypot — hidden from humans, catches spam bots */}

@@ -7,7 +7,7 @@ const spring = { type: "spring", stiffness: 300, damping: 24 };
 
 export default function Skills() {
   return (
-    <section id="skills" className="relative overflow-hidden py-28 px-6 bg-[#0F172A]/45">
+    <section id="skills" className="relative overflow-hidden py-28 px-6">
       <div className="relative max-w-7xl mx-auto z-10">
 
         <motion.div
@@ -45,8 +45,9 @@ export default function Skills() {
                 transition={{ duration: 0.5, delay: index * 0.12, ...spring }}
                 whileHover={{ y: -6 }}
                 whileTap={{ scale: 0.98 }}
-                className="relative p-7 sm:p-8 rounded-2xl border border-white/10 bg-[#111827]/60 backdrop-blur-sm transition-all hover:border-blue-500/40 hover:bg-[#111827]/80 hover:shadow-[0_0_40px_rgba(59,130,246,0.15)]"
+                className="group relative p-7 sm:p-8 rounded-2xl border border-white/10 bg-[#0a0a24]/50 backdrop-blur-xl transition-all hover:border-cyan-400/40 hover:bg-[#0a0a24]/10 hover:shadow-[0_0_50px_rgba(34,211,238,0.15)]"
               >
+                <div className="space-scene pointer-events-none absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                 <div className="absolute inset-0 rounded-2xl bg-gradient-to-tr from-blue-500/10 to-violet-500/10 blur opacity-0 group-hover:opacity-100 transition-opacity" />
                 <h3 className="relative z-10 text-xl font-bold mb-6 text-blue-400">
                   {group.category}
@@ -62,7 +63,7 @@ export default function Skills() {
                       transition={{ duration: 0.4, delay: index * 0.1 + skillIdx * 0.04 }}
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
-                      className="px-4 py-2 rounded-lg text-sm text-gray-300 bg-[#1E293B]/80 border border-white/10 transition-all hover:bg-blue-600/20 hover:text-white hover:border-blue-500/40"
+                      className="px-4 py-2 rounded-lg text-sm text-gray-300 bg-white/[0.04] border border-white/10 backdrop-blur transition-all hover:bg-cyan-500/15 hover:text-white hover:border-cyan-400/40"
                     >
                       {skill}
                     </motion.span>

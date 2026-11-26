@@ -107,7 +107,7 @@ export default function Navbar() {
       initial={{ y: -80, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6 }}
-      className="fixed top-0 left-0 w-full z-50 bg-[#04060f]/80 backdrop-blur-xl border-b border-white/10 shadow-[0_12px_40px_-24px_rgba(59,130,246,0.5)]"
+      className="fixed top-0 left-0 w-full z-50 bg-[#04060f]/70 backdrop-blur-xl border-b border-white/10 shadow-[0_12px_40px_-24px_rgba(34,211,238,0.4)]"
     >
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex justify-between items-center">
 
@@ -135,7 +135,7 @@ export default function Navbar() {
                 className={`relative px-3 py-2 rounded-lg text-sm lg:text-base transition-colors ${
                   isActive
                     ? "text-white"
-                    : "text-gray-400 hover:text-blue-400"
+                    : "text-gray-400 hover:text-cyan-400"
                 }`}
               >
                 {link.name}
@@ -143,7 +143,7 @@ export default function Navbar() {
                   <motion.span
                     layoutId="nav-active"
                     transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                    className="absolute inset-x-3 -bottom-0.5 h-0.5 rounded-full bg-gradient-to-r from-blue-500 to-violet-500"
+                    className="absolute inset-x-3 -bottom-0.5 h-0.5 rounded-full bg-gradient-to-r from-cyan-400 to-violet-500"
                   />
                 )}
               </a>
@@ -188,7 +188,7 @@ export default function Navbar() {
       <motion.div
         aria-hidden="true"
         style={{ scaleX: progress }}
-        className="h-0.5 origin-left bg-gradient-to-r from-blue-500 via-cyan-400 to-violet-500"
+        className="h-0.5 origin-left bg-gradient-to-r from-cyan-400 via-blue-500 to-violet-500"
       />
 
       <AnimatePresence>
@@ -218,13 +218,13 @@ export default function Navbar() {
                       transition={{ delay: 0.04 + index * 0.04 }}
                       className={`flex min-h-12 items-center justify-between rounded-xl px-4 text-base transition-colors ${
                         isActive
-                          ? "bg-blue-500/10 text-blue-400"
-                          : "text-gray-300 hover:bg-white/5 hover:text-blue-400"
+                          ? "bg-cyan-500/10 text-cyan-400"
+                          : "text-gray-300 hover:bg-white/5 hover:text-cyan-400"
                       }`}
                     >
                       {link.name}
                       {isActive && (
-                        <span className="h-1.5 w-1.5 rounded-full bg-blue-400" />
+                        <span className="h-1.5 w-1.5 rounded-full bg-cyan-400" />
                       )}
                     </motion.a>
                   );

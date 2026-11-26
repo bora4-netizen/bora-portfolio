@@ -32,7 +32,7 @@ export default function About() {
         from={40}
         to={-40}
       >
-        <div className="w-96 h-96 bg-blue-600/10 rounded-full blur-3xl" />
+        <div className="w-96 h-96 bg-cyan-600/10 rounded-full blur-3xl" />
       </Parallax>
 
       <div className="relative max-w-7xl mx-auto z-10">
@@ -59,7 +59,7 @@ export default function About() {
           >
             <h3 className="text-3xl font-bold mb-6 tracking-tight">
               Passionate About
-              <span className="text-blue-500"> Web Development</span>
+              <span className="text-cyan-400"> Web Development</span>
             </h3>
 
             <p className="text-gray-400 leading-relaxed mb-5 text-sm sm:text-base">
@@ -102,12 +102,13 @@ export default function About() {
                     transition={{ duration: 0.5, delay: index * 0.12, ...spring }}
                     whileHover={{ y: -4 }}
                     whileTap={{ scale: 0.98 }}
-                    className="relative group p-5 sm:p-6 rounded-2xl border border-white/10 bg-[#111827]/50 backdrop-blur-sm flex gap-4 sm:gap-5 items-center transition-colors hover:border-blue-500/40 hover:bg-[#111827]/80"
+                    className="relative group p-5 sm:p-6 rounded-2xl border border-white/10 bg-[#0a0a24]/50 backdrop-blur-xl flex gap-4 sm:gap-5 items-center transition-colors hover:border-cyan-400/40 hover:bg-[#0a0a24]/10"
                   >
-                    <div className="relative z-10 p-4 rounded-xl bg-blue-500/10 border border-blue-500/20">
-                      <Icon className="text-blue-400" size={28} />
+                    <div className="space-scene pointer-events-none absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                    <div className="relative z-10 p-4 rounded-xl bg-cyan-500/10 border border-cyan-500/20">
+                      <Icon className="text-cyan-400" size={28} />
                     </div>
-                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-tr from-blue-500/10 to-violet-500/10 blur opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-tr from-cyan-500/10 to-violet-500/10 blur opacity-0 group-hover:opacity-100 transition-opacity" />
                     <div className="relative z-10">
                       <h4 className="font-bold text-lg text-white">
                         {item.title}

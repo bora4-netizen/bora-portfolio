@@ -24,7 +24,7 @@ export default function CV() {
                 e.preventDefault();
                 window.history.back();
               }}
-              className="text-gray-400 hover:text-blue-400 transition flex items-center gap-1"
+              className="text-gray-400 hover:text-cyan-400 transition flex items-center gap-1"
             >
               <ArrowLeft size={18} />
               <span className="text-sm">Back</span>
@@ -35,14 +35,14 @@ export default function CV() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="bg-[#0B1120]/75 border border-white/10 rounded-2xl p-8 sm:p-12 shadow-2xl shadow-black/40 backdrop-blur-sm"
+            className="bg-[#0a0a24]/50 border border-white/10 rounded-2xl p-8 sm:p-12 shadow-2xl shadow-black/40 backdrop-blur-xl"
           >
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 mb-10">
               <div>
                 <h1 className="text-3xl sm:text-4xl font-bold mb-2 tracking-tight">
                   Bora's CV
                 </h1>
-                <p className="text-blue-400 text-sm font-medium uppercase tracking-wider">
+                <p className="text-cyan-400 text-sm font-medium uppercase tracking-wider">
                   Junior Web Developer
                 </p>
               </div>
@@ -70,7 +70,7 @@ export default function CV() {
                 </h3>
                 <a
                   href="mailto:chorkbora4@gmail.com"
-                  className="text-blue-400 hover:text-blue-300 transition text-sm"
+                  className="text-cyan-400 hover:text-cyan-300 transition text-sm"
                 >
                   chorkbora4@gmail.com
                 </a>

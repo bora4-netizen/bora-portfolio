@@ -15,7 +15,7 @@ export default function SectionTitle({ title, subtitle }) {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: false, amount: 0.4 }}
         transition={{ duration: 0.5, delay: 0.1 }}
-        className="mb-3 text-xs uppercase tracking-[3px] text-blue-400 sm:text-sm sm:tracking-[4px]"
+        className="mb-3 text-xs uppercase tracking-[3px] text-cyan-400 sm:text-sm sm:tracking-[4px]"
       >
         {subtitle}
       </motion.p>
@@ -35,7 +35,7 @@ export default function SectionTitle({ title, subtitle }) {
         whileInView={{ scaleX: 1 }}
         viewport={{ once: false, amount: 0.4 }}
         transition={{ duration: 0.8, delay: 0.28, ease: "easeOut" }}
-        className="mx-auto mt-4 h-1 w-16 origin-center rounded-full bg-gradient-to-r from-blue-500 via-cyan-400 to-violet-500 sm:mt-5 sm:w-20"
+        className="mx-auto mt-4 h-1 w-16 origin-center rounded-full bg-gradient-to-r from-cyan-400 via-blue-500 to-violet-500 shadow-[0_0_12px_rgba(34,211,238,0.6)] sm:mt-5 sm:w-20"
       />
     </motion.div>
   );
