@@ -887,7 +887,7 @@ export default function FuturisticBackground() {
       {/* Missile that follows and points toward the cursor. Transform-only. */}
       {!reduceMotion && (
         <motion.div
-          className="pointer-events-none absolute left-[-2rem] top-[-1rem] hidden h-8 w-16 md:block"
+          className="pointer-events-none absolute left-[-2.5rem] top-[-1rem] hidden h-8 w-20 md:block"
           style={{
             x: smoothGlowX,
             y: smoothGlowY,
@@ -895,22 +895,47 @@ export default function FuturisticBackground() {
             willChange: "transform",
           }}
         >
-          <svg viewBox="0 0 72 28" className="h-full w-full overflow-visible">
+          <svg viewBox="0 0 80 32" className="h-full w-full overflow-visible">
             <path
               className="missile-flame"
-              d="M12 14 L-8 7 L-3 14 L-8 21 Z"
-              fill="#fb923c"
+              d="M16 16 L-16 6 L-6 16 L-16 26 Z"
+              fill="#ef4444"
+              opacity="0.85"
+            />
+            <path
+              className="missile-flame"
+              style={{ animationDuration: "0.12s" }}
+              d="M16 16 L-10 10 L-3 16 L-10 22 Z"
+              fill="#f97316"
             />
             <path
               className="missile-flame missile-flame--inner"
-              d="M12 14 L2 10 L5 14 L2 18 Z"
+              d="M16 16 L-2 12 L3 16 L-2 20 Z"
               fill="#fde68a"
             />
-            <path d="M14 9 L6 1 L20 9 Z" fill="#94a3b8" />
-            <path d="M14 19 L6 27 L20 19 Z" fill="#94a3b8" />
-            <rect x="10" y="9" width="42" height="10" rx="5" fill="#e2e8f0" />
-            <path d="M50 9 L68 14 L50 19 Z" fill="#f87171" />
-            <circle cx="40" cy="14" r="2.6" fill="#38bdf8" stroke="#0ea5e9" strokeWidth="0.6" />
+            <path
+              className="missile-flame missile-flame--inner"
+              style={{ animationDuration: "0.08s" }}
+              d="M16 16 L4 14 L6 16 L4 18 Z"
+              fill="#fffbeb"
+            />
+            <path d="M18 10 L6 2 L24 10 Z" fill="#ef4444" />
+            <path d="M18 22 L6 30 L24 22 Z" fill="#ef4444" />
+            <rect x="14" y="9" width="42" height="14" rx="7" fill="#f1f5f9" />
+            <path
+              d="M14 16 L56 16 L56 23 L21 23 A7 7 0 0 1 14 16 Z"
+              fill="#e2e8f0"
+            />
+            <path d="M56 9 L74 16 L56 23 Z" fill="#ef4444" />
+            <circle
+              cx="40"
+              cy="16"
+              r="4"
+              fill="#38bdf8"
+              stroke="#0ea5e9"
+              strokeWidth="1.5"
+            />
+            <circle cx="38.5" cy="14.5" r="1.2" fill="#e0f2fe" />
           </svg>
         </motion.div>
       )}
